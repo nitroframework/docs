@@ -98,6 +98,8 @@ final class Code
         return match ($language) {
             'blade' => 'blade',
             'js', 'javascript' => 'javascript',
+            'vue' => 'vue',
+            'jsx' => 'jsx',
             'sh', 'shell', 'bash' => 'shellscript',
             'json' => 'json',
             'html' => 'html',
