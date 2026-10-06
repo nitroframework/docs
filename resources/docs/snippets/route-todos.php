@@ -1,0 +1,1 @@
+Route::view('/todos', 'todos');
