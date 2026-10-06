@@ -29,6 +29,7 @@ return [
             'methods' => 'Methods',
             'server-methods' => 'Server methods',
             'views' => 'Views',
+            'javascript-views' => 'Vue, React and Solid',
             'directives' => 'Directives',
             'sharing-state' => 'Sharing state',
             'browser-classes' => 'Browser classes and enums',
