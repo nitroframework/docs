@@ -19,6 +19,7 @@
             ['`fusion:navigate`', 'Visits the link\'s page without a reload'],
             ['`.keypress`', 'Starts the visit when the mouse button goes down, instead of on the click. Touch and keyboard still use the click'],
             ['`.preserve-scroll`', 'Keeps the scroll position. Without it, a visit scrolls to the top, or to the URL\'s `#fragment`'],
+            ['`.prefetch`', 'Asks for the page once the pointer rests on the link, or the keyboard focuses it, so the click shows it at once. Kept 30 seconds; `.prefetch.60s` keeps it longer'],
             ['`fusion:current="class"`', 'Adds the class while the link points at the current page, and sets `aria-current="page"`. Add `.exact` to match the same path only'],
         ];
     @endphp
@@ -28,6 +29,21 @@
         You can also visit a page from code. Call <code>$visit(url)</code> in a handler, or
         <code>$this-&gt;redirect($url, navigate: true)</code> in a method. The back and forward buttons return to
         where you left each page.
+    </p>
+
+    <h3 id="prefetch-and-history">Prefetched pages, and back and forward</h3>
+    <p>
+        A page a link prefetched is shown by its click without another request. Back and forward show the pages you
+        visited in the last five minutes as they were, also without asking again. Both are kept in memory only:
+    </p>
+    <ul>
+        <li>Never in local storage or the history entry, so a reload, or the next person at the same computer, starts without them.</li>
+        <li>Any <code>#[Server]</code> call forgets them, so a page is never shown from before your own change.</li>
+        <li>Flash messages are shown once: back and forward don't show them again.</li>
+    </ul>
+    <p>
+        Prefetching asks for a page before anyone clicks, so only prefetch links to pages that are safe to load: a
+        <code>GET</code> page should never change anything anyway.
     </p>
 
     <x-docs.callout type="note" title="Links are for other pages">
