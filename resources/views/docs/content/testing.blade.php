@@ -15,6 +15,21 @@
     </p>
     <x-docs.code src="testing-server.php" runs="server" />
 
+    <h3 id="validation">Validation</h3>
+    <p>
+        <code>$this-&gt;validate()</code> in a <code>#[Server]</code> method checks the component's
+        <code>#[Validate]</code> rules, and throws Laravel's <code>ValidationException</code> when one fails, as it
+        does in a request. Assert that it is thrown, or read its messages:
+    </p>
+    <x-docs.code src="testing-validation.php" runs="server" />
+
+    <h3 id="mount">Pages with mount()</h3>
+    <p>
+        A page's <code>mount()</code> takes what its route gives it, such as a bound model. Call it with the same, and
+        assert on the properties it set:
+    </p>
+    <x-docs.code src="testing-mount.php" runs="server" />
+
     <h2 id="pages">Testing pages</h2>
     <p>
         <code>assertFusion()</code> reads the page from a response, whether the page was rendered in full or sent as
@@ -31,12 +46,32 @@
             ['`deferred(...$properties)`', 'The page leaves these properties for later'],
             ['`notDeferred()`', 'The page leaves nothing for later'],
             ['`state($key)`', 'Returns the state, or one value of it'],
+            ['`name()`', 'Returns the page\'s name'],
         ];
     @endphp
     <x-docs.table :columns="['Method', 'Asserts']" :rows="$asserts" />
 
     <p>To write your own assertions, <code>fusionState()</code> returns the state itself:</p>
     <x-docs.code src="testing-state.php" />
+
+    <h3 id="visits">Visits and deferred properties</h3>
+    <p>
+        A <code>fusion:navigate</code> visit asks for the page's data rather than its HTML, and a page with
+        <code>$this-&gt;defer()</code> properties is asked again for them once it shows. Send the same headers the
+        browser does, and <code>assertFusion()</code> reads either answer:
+    </p>
+    <x-docs.code src="testing-visit.php" />
+
+    <h2 id="build">Catching what can't run in the browser</h2>
+    <p>
+        A browser method or a view that uses something the browser can't run fails the build, with the file and
+        line. Run the build in your CI, so such code never reaches production:
+    </p>
+    <x-docs.code code="php artisan fusion:build" lang="sh" />
+    <p>
+        It exits with an error when a component doesn't compile, and lists what it compiled when they all do:
+        how many components, stores and pages, and what their views are written in.
+    </p>
 
     <x-docs.callout type="tip" title="What the browser sees">
         <p>The state is exactly what the browser receives. A <code>missing()</code> assertion for each secret a page might hold is a cheap way to make sure it stays on the server.</p>
