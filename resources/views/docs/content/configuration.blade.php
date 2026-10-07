@@ -28,8 +28,10 @@
             ['`build.obfuscate`', '`true`', 'Whether builds are obfuscated (`FUSION_OBFUSCATE`)'],
             ['`minify_on_change`', '`true`', 'Whether to minify when recompiling during development (`FUSION_MINIFY_ON_CHANGE`)'],
             ['`rendering`', '`\'clone\'`', 'How the browser creates elements: `\'clone\'` or `\'create\'`'],
-            ['`navigation`', '`\'data\'`', 'How a visit shows a page: `\'data\'` or `\'markup\'`. A page can choose with `#[Navigate]`'],
+            ['`navigation`', '`\'data\'`', 'How a visit shows a page: `\'data\'` or `\'markup\'`. A page can choose with `#[Navigate]`, which also takes `\'client\'`'],
             ['`attributes`', '`[]`', 'Your own `fusion:` attributes, each run by a `Fusion.directive()`'],
+            ['`views`', 'Vue, React, Solid', 'The engines for views written in a JavaScript framework: each one\'s `adapter`, the `path`s its views are in and their `extensions`'],
+            ['`ssr`', 'off', 'Server rendering for those views: `enabled` (`FUSION_SSR`), the render service\'s `url`, a `timeout` and the `bundle` `fusion:ssr` runs'],
             ['`features`', '`[]`', 'Classes that run around every component on the server'],
             ['`esbuild`', '', 'The Node binary (`FUSION_NODE`) and where esbuild is installed'],
         ];

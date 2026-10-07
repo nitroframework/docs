@@ -123,12 +123,58 @@
         The two ways mix freely: a class with its view beside it, or both in one file.
     </p>
 
+    <h2 id="talking">Components that talk to each other</h2>
+    <p>
+        Components with different views talk the way any Fusion components do: through their PHP. One dispatches
+        an event, the others listen with <code>#[On]</code>. A Vue view's component can be heard by one with a
+        React, Solid or Blade view, and none of them needs to know what the others are written in. Their
+        listeners run in the browser, so the views follow at once.
+    </p>
+
+    <x-docs.tabs>
+        <x-docs.tab label="The Vue desk sends">
+            <x-docs.code src="js-views-events-send.php" bare />
+        </x-docs.tab>
+        <x-docs.tab label="The React card listens">
+            <x-docs.code src="js-views-events-listen.php" bare />
+        </x-docs.tab>
+    </x-docs.tabs>
+
+    <ul>
+        <li><strong>From a browser method</strong>, the event is sent in the browser: no request.</li>
+        <li><strong>From a <code>#[Server]</code> method</strong>, it is sent with the answer, once the server has done its work.</li>
+        <li><strong>From the view itself</strong>, <code>dispatch('event', ...)</code> sends one, as <code>$dispatch</code> does in Blade.</li>
+        <li><strong>To one component</strong>: <code>$this-&gt;dispatch(...)-&gt;to('react.student-card')</code>.</li>
+        <li>The component that sends an event hears it too, if it listens for it, as in Livewire.</li>
+    </ul>
+    <p>For state that several components share and keep, rather than news of something that happened, use a <a href="/docs/sharing-state">store</a>.</p>
+
+    <h2 id="folders">Keeping them by framework</h2>
+    <p>
+        A component's name follows its folder, so putting classes in a folder per framework puts the framework in
+        the tag where the component is placed:
+    </p>
+
+    <x-docs.code src="js-views-folders.blade.php" lang="blade" />
+
+    <p>
+        It is a convention, not a rule: feature folders (<code>Billing/</code>, <code>Students/</code>) work the
+        same. The view's file is named by <code>#[View]</code>, so moving a class does not move its view.
+    </p>
+
+    <h2 id="visits">On a visit</h2>
+    <p>
+        When <code>fusion:navigate</code> visits a page, the browser loads the code of the Vue, React and Solid
+        views the page places before it shows the page, alongside its data. The page appears with its views
+        already rendered, not filling in one by one after it.
+    </p>
+
     <h2 id="configuration">Configuration</h2>
     <p>
         <code>fusion.views</code> lists the engines: where each one's views are, their extensions, and the
         adapter that knows the framework's files. Add an entry for another framework, with an adapter class of
         your own (extending <code>Nitro\Fusion\View\ScriptEngine</code>) or none, and register its browser side
-        with <code>Fusion.engine()</code> (see the JavaScript API).
+        with <code>Fusion.engine()</code> (see <a href="/docs/javascript#engines">A view engine of your own</a>).
     </p>
 
     <h2 id="server-rendering">Server rendering</h2>

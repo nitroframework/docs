@@ -37,6 +37,8 @@
     @php
         $modifiers = [
             ['`.blur`', 'Sets the property when the field loses focus, instead of on every keystroke'],
+            ['`.change`, `.lazy`', 'Sets it when the field\'s value is committed (the `change` event), like `.blur`'],
+            ['`.live`', 'Sets it on every keystroke. That is what `fusion:model` does already, so it changes nothing; it is accepted for code written for Livewire'],
             ['`.debounce.300ms`', 'Sets it once typing pauses'],
             ['`.trim`', 'Removes spaces around the text'],
             ['`.number`', 'Sets it as a number, or `null` when the field is empty'],

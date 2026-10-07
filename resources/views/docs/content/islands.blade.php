@@ -36,6 +36,21 @@
         <li><strong>Inside a component's view</strong>, children always start with their parent, so <code>fusion:hydrate</code> there is a build error. Islands belong in plain Blade views and layouts.</li>
     </ul>
 
+    <h3 id="directive">Placing an island by name</h3>
+    <p>
+        When the component's name is only known at runtime, from a setting or a database row, place it with the
+        <code>@@fusion</code> directive instead of a tag. It takes the name, the props, and optionally its slots'
+        HTML and when it starts: <code>'idle'</code>, <code>'visible'</code>, <code>'interaction'</code>,
+        <code>'media:(max-width: 768px)'</code>, or <code>'static'</code> for never:
+    </p>
+
+    <x-docs.code src="islands-directive.blade.php" lang="blade" />
+
+    <p>
+        <code>@@fusion('students.table')</code> is the same island as <code>&lt;fusion:students.table /&gt;</code>.
+        Use the tag when you know the name as you write the view.
+    </p>
+
     <h2 id="code">Loading an island's code later</h2>
     <p>Add <code>#[LazyLoad]</code> to the island's class, and the browser downloads its code only when the island starts, not with the page:</p>
 

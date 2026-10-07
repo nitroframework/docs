@@ -40,6 +40,8 @@
             ['`.once`', 'Only the first time'],
             ['`.window`, `.document`', 'Listen on the window or the document'],
             ['`.outside`', 'A click outside the element'],
+            ['`.passive`', 'A passive listener: the handler cannot call `preventDefault()`, so scrolling and touch stay smooth'],
+            ['`.capture`', 'Handle the event on its way down, before the elements inside the element see it'],
             ['`.enter`, `.escape`, ...', 'A specific key'],
             ['`.debounce.300ms`, `.throttle.1s`', 'Limit how often the handler runs'],
         ];
