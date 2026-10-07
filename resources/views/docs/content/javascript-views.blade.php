@@ -131,11 +131,45 @@
         with <code>Fusion.engine()</code> (see the JavaScript API).
     </p>
 
-    <x-docs.callout type="note" title="Rendered in the browser">
+    <h2 id="server-rendering">Server rendering</h2>
+    <p>
+        Without it, the server sends a JavaScript view's element with the component's state, and the browser
+        renders the view into it. With server rendering, the view is already in the page's first HTML, for search
+        engines and a first paint that shows it, and the browser <em>hydrates</em> it: it takes over the elements
+        that are there rather than rendering them again. Blade views are always rendered on the server.
+    </p>
+    <p>
+        A small Node service, your app's render service, renders the views. Laravel sends it a view's state and
+        puts the HTML it gets back in the page. Give it an entry that names a renderer for each framework:
+    </p>
+
+    <x-docs.code src="js-views-ssr.js" lang="js" />
+
+    <x-docs.steps>
+        <x-docs.step title="Build both sides">
+            <p><code>npx vite build &amp;&amp; npx vite build --ssr</code> builds the browser's bundle and the render service's (<code>bootstrap/ssr/ssr.js</code>).</p>
+        </x-docs.step>
+        <x-docs.step title="Start the service">
+            <p><code>php artisan fusion:ssr</code> runs it on <code>fusion.ssr.url</code>'s port. In production, keep it running as a service, with Supervisor or systemd.</p>
+        </x-docs.step>
+        <x-docs.step title="Turn it on">
+            <p><code>FUSION_SSR=true</code> in your <code>.env</code>.</p>
+        </x-docs.step>
+    </x-docs.steps>
+
+    <p>
+        The service renders a view from the same state, through the same adapter code, as the browser's first
+        render, so what it sends is what the browser expects to find. A page never waits for long: if the service
+        isn't running, the page goes out at once with the views left to the browser, and Laravel logs a warning.
+        A view that fails in the service is logged and left to the browser too.
+    </p>
+
+    <x-docs.callout type="warning" title="What a view does while it renders on the server">
         <p>
-            The server renders a JavaScript view's element and its state, and the browser renders the view into it.
-            Search engines and the first paint see the element, not the view. Server rendering for these views is
-            planned; until then, use Blade for what must be in the first HTML.
+            On the server a view only reads the component. It can't call its methods, write a property or dispatch
+            an event while it renders: those belong to the browser, once it has taken over. Code that needs the
+            browser, such as <code>window</code>, <code>localStorage</code> or measuring an element, belongs in
+            <code>onMounted</code>, <code>useEffect</code> or <code>onMount</code>, as in any server-rendered app.
         </p>
     </x-docs.callout>
 </x-docs.page>
