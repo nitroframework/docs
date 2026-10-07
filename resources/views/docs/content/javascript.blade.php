@@ -26,6 +26,7 @@
             ['`Fusion.find(id)`', 'One component, by its `fusion:id`, or `null`'],
             ['`Fusion.directive(name, fn)`', 'Registers your own `fusion:` attribute'],
             ['`Fusion.use(plugin)`', 'Adds a plugin that runs around every component'],
+            ['`Fusion.engine(name, { load, mount })`', 'Adds a view engine: components whose view is written for it. Vue, React and Solid have theirs; see "A view engine of your own" below'],
         ];
     @endphp
     <x-docs.table :columns="['', 'Does']" :rows="$api" />
@@ -79,6 +80,57 @@
     </p>
 
     <x-docs.code src="js-upload-events.js" lang="js" />
+
+    <h2 id="engines">A view engine of your own</h2>
+    <p>
+        Vue, React and Solid views run on engines Fusion provides. For anything else, register your own: a
+        charting library, a map, a canvas game, a framework Fusion has no adapter for. The component keeps its
+        PHP class as always. Only its view is yours to render.
+    </p>
+
+    <x-docs.steps>
+        <x-docs.step title="Name the engine in the config">
+            <p>An entry in <code>fusion.views</code>: where its views are and their extensions. Without an <code>adapter</code>, its views hold no PHP.</p>
+            <x-docs.code src="js-engine-config.php" bare />
+        </x-docs.step>
+        <x-docs.step title="Name the view on the class">
+            <x-docs.code src="js-engine-component.php" bare />
+        </x-docs.step>
+        <x-docs.step title="Register the engine before components start">
+            <p><code>load(view)</code> gives the view's module, by its name. <code>mount(module, el, handle)</code> renders it in <code>el</code>, and returns what the component tells it as it changes.</p>
+            <x-docs.code src="js-engine-register.js" lang="js" bare />
+        </x-docs.step>
+    </x-docs.steps>
+
+    <x-docs.code src="js-engine-view.js" lang="js" file="resources/js/charts/revenue.js" />
+
+    <p>
+        <code>update(names)</code> is called with the names of what changed: the properties, <code>"$errors"</code> for
+        the validation messages, <code>"$unsaved"</code> when the server has taken the changes, or <code>"*"</code> for
+        everything. <code>unmount()</code> is called when the component leaves the page.
+    </p>
+
+    <h3 id="handle">The handle</h3>
+    <p>A view reads and changes its component through the handle, by the PHP's names, in plain JavaScript values:</p>
+
+    @php
+        $handle = [
+            ['`get(path)`', 'A property\'s value, a key under it (`"form.email"`), or a `#[Computed]` value'],
+            ['`set(path, value)`', 'Writes a property, or a key under it, as `fusion:model` does'],
+            ['`call(method, ...args)`', 'Runs a method. A browser method returns its value; a `#[Server]` one, a promise of it'],
+            ['`errors()`', 'The validation messages, by field'],
+            ['`unsaved()`', 'The properties changed here that the server hasn\'t seen yet'],
+            ['`dispatch(event, ...params)`', 'Sends an event, as `$this->dispatch()` does'],
+            ['`properties`, `methods`, `server`, `computed`', 'The names'],
+            ['`id`, `component`', 'The component\'s id, and the component itself, as `Fusion.find()` gives it'],
+        ];
+    @endphp
+    <x-docs.table :columns="['Member', 'Does']" :rows="$handle" />
+
+    <p>
+        With server rendering on, an engine of your own still works: the render service skips it, and its views
+        render in the browser.
+    </p>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
