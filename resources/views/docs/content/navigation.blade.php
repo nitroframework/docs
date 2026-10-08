@@ -86,6 +86,13 @@
 
     <p>The first page load is always the server's HTML. The mode only decides what later visits do.</p>
 
+    <p>
+        Name the mode as a string, or by its case of <code>Nitro\Fusion\NavigationMode</code>, which your editor
+        completes and checks: <code>#[Navigate(NavigationMode::Markup)]</code>. Pages without <code>#[Navigate]</code>
+        follow <code>fusion.navigation</code>, which may be <code>data</code> or <code>markup</code>. A client page has to
+        say so itself, because it must need nothing from the server.
+    </p>
+
     <h3 id="markup-first">Showing the markup first</h3>
     <p>Set the default in <code>config/fusion.php</code>, and choose for a single page with <code>#[Navigate]</code>:</p>
 

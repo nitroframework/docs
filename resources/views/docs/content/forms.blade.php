@@ -58,6 +58,15 @@
 
     <x-docs.code src="form-validate.php" runs="server" highlight="1,4,10,11" />
 
+    <h3 id="validate-only">Checking part of the form</h3>
+    <p>
+        <code>$this-&gt;validateOnly()</code> checks the <code>#[Validate]</code> rules of the properties it names, and no
+        others. A wizard's Next checks its own step; a draft saves with a title while the rest is still empty. A key under
+        an array property names its rules and those below it:
+    </p>
+
+    <x-docs.code src="form-validate-only.php" runs="server" />
+
     <x-docs.callout type="warning" title="Hints in the browser, rules on the server">
         <p>Anything the browser checks is only a convenience, because anyone can send a request without your page. The rules that protect what a method saves belong on the server, on the property or in the method.</p>
     </x-docs.callout>

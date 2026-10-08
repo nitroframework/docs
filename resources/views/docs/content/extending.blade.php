@@ -3,7 +3,7 @@
 >
     <p>
         Each one is small on its own. Use your own attributes for behaviour in the page, such as a tooltip or a
-        textarea that grows. Use plugins to hook into the runtime in the browser. Use features and attribute classes
+        textarea that grows. Use plugins to listen to the runtime in the browser. Use features and attribute classes
         to run code around your components on the server.
     </p>
 
@@ -54,14 +54,14 @@
 
     <h2 id="plugins">Writing plugins</h2>
     <p>
-        A plugin hooks into Fusion's runtime in the browser. Pass a function to <code>Fusion.use()</code>, and Fusion
+        A plugin listens to Fusion's runtime in the browser: its events, by name, with <code>on()</code>. Pass a function to <code>Fusion.use()</code>, and Fusion
         calls it once with the plugin API:
     </p>
 
     <x-docs.code src="extending-plugin.js" lang="js" />
 
     @php
-        $hooks = [
+        $events = [
             ['`component`', 'A component started in the page: `{ name, el, dispatch(event, ...params) }`'],
             ['`render`', 'The same component, after each render'],
             ['`store`', 'A store was made in this tab: `{ name, persist, sync, get(property), set(property, value), onChange(listener) }`'],
@@ -69,7 +69,7 @@
             ['`response`', 'When the answer arrives: `{ component, method, status }`, with `0` when none arrived'],
         ];
     @endphp
-    <x-docs.table :columns="['Hook', 'Called with']" :rows="$hooks" />
+    <x-docs.table :columns="['Event', 'Called with']" :rows="$events" />
 
     <ul>
         <li><strong>Removing a listener.</strong> <code>on()</code> returns a function that removes the listener.</li>

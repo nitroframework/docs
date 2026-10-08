@@ -28,11 +28,18 @@ return [
             'arrays-and-models' => 'Arrays and models',
             'methods' => 'Methods',
             'server-methods' => 'Server methods',
+            'lifecycle' => 'Lifecycle',
             'views' => 'Views',
-            'javascript-views' => 'Vue, React and Solid',
             'directives' => 'Directives',
             'sharing-state' => 'Sharing state',
             'browser-classes' => 'Browser classes and enums',
+        ],
+        'JavaScript views' => [
+            'javascript-views' => 'Overview',
+            'vue' => 'Vue',
+            'react' => 'React',
+            'solid' => 'Solid',
+            'svelte' => 'Svelte',
         ],
         'Pages' => [
             'pages' => 'Pages',
@@ -50,6 +57,7 @@ return [
         ],
         'Going further' => [
             'rendering' => 'Rendering',
+            'server-rendering' => 'Server rendering',
             'production' => 'Building for production',
             'configuration' => 'Configuration',
             'extending' => 'Extending Fusion',

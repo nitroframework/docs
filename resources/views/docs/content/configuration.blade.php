@@ -6,6 +6,12 @@
     <x-docs.code src="config-publish.sh" lang="sh" />
     <p>This publishes <code>config/fusion.php</code>, and <code>config/nprogress.php</code> for the progress bar.</p>
 
+    <p>
+        Keep only what you change. Fusion's own files sit under yours, key by key at every depth, so a setting you leave
+        out, or one a later version of Fusion adds, has its default all the same. A list, such as
+        <code>middleware</code> or a view engine's <code>extensions</code>, is yours whole.
+    </p>
+
     <h2 id="fusion">config/fusion.php</h2>
 
     @php
@@ -30,7 +36,7 @@
             ['`rendering`', '`\'clone\'`', 'How the browser creates elements: `\'clone\'` or `\'create\'`'],
             ['`navigation`', '`\'data\'`', 'How a visit shows a page: `\'data\'` or `\'markup\'`. A page can choose with `#[Navigate]`, which also takes `\'client\'`'],
             ['`attributes`', '`[]`', 'Your own `fusion:` attributes, each run by a `Fusion.directive()`'],
-            ['`views`', 'Vue, React, Solid', 'The engines for views written in a JavaScript framework: each one\'s `adapter`, the `path`s its views are in and their `extensions`'],
+            ['`views`', 'Vue, React, Solid, Svelte', 'The engines for views written in a JavaScript framework: each one\'s `adapter`, the `path`s its views are in and their `extensions`'],
             ['`ssr`', 'off', 'Server rendering for those views: `enabled` (`FUSION_SSR`), the render service\'s `url`, a `timeout` and the `bundle` `fusion:ssr` runs'],
             ['`features`', '`[]`', 'Classes that run around every component on the server'],
             ['`esbuild`', '', 'The Node binary (`FUSION_NODE`) and where esbuild is installed'],
