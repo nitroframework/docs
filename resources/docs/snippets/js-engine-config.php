@@ -1,5 +1,5 @@
 // config/fusion.php
 'views' => [
-    // Vue, React and Solid, as published...
+    // Vue, React, Solid and Svelte, as published...
     'chart' => ['path' => resource_path('js/charts'), 'extensions' => ['js']],
 ],

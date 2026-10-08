@@ -3,7 +3,7 @@
 >
     <p>
         The runtime puts one object on the page, <code>window.Fusion</code>, and dispatches browser events as things
-        happen. This page lists both. To add your own <code>fusion:</code> attributes or hook into every component,
+        happen. This page lists both. To add your own <code>fusion:</code> attributes or listen to every component,
         see <a href="/docs/extending">Extending Fusion</a>.
     </p>
 
@@ -26,7 +26,7 @@
             ['`Fusion.find(id)`', 'One component, by its `fusion:id`, or `null`'],
             ['`Fusion.directive(name, fn)`', 'Registers your own `fusion:` attribute'],
             ['`Fusion.use(plugin)`', 'Adds a plugin that runs around every component'],
-            ['`Fusion.engine(name, { load, mount })`', 'Adds a view engine: components whose view is written for it. Vue, React and Solid have theirs; see "A view engine of your own" below'],
+            ['`Fusion.engine(name, { load, mount })`', 'Adds a view engine: components whose view is written for it. Vue, React, Solid and Svelte have theirs; see "A view engine of your own" below'],
         ];
     @endphp
     <x-docs.table :columns="['', 'Does']" :rows="$api" />
@@ -83,7 +83,7 @@
 
     <h2 id="engines">A view engine of your own</h2>
     <p>
-        Vue, React and Solid views run on engines Fusion provides. For anything else, register your own: a
+        Vue, React, Solid and Svelte views run on engines Fusion provides. For anything else, register your own: a
         charting library, a map, a canvas game, a framework Fusion has no adapter for. The component keeps its
         PHP class as always. Only its view is yours to render.
     </p>
