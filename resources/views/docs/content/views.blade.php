@@ -60,7 +60,7 @@
     <h2 id="children">Rendering child components</h2>
     <p>
         A view can place other components by their tag and pass data to their <code>mount()</code> method (see
-        <a fusion:navigate href="/docs/components#children">Components</a>). Inside a loop, give each one a
+        <a fusion:navigate href="/docs/components#placing">Components</a>). Inside a loop, give each one a
         <code>:key</code>. To render a component whose name comes from a value, use
         <code>fusion:dynamic-component</code>:
     </p>
