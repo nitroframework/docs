@@ -99,11 +99,13 @@ final class Code
             'blade' => 'blade',
             'js', 'javascript' => 'javascript',
             'vue' => 'vue',
+            'svelte' => 'svelte',
             'jsx' => 'jsx',
             'sh', 'shell', 'bash' => 'shellscript',
             'json' => 'json',
             'html' => 'html',
             'css' => 'css',
+            'ini' => 'ini',
             default => 'php',
         };
     }

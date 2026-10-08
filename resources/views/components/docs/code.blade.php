@@ -4,7 +4,7 @@
     $code ??= \App\Docs\Code::snippet($src);
     $lines = fn (string $list) => array_values(array_filter(array_map('intval', explode(',', $list))));
     $html = \App\Docs\Code::html($code, $lang, $lines($highlight), $lines($added), $lines($removed));
-    $languages = ['php' => 'PHP', 'blade' => 'Blade', 'js' => 'JavaScript', 'vue' => 'Vue', 'jsx' => 'JSX', 'sh' => 'Terminal', 'json' => 'JSON', 'html' => 'HTML', 'css' => 'CSS'];
+    $languages = ['php' => 'PHP', 'blade' => 'Blade', 'js' => 'JavaScript', 'vue' => 'Vue', 'svelte' => 'Svelte', 'jsx' => 'JSX', 'sh' => 'Terminal', 'json' => 'JSON', 'html' => 'HTML', 'css' => 'CSS', 'ini' => 'INI'];
 @endphp
 
 <div {{ $attributes->class(['code-frame group/code relative not-prose', 'my-6 overflow-hidden rounded-xl bg-zinc-50/80 ring-1 ring-zinc-200 dark:bg-zinc-900/70 dark:ring-white/10' => ! $bare]) }} data-code="{{ $code }}">
