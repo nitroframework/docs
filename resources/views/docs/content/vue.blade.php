@@ -56,6 +56,15 @@
         server, checks its rules there, and comes back with what it changed.
     </p>
 
+    <x-docs.callout type="tip" title="No script, nothing to import">
+        The file above is the whole view: a <code>&lt;template&gt;</code> and nothing else. There is no
+        <code>&lt;script&gt;</code> to write and nothing to import from Nitro, because the template reads the
+        component's names directly. Add a <code>&lt;script setup&gt;</code> only when your own script needs them,
+        for example to combine them with your own <code>ref()</code>s, <code>computed()</code>s or
+        <code>watch()</code>es. Then you import <code>useNitro</code> from <code>nitro/vue</code>
+        (<a href="#script-setup">see below</a>).
+    </x-docs.callout>
+
     <h2 id="names">What the view can use</h2>
 
     @php
@@ -83,6 +92,8 @@
 
     <h2 id="script-setup">In &lt;script setup&gt;</h2>
     <p>
+        A view doesn't need a script. Add a <code>&lt;script setup&gt;</code> when your own code needs the
+        component, and import <code>useNitro</code> from <code>nitro/vue</code> there.
         <code>useNitro()</code> gives the same names to your script. Properties and <code>#[Computed]</code> values
         are refs, so you use <code>.value</code> in the script and the bare name in the template, as with any ref.
         Assigning a property's ref writes the property. <code>errors</code>, <code>unsaved</code> and

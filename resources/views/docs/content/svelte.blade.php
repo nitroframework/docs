@@ -56,6 +56,13 @@
         <code>save()</code> runs on the server, checks its rules there, and comes back with what it changed.
     </p>
 
+    <x-docs.callout type="tip" title="Nothing to import">
+        <code>$props()</code> is a Svelte rune, built into the compiler, so the view imports nothing, from Nitro or
+        from Svelte, to read the component. <code>useNitro()</code> from <code>nitro/svelte</code> is for
+        components deeper inside the view, to reach the Nitro component without passing props down
+        (<a href="#components">see below</a>).
+    </x-docs.callout>
+
     <h2 id="props">The props</h2>
 
     @php

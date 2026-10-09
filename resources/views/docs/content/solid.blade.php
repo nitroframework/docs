@@ -62,6 +62,14 @@
         <code>props.save()</code> runs on the server, checks its rules there, and comes back with what it changed.
     </p>
 
+    <x-docs.callout type="tip" title="Nothing to import from Nitro">
+        The component arrives as the function's props (<code>props.title</code>), so the view imports nothing from
+        Nitro. You import Solid's own helpers (<code>For</code>, <code>Show</code>, <code>createSignal</code>) from
+        <code>solid-js</code> when you use them, as in any Solid component. <code>useNitro()</code> from
+        <code>nitro/solid</code> is for components deeper inside the view, to reach the Nitro component without
+        passing props down (<a href="#components">see below</a>).
+    </x-docs.callout>
+
     <h2 id="props">The props</h2>
 
     @php

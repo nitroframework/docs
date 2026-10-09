@@ -58,6 +58,14 @@
         <code>cover</code>, the messages in <code>errors</code>.
     </p>
 
+    <x-docs.callout type="tip" title="Nothing to import from Nitro">
+        The component arrives as the function's props, so the view imports nothing from Nitro. It doesn't import
+        React either: the JSX transform Vite's React plugin uses needs no import. You import React's own hooks
+        (<code>useState</code>, <code>useEffect</code>) from <code>react</code> when you use them, as in any React
+        component. <code>useNitro()</code> from <code>nitro/react</code> is for components deeper inside the view,
+        to reach the Nitro component without passing props down (<a href="#components">see below</a>).
+    </x-docs.callout>
+
     <h2 id="props">The props</h2>
 
     @php
