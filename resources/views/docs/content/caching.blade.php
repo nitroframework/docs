@@ -14,7 +14,7 @@
         tags that can expire it:
     </p>
 
-    <x-docs.code src="cached-mount.php" file="app/Nitro/Pages/Reports/Enrolment.php" highlight="20" runs="server" />
+    <x-docs.code src="cached-mount.php" file="app/Nitro/Pages/Stats/Categories.php" highlight="20" runs="server" />
 
     <ul>
         <li><strong>What is kept.</strong> The properties as <code>mount()</code> left them. On the next request, Nitro sets them from the cache and skips <code>mount()</code>.</li>
@@ -34,7 +34,7 @@
         <code>mount()</code> then runs on every request: the check, the head, the shared data.
     </p>
 
-    <x-docs.code src="cached-helper.php" highlight="7,13" runs="server" />
+    <x-docs.code src="cached-helper.php" highlight="8,14" runs="server" />
 
     <p>
         The helper is private and only <code>mount()</code> calls it, so it is never compiled for the browser, and
@@ -56,7 +56,7 @@
     <x-docs.table :columns="['', '`#[Cached]` on `mount()`', '`Cache::remember()` in a helper']" :rows="$ways" />
 
     <x-docs.callout type="note" title="Why not #[Cached] on the helper?">
-        <p><code>#[Cached]</code> goes on <code>mount()</code> and <code>#[Server]</code> methods only, because Nitro is the one that calls them, so it can answer from the cache instead. A helper is called by your own code, <code>$this-&gt;byGrade()</code>, and Nitro is not in between. On any other method, <code>#[Cached]</code> fails the build.</p>
+        <p><code>#[Cached]</code> goes on <code>mount()</code> and <code>#[Server]</code> methods only, because Nitro is the one that calls them, so it can answer from the cache instead. A helper is called by your own code, <code>$this-&gt;byCategory()</code>, and Nitro is not in between. On any other method, <code>#[Cached]</code> fails the build.</p>
     </x-docs.callout>
 
     <h2 id="expire">Forgetting a result</h2>
@@ -68,7 +68,7 @@
     <x-docs.code src="cached-expire.php" runs="server" />
 
     <p>
-        <code>Nitro::expire('students', 'invoices')</code> takes any number of tags. Every result kept under one of
+        <code>Nitro::expire('posts', 'comments')</code> takes any number of tags. Every result kept under one of
         them, on any page or component, is worked out again on its next request. Results without that tag are left
         alone. Expiring works on every cache store, including those without tag support, such as
         <code>file</code> and <code>database</code>.
@@ -91,7 +91,7 @@
     <p>
         By default, a result is kept by the method's arguments and the whole state. Any property that changed since,
         even one the method never reads, makes it a new result. <code>by</code> names the properties the result
-        really depends on: here, <code>lookUp('Year 7')</code> is found again whatever else the visitor changed,
+        really depends on: here, <code>inCategory('laravel')</code> is found again whatever else the visitor changed,
         as long as <code>$status</code> is the same. <code>by: []</code> keeps it by its arguments alone.
     </p>
 

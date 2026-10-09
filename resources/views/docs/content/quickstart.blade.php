@@ -45,8 +45,8 @@
     <h2 id="place-it">3. Place the component</h2>
     <p>
         You place a component in any Blade view with its tag. The tag is the class name in kebab case, so
-        <code>Todos</code> becomes <code>todos</code>, and <code>Students\Table</code> would become
-        <code>students.table</code>.
+        <code>Todos</code> becomes <code>todos</code>, and <code>Posts\Table</code> would become
+        <code>posts.table</code>.
     </p>
 
     <x-docs.code src="place-todos.blade.php" lang="blade" file="resources/views/todos.blade.php" highlight="4" />

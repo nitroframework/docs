@@ -10,8 +10,8 @@
     <x-docs.example component="render-demo" title="Only what changed" source="#the-component" />
 
     <p>
-        Click <strong>+</strong>, and only one number flashes. Type a name, and only the greeting changes. Enrol a
-        student, and one new row is added while the twenty rows already there are left alone.
+        Click <strong>+</strong>, and only one number flashes. Type a name, and only the greeting changes. Add an
+        author, and one new row is added while the twenty rows already there are left alone.
     </p>
 
     <h2 id="the-component">The component</h2>

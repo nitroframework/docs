@@ -121,7 +121,7 @@
         <li><strong>From a browser method</strong>, the event is sent in the browser: no request.</li>
         <li><strong>From a <code>#[Server]</code> method</strong>, it is sent with the answer, once the server has done its work.</li>
         <li><strong>From the view itself</strong>, <code>dispatch('event', ...)</code> sends one, as <code>$dispatch</code> does in Blade.</li>
-        <li><strong>To one component</strong>: <code>$this-&gt;dispatch(...)-&gt;to('react.student-card')</code>.</li>
+        <li><strong>To one component</strong>: <code>$this-&gt;dispatch(...)-&gt;to('react.post-preview')</code>.</li>
         <li><strong>The view's own code</strong> can listen on <code>window</code> for an event sent without <code>-&gt;to()</code>.</li>
     </ul>
     <p>For state that several components share and keep, rather than news of something that happened, use a <a href="/docs/sharing-state">store</a>.</p>
@@ -147,7 +147,7 @@
     <x-docs.code src="js-views-folders.blade.php" lang="blade" />
 
     <p>
-        It is a convention, not a rule: feature folders (<code>Billing/</code>, <code>Students/</code>) work the same.
+        It is a convention, not a rule: feature folders (<code>Posts/</code>, <code>Comments/</code>) work the same.
         The view's file is named by <code>#[View]</code>, so moving a class doesn't move its view.
     </p>
 

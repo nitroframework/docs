@@ -1,9 +1,9 @@
-public function mount(Invoice $invoice): void
+public function mount(Post $post): void
 {
     $this->head()
-        ->title("Invoice {$invoice->number}")
-        ->description("Invoice for {$invoice->student->name}")
-        ->image(asset('img/invoice.png'))
-        ->canonical(route('invoices.show', $invoice))
-        ->noindex();
+        ->title($post->title)
+        ->description($post->excerpt)
+        ->image($post->cover_url)
+        ->canonical(route('posts.show', $post))
+        ->noindex();   // A draft: kept out of search results.
 }

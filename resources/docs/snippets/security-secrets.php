@@ -1,14 +1,14 @@
-class InvoicePanel extends Component
+class NewsletterPanel extends Component
 {
-    public int $invoiceId;            // Sent to the browser.
+    public int $issueId;              // Sent to the browser.
     #[Locked] public string $status;  // Sent, but can't be changed.
 
     #[Server]
     public function send(): void
     {
-        // Load the invoice where you need it, not in the state.
-        $invoice = Invoice::findOrFail($this->invoiceId);
+        // Load the subscribers where you need them, not in the state.
+        $issue = Issue::findOrFail($this->issueId);
 
-        Mail::to($invoice->customer->email)->send(new InvoiceMail($invoice));
+        Mail::to($issue->subscribers)->send(new IssueMail($issue));
     }
 }

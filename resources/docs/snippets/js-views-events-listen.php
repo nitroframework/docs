@@ -1,15 +1,15 @@
 <?php
 
-// app/Nitro/Components/React/StudentCard.php: #[View(react: 'student-card')]
+// app/Nitro/Components/React/PostPreview.php: #[View(react: 'post-preview')]
 
-#[On('student-picked')]
+#[On('post-picked')]
 public function show(int $id): void
 {
     $this->current = $id;
 }
 
-#[On('payment-recorded')]
-public function took(array $payment): void
+#[On('post-published')]
+public function published(array $post): void
 {
-    $this->paid[$payment['student_id']] = ($this->paid[$payment['student_id']] ?? 0) + $payment['cents'];
+    $this->published[$post['category']] = ($this->published[$post['category']] ?? 0) + 1;
 }

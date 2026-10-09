@@ -10,7 +10,7 @@ class RenderDemo extends Component
 
     public string $name = 'Ada';
 
-    public array $students = [
+    public array $authors = [
         'Ada', 'Alan', 'Barbara', 'Donald', 'Edsger', 'Frances', 'Grace', 'Hedy', 'Ivan', 'Joan',
         'Ken', 'Linus', 'Margaret', 'Niklaus', 'Radia', 'Shafi', 'Sophie', 'Tim', 'Vint', 'Whitfield',
     ];
@@ -20,8 +20,8 @@ class RenderDemo extends Component
         $this->count++;
     }
 
-    public function enrol(): void
+    public function addAuthor(): void
     {
-        $this->students[] = 'Student '.(count($this->students) + 1);
+        $this->authors[] = 'Author '.(count($this->authors) + 1);
     }
 }

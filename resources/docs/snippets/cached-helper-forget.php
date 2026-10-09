@@ -1,10 +1,10 @@
 #[Server]
-public function save(): void
+public function publish(): void
 {
     $this->validate();
-    Student::create($this->form);
+    Post::create([...$this->form, 'status' => 'published']);
 
-    foreach (Student::STATUSES as $status) {
-        Cache::forget("reports.enrolment.{$status}");
+    foreach (Post::STATUSES as $status) {
+        Cache::forget("stats.categories.{$status}");
     }
 }

@@ -1,12 +1,12 @@
-use App\Nitro\Pages\Students\Show;
-use App\Models\Student;
+use App\Nitro\Pages\Posts\Show;
+use App\Models\Post;
 
-public function test_a_student_page_lists_what_they_owe(): void
+public function test_a_post_page_shows_its_comments(): void
 {
-    $student = Student::factory()->hasInvoices(2, ['status' => 'sent'])->create();
+    $post = Post::factory()->hasComments(2)->create();
 
     $page = new Show;
-    $page->mount($student);    // as the route calls it, with the bound model
+    $page->mount($post);    // as the route calls it, with the bound model
 
-    $this->assertCount(2, $page->unpaid);
+    $this->assertCount(2, $page->comments);
 }

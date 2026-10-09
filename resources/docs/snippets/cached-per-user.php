@@ -1,5 +1,5 @@
-#[Cached(600, tags: ['invoices'], perUser: true)]
+#[Cached(600, tags: ['drafts'], perUser: true)]
 public function mount(): void
 {
-    $this->outstanding = auth()->user()->invoices()->unpaid()->sum('total');
+    $this->drafts = auth()->user()->posts()->where('status', 'draft')->count();
 }

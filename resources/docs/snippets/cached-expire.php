@@ -1,10 +1,10 @@
 use Nitro\Facades\Nitro;
 
 #[Server]
-public function save(): void
+public function publish(): void
 {
     $this->validate();
-    Student::create($this->form);
+    Post::create([...$this->form, 'status' => 'published']);
 
-    Nitro::expire('students');   // Every result kept under 'students' is worked out again.
+    Nitro::expire('posts');   // Every result kept under 'posts' is worked out again.
 }

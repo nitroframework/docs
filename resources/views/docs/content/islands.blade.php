@@ -47,7 +47,7 @@
     <x-docs.code src="islands-directive.blade.php" lang="blade" />
 
     <p>
-        <code>@@nitro('students.table')</code> is the same island as <code>&lt;nitro:students.table /&gt;</code>.
+        <code>@@nitro('posts.table')</code> is the same island as <code>&lt;nitro:posts.table /&gt;</code>.
         Use the tag when you know the name as you write the view.
     </p>
 

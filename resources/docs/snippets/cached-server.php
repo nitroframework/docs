@@ -1,18 +1,18 @@
-public string $status = 'active';
+public string $status = 'published';
 
-public string $grade = '';
+public string $category = '';
 
 /** @var list<string> */
-public array $names = [];
+public array $titles = [];
 
 #[Server]
-#[Cached(300, tags: ['students'], by: ['status'])]
-public function lookUp(string $grade): void
+#[Cached(300, tags: ['posts'], by: ['status'])]
+public function inCategory(string $category): void
 {
-    $this->grade = $grade;
-    $this->names = Student::where('status', $this->status)
-        ->where('grade', $grade)
-        ->orderBy('name')
-        ->pluck('name')
+    $this->category = $category;
+    $this->titles = Post::where('status', $this->status)
+        ->where('category', $category)
+        ->latest()
+        ->pluck('title')
         ->all();
 }

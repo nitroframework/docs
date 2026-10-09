@@ -2,28 +2,28 @@
 
 namespace App\Nitro\Components;
 
-use App\Models\Invoice;
-use App\Services\Currency;
+use App\Models\Post;
+use App\Services\ReadingTime;
 use Nitro\Attributes\Locked;
 use Nitro\Component;
 
-class InvoiceSummary extends Component
+class PostSummary extends Component
 {
     #[Locked]
-    public int $invoiceId;
+    public int $postId;
 
-    public string $total = '';
+    public string $readingTime = '';
 
-    public array $lines = [];
+    public array $comments = [];
 
     /**
-     * Runs once, on the server: the tag's values by name (:invoice="$invoice"), and anything else
+     * Runs once, on the server: the tag's values by name (:post="$post"), and anything else
      * Laravel's container can give, as in a controller.
      */
-    public function mount(Invoice $invoice, Currency $currency): void
+    public function mount(Post $post, ReadingTime $readingTime): void
     {
-        $this->invoiceId = $invoice->id;
-        $this->total = $currency->format($invoice->total_cents, $invoice->currency);
-        $this->lines = $invoice->lines()->get(['description', 'quantity', 'amount_cents'])->toArray();
+        $this->postId = $post->id;
+        $this->readingTime = $readingTime->of($post->body);
+        $this->comments = $post->comments()->latest()->take(3)->get(['author', 'body'])->toArray();
     }
 }

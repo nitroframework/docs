@@ -82,7 +82,7 @@
     <p>
         To check whether a slot was given, use <code>$slots-&gt;has('footer')</code> or
         <code>$slot-&gt;isEmpty()</code>. Slot content belongs to the parent, so its handlers and
-        <code>nitro:model</code> act on the parent component. In the example above, <code>enrol()</code> is the
+        <code>nitro:model</code> act on the parent component. In the example above, <code>publish()</code> is the
         parent's method.
     </p>
 

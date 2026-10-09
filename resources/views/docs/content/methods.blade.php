@@ -87,7 +87,7 @@
         array in the browser:
     </p>
 
-    <x-docs.code src="pagination.php" file="app/Nitro/Components/Students.php" runs="browser" highlight="6,17" />
+    <x-docs.code src="pagination.php" file="app/Nitro/Components/Posts.php" runs="browser" highlight="6,17" />
     <x-docs.code src="pagination.blade.php" lang="blade" />
 
     <ul>

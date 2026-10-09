@@ -1,18 +1,18 @@
 use Nitro\Concerns\WithPagination;
 use Nitro\Concerns\WithSorting;
 
-class Students extends Component
+class Posts extends Component
 {
     use WithPagination, WithSorting;
 
-    public array $students = [];
+    public array $posts = [];
 
     public string $search = '';
 
     #[Computed]
     public function rows(): array
     {
-        $found = array_filter($this->students, fn ($student) => str_contains(strtolower($student['name']), strtolower($this->search)));
+        $found = array_filter($this->posts, fn ($post) => str_contains(strtolower($post['title']), strtolower($this->search)));
 
         return $this->paginate($this->sorted($found), 12);
     }

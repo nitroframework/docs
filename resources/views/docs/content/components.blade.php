@@ -21,8 +21,8 @@
         $kinds = [
             ['Class', '`app/Nitro/Components`', '`app/Nitro/Pages`'],
             ['View', '`resources/views/nitro/components`', '`resources/views/nitro/pages`'],
-            ['Name', '`students.table` for `App\Nitro\Components\Students\Table`', '`pages::students.index` for `App\Nitro\Pages\Students\Index`'],
-            ['Used', 'placed in a view: `<'.'nitro:students.table />`', 'routed: `Route::nitro(\'/students\', Index::class)`'],
+            ['Name', '`posts.table` for `App\Nitro\Components\Posts\Table`', '`pages::posts.index` for `App\Nitro\Pages\Posts\Index`'],
+            ['Used', 'placed in a view: `<'.'nitro:posts.table />`', 'routed: `Route::nitro(\'/posts\', Index::class)`'],
             ['Layout and title', 'no', '`#[Layout]`, `#[Title]`'],
         ];
     @endphp
@@ -58,7 +58,7 @@
         $names = [
             ['`App\Nitro\Components\Counter`', '`counter`', '`<'.'nitro:counter />`', '`nitro/components/counter.blade.php`'],
             ['`App\Nitro\Components\FaqItem`', '`faq-item`', '`<'.'nitro:faq-item />`', '`nitro/components/faq-item.blade.php`'],
-            ['`App\Nitro\Components\Students\Table`', '`students.table`', '`<'.'nitro:students.table />`', '`nitro/components/students/table.blade.php`'],
+            ['`App\Nitro\Components\Posts\Table`', '`posts.table`', '`<'.'nitro:posts.table />`', '`nitro/components/posts/table.blade.php`'],
         ];
     @endphp
     <x-docs.table :columns="['Class', 'Name', 'Tag', 'View']" :rows="$names" />
@@ -121,7 +121,7 @@
         container calls it, so anything it can give, it can take, as a controller does:
     </p>
 
-    <x-docs.code src="components-mount.php" file="app/Nitro/Components/InvoiceSummary.php" />
+    <x-docs.code src="components-mount.php" file="app/Nitro/Components/PostSummary.php" />
 
     <p>
         A page's <code>mount()</code> takes the route's parameters the same way, with route model binding. See
@@ -139,7 +139,7 @@
     <x-docs.table :columns="['', 'No mount()', 'mount()']" :rows="$ways" />
 
     <x-docs.callout type="tip" title="Which to choose">
-        <p>Pass plain values as properties: a child the browser can make and keep in step costs no request. Use <code>mount()</code> when creating the component needs the server, as <code>InvoiceSummary</code> does to load its lines. A child with <code>mount()</code> is made by the server only: when its loop gets a new item, add the item in a <code>#[Server]</code> method, whose answer brings the new child with it. A browser method that adds one reports an error in the console instead.</p>
+        <p>Pass plain values as properties: a child the browser can make and keep in step costs no request. Use <code>mount()</code> when creating the component needs the server, as <code>PostSummary</code> does to load its comments. A child with <code>mount()</code> is made by the server only: when its loop gets a new item, add the item in a <code>#[Server]</code> method, whose answer brings the new child with it. A browser method that adds one reports an error in the console instead.</p>
     </x-docs.callout>
 
     <h2 id="keys">Keys and lists</h2>

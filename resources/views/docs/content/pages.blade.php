@@ -19,8 +19,8 @@
 
     <p>
         <code>Route::nitro()</code> returns a normal Laravel route. Route names, middleware, groups and route
-        model binding all work as usual. The page <code>App\Nitro\Pages\Students\Index</code> is named
-        <code>pages::students.index</code>.
+        model binding all work as usual. The page <code>App\Nitro\Pages\Posts\Index</code> is named
+        <code>pages::posts.index</code>.
     </p>
 
     <h2 id="a-page">Writing a page</h2>
@@ -29,12 +29,12 @@
         <code>#[Title]</code> and <code>#[Layout]</code> attributes control how the page is shown:
     </p>
 
-    <x-docs.code src="page-show.php" file="app/Nitro/Pages/Students/Show.php" highlight="10,11,19" />
+    <x-docs.code src="page-show.php" file="app/Nitro/Pages/Posts/Show.php" highlight="10,11,19" />
 
     <ul>
-        <li><code>mount(Student $student)</code> runs once, on the server, with the bound model. It stores what the view needs in properties. Here the student is kept as an array and marked <code>#[Locked]</code>, so the browser can't change it.</li>
-        <li><code>addNote()</code> is a <code>#[Server]</code> method. It saves the note with Eloquent and then clears the field.</li>
-        <li>Everything else on the page runs in the browser, such as typing the note or showing and hiding parts of the page.</li>
+        <li><code>mount(Post $post)</code> runs once, on the server, with the bound model. It stores what the view needs in properties. Here the post is kept as an array and marked <code>#[Locked]</code>, so the browser can't change it.</li>
+        <li><code>addComment()</code> is a <code>#[Server]</code> method. It saves the comment with Eloquent and then clears the field.</li>
+        <li>Everything else on the page runs in the browser, such as typing the comment or showing and hiding parts of the page.</li>
     </ul>
 
     <h2 id="layouts">Choosing a layout</h2>

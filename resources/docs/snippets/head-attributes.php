@@ -1,6 +1,6 @@
 use Nitro\Attributes\Description;
 use Nitro\Attributes\Title;
 
-#[Title('Pricing')]
-#[Description('Plans for every school size')]
-class Pricing extends Component
+#[Title('About')]
+#[Description('Who writes this blog, and why')]
+class About extends Component

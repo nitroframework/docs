@@ -2,18 +2,18 @@ use Illuminate\Support\Facades\Cache;
 
 public function mount(): void
 {
-    Gate::authorize('viewReports', Student::class);   // Runs on every request.
-    $this->head()->description("Students by grade, {$this->status}");
+    Gate::authorize('viewStats', Post::class);   // Runs on every request.
+    $this->head()->description("Posts by category, {$this->status}");
 
-    $this->byGrade = $this->byGrade($this->status);   // Only this is kept.
+    $this->byCategory = $this->byCategory($this->status);   // Only this is kept.
 }
 
 /** The slow part, kept for five minutes per status. A private helper is never compiled for the browser. */
-private function byGrade(string $status): array
+private function byCategory(string $status): array
 {
-    return Cache::remember("reports.enrolment.{$status}", 300, fn () => Student::where('status', $status)
-        ->selectRaw('grade, count(*) as students')
-        ->groupBy('grade')
-        ->pluck('students', 'grade')
+    return Cache::remember("stats.categories.{$status}", 300, fn () => Post::where('status', $status)
+        ->selectRaw('category, count(*) as posts')
+        ->groupBy('category')
+        ->pluck('posts', 'category')
         ->all());
 }

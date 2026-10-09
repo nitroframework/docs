@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Nitro\Pages\Reports;
+namespace App\Nitro\Pages\Stats;
 
-use App\Models\Student;
+use App\Models\Post;
 use Nitro\Attributes\Cached;
 use Nitro\Attributes\Locked;
 use Nitro\Attributes\Url;
 use Nitro\Component;
 
-class Enrolment extends Component
+class Categories extends Component
 {
     #[Url]
-    public string $status = 'active';
+    public string $status = 'published';
 
-    /** @var array<string, int> students by grade */
+    /** @var array<string, int> posts by category */
     #[Locked]
-    public array $byGrade = [];
+    public array $byCategory = [];
 
-    #[Cached(300, tags: ['students'])]
+    #[Cached(300, tags: ['posts'])]
     public function mount(): void
     {
-        $this->byGrade = Student::where('status', $this->status)
-            ->selectRaw('grade, count(*) as students')
-            ->groupBy('grade')
-            ->pluck('students', 'grade')
+        $this->byCategory = Post::where('status', $this->status)
+            ->selectRaw('category, count(*) as posts')
+            ->groupBy('category')
+            ->pluck('posts', 'category')
             ->all();
     }
 }

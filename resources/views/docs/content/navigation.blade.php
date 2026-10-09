@@ -173,7 +173,7 @@
     <x-docs.code src="navigate-markup.blade.php" lang="blade" />
 
     <ul>
-        <li>The view must render with the properties' defaults. Guard data that isn't there yet with <code>@@deferred</code> or <code>??</code>. For example, don't read <code>$student['name']</code> from an empty array.</li>
+        <li>The view must render with the properties' defaults. Guard data that isn't there yet with <code>@@deferred</code> or <code>??</code>. For example, don't read <code>$post['title']</code> from an empty array.</li>
         <li>Anything the visitor types or toggles before the data arrives is kept. A <code>#[Server]</code> call made in the meantime waits for the data.</li>
         <li>Components created by the server (those with <code>mount()</code>) appear when the data arrives, and the title is set at that point.</li>
         <li>A page in another layout, a redirect or an error is handled the same way as in a data-first visit.</li>

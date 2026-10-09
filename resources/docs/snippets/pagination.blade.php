@@ -1,6 +1,6 @@
-<th nitro:click="sortBy('name')">Name {{ $this->sortIcon('name') }}</th>
+<th nitro:click="sortBy('title')">Title {{ $this->sortIcon('title') }}</th>
 ...
-@foreach ($this->rows['items'] as $student)
+@foreach ($this->rows['items'] as $post)
     ...
 @endforeach
 

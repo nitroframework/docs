@@ -1,7 +1,7 @@
-use App\Nitro\Pages\Students\Show;
+use App\Nitro\Pages\Posts\Show;
 
-Route::nitro('/students/{student}', Show::class)->name('students.show');
-Route::nitro('/students', 'pages::students.index')->name('students.index');
+Route::nitro('/posts/{post}', Show::class)->name('posts.show');
+Route::nitro('/posts', 'pages::posts.index')->name('posts.index');
 
 Route::middleware('auth')->group(function () {
     Route::nitro('/settings', Settings::class)->name('settings');

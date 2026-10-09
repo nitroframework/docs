@@ -6,7 +6,7 @@
 @keyframes slide-in { from { opacity: 0; transform: translateX(24px); } }
 
 /* One element moving between pages: the same name on both. */
-.student-avatar { view-transition-name: student-avatar; }
+.post-cover { view-transition-name: post-cover; }
 
 /* Visitors who asked for less motion: no animation. */
 @media (prefers-reduced-motion: reduce) {

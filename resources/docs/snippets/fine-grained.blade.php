@@ -3,7 +3,7 @@
     <p>Clicked {{ $count }} times</p>      {{-- reads $count --}}
     <p>Hello, {{ $name }}</p>               {{-- reads $name, so a click leaves it alone --}}
 
-    @foreach ($students as $student)        {{-- reads $students, so neither one changes it --}}
-        <li>{{ $student['name'] }}</li>
+    @foreach ($authors as $author)          {{-- reads $authors, so neither one changes it --}}
+        <li>{{ $author }}</li>
     @endforeach
 </div>

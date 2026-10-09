@@ -49,8 +49,8 @@ resources/
         $kinds = [
             ['Class', '`app/Nitro/Components`', '`app/Nitro/Pages`'],
             ['View', '`resources/views/nitro/components`', '`resources/views/nitro/pages`'],
-            ['Name', '`students.table` for `Students\Table`', '`pages::students.index` for `Students\Index`'],
-            ['Used', 'placed in a view: `<'.'nitro:students.table />`', 'routed: `Route::nitro()`'],
+            ['Name', '`posts.table` for `Posts\Table`', '`pages::posts.index` for `Posts\Index`'],
+            ['Used', 'placed in a view: `<'.'nitro:posts.table />`', 'routed: `Route::nitro()`'],
             ['Layout and title', 'no', '`#[Layout]`, `#[Title]`'],
         ];
     @endphp

@@ -1,20 +1,20 @@
 <?php
 
-// app/Nitro/Components/Vue/PaymentDesk.php: #[View(vue: 'payment-desk')]
+// app/Nitro/Components/Vue/PostList.php: #[View(vue: 'post-list')]
 
 /** Picked: said at once, in the browser. */
 public function pick(int $id): void
 {
-    $this->student = $id;
-    $this->dispatch('student-picked', id: $id);
+    $this->post = $id;
+    $this->dispatch('post-picked', id: $id);
 }
 
-/** Recorded on the server; the others hear of it with the answer. */
+/** Published on the server; the others hear of it with the answer. */
 #[Server]
-public function record(): void
+public function publish(): void
 {
     $this->validate();
-    $payment = Payment::record($this->student, $this->amount * 100, $this->method);
+    $post = Post::findOrFail($this->post)->publish();
 
-    $this->dispatch('payment-recorded', payment: $payment->only('student_id', 'cents', 'method'));
+    $this->dispatch('post-published', post: $post->only('id', 'title', 'category'));
 }
