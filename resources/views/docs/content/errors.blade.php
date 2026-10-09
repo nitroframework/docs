@@ -73,8 +73,8 @@
         component whose call failed keeps its last state.
     </p>
     <p>
-        To try your fallbacks locally, set <code>NITRO_FALLBACKS=true</code> in <code>.env</code>. To turn them
-        off in production, set it to <code>false</code>.
+        To try your fallbacks locally, set <code>fallbacks.enabled</code> to <code>true</code> in
+        <code>config/nitro.php</code>, and back to <code>null</code> after. <code>false</code> turns them off everywhere.
     </p>
 
     <h2 id="reporting">Reporting</h2>

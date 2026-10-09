@@ -16,7 +16,7 @@
 
     @php
         $keys = [
-            ['`endpoint`', '`/_nitro`', 'The URL prefix for `#[Server]` calls, uploads and assets (`NITRO_ENDPOINT`)'],
+            ['`endpoint`', '`/_nitro`', 'The URL prefix for `#[Server]` calls, uploads and assets'],
             ['`middleware`', '`[\'web\']`', 'The middleware the endpoint runs'],
             ['`components`', '`App\Nitro\Components`', 'The namespace, path and view path of components'],
             ['`pages`', '`App\Nitro\Pages`', 'The namespace, path and view path of pages'],
@@ -29,20 +29,20 @@
             ['`state.lifetime`', '`null`', 'How long a snapshot stays valid, in seconds. With `null`, as long as its session'],
             ['`uploads`', '', '`directory`, `rules`, `max_files` and `throttle`'],
             ['`public_config`', '`[\'app.name\']`', 'The config keys `config()` may read in the browser. Their values are public'],
-            ['`cache.store`', '`null`', 'The cache store `#[Cached]` keeps results in (`NITRO_CACHE_STORE`). With `null`, the application\'s default'],
-            ['`fallbacks.enabled`', '`null`', 'Whether a failed component shows a fallback in its place (`NITRO_FALLBACKS`). With `null`, on when `APP_DEBUG` is off'],
+            ['`cache.store`', '`null`', 'The cache store `#[Cached]` keeps results in. With `null`, the application\'s default'],
+            ['`fallbacks.enabled`', '`null`', 'Whether a failed component shows a fallback in its place. With `null`, on when `APP_DEBUG` is off'],
             ['`fallbacks.view`', '`null`', 'The fallback of components without `fallback()`. With `null`, a short message with a link that loads the page again'],
             ['`compiled`', '`storage/framework/nitro`', 'Where compiled files are written'],
             ['`static`', '`nitro`', 'The directory in `public/` the build is published to'],
-            ['`build.obfuscate`', '`true`', 'Whether builds are obfuscated (`NITRO_OBFUSCATE`)'],
-            ['`minify_on_change`', '`true`', 'Whether to minify when recompiling during development (`NITRO_MINIFY_ON_CHANGE`)'],
+            ['`build.obfuscate`', '`true`', 'Whether builds are obfuscated'],
+            ['`minify_on_change`', '`true`', 'Whether to minify when recompiling during development'],
             ['`rendering`', '`\'clone\'`', 'How the browser creates elements: `\'clone\'` or `\'create\'`'],
             ['`navigation`', '`\'data\'`', 'How a visit shows a page: `\'data\'` or `\'markup\'`. A page can choose with `#[Navigate]`, which also takes `\'client\'`'],
             ['`attributes`', '`[]`', 'Your own `nitro:` attributes, each run by a `Nitro.directive()`'],
             ['`views`', 'Vue, React, Solid, Svelte', 'The engines for views written in a JavaScript framework: each one\'s `adapter`, the `path`s its views are in and their `extensions`'],
-            ['`ssr`', 'off', 'Server rendering for those views: `enabled` (`NITRO_SSR`), the render service\'s `url`, a `timeout` and the `bundle` `nitro:ssr` runs'],
+            ['`ssr`', 'off', 'Server rendering for those views: `enabled` (`NITRO_SSR` in `.env`), the render service\'s `url` (`NITRO_SSR_URL`), a `timeout` and the `bundle` `nitro:ssr` runs'],
             ['`features`', '`[]`', 'Classes that run around every component on the server'],
-            ['`esbuild`', '', 'The Node binary (`NITRO_NODE`) and where esbuild is installed'],
+            ['`esbuild`', '', 'The Node binary (`NITRO_NODE` in `.env`) and where esbuild is installed'],
         ];
     @endphp
     <x-docs.table :columns="['Key', 'Default', 'Description']" :rows="$keys" />

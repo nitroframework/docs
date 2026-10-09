@@ -137,7 +137,7 @@
 
     <p>
         Results go to your application's default cache store. To use another one, set it in
-        <code>config/nitro.php</code>, or with <code>NITRO_CACHE_STORE</code>:
+        <code>config/nitro.php</code>:
     </p>
 
     <x-docs.code src="cached-config.php" />
