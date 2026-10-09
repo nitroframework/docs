@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="Nitro is a full-stack framework for Laravel and Nitro. You write components and pages as a PHP class and a Blade view, just as you write Laravel code today, and Nitro compiles them to JavaScript that runs in the browser."
+    lead="Nitro is a full-stack framework for Laravel. You write components and pages as a PHP class and a Blade view, just as you write Laravel code today, and Nitro compiles them to JavaScript that runs in the browser."
 >
     <h2 id="what-nitro-does">What Nitro does</h2>
     <ul>
@@ -54,7 +54,7 @@
     <h2 id="requirements">Requirements</h2>
     <ul>
         <li>PHP 8.3 or higher</li>
-        <li>Laravel 13, or Nitro</li>
+        <li>Laravel 13</li>
         <li>Node.js and esbuild, to minify the compiled code</li>
     </ul>
     <p>
@@ -66,7 +66,7 @@
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/installation" title="Installation" icon="bolt">Add Nitro to a Laravel or Nitro application.</x-docs.card>
+        <x-docs.card href="/docs/installation" title="Installation" icon="bolt">Add Nitro to a Laravel application.</x-docs.card>
         <x-docs.card href="/docs/quickstart" title="Quickstart" icon="arrow">Build a todo list with a component, its view and a server method.</x-docs.card>
         <x-docs.card href="/docs/how-it-works" title="How Nitro works" icon="book">Learn what the compiler does, and what happens on the first render and on a click.</x-docs.card>
         <x-docs.card href="/docs/components" title="Components" icon="browser" runs="both">Write classes and views, and learn where each part runs.</x-docs.card>

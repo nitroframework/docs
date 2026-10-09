@@ -7,6 +7,11 @@
         calls. The bundle only includes the APIs your application uses. On the server,
         <code>Nitro::browser()</code> throws an exception.
     </p>
+    <p>
+        <code>Nitro</code> is Nitro's facade. In a class, import it with <code>use Nitro\Facades\Nitro;</code>.
+        In a view, write <code>Nitro::browser()</code> as it is: Laravel registers <code>Nitro</code> as an
+        alias, so a view needs no <code>@@use</code>.
+    </p>
 
     <x-docs.example component="browser-demo" title="Storage, the clipboard and a canvas" source="#the-component" />
 

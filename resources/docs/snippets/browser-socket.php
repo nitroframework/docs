@@ -1,3 +1,5 @@
+use Nitro\Facades\Nitro;
+
 public function connect(): void
 {
     Nitro::browser()->socket('/ws/orders')

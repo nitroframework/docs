@@ -1,3 +1,5 @@
+use Nitro\Facades\Nitro;
+
 public string $search = '';
 
 public int $page = 1;
@@ -27,7 +29,7 @@ public function updatedFilters(mixed $value, ?string $key): void
 /** After the view changes any property: its path ("filters.owner") and its new value. */
 public function updated(string $property, mixed $value): void
 {
-    Nitro::browser()->storage()->put('tickets.filters', $this->filters);
+    Nitro::browser()->storage()->set('tickets.filters', $this->filters);
 }
 
 /** When the component leaves the page. */

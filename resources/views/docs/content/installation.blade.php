@@ -5,7 +5,7 @@
 
     <x-docs.steps>
         <x-docs.step title="Require the package">
-            <p>Install Nitro with Composer, in a Laravel 13 or Nitro application:</p>
+            <p>Install Nitro with Composer, in a Laravel 13 application:</p>
             <x-docs.code src="install.sh" lang="sh" />
         </x-docs.step>
 

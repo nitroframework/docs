@@ -69,7 +69,7 @@
     </p>
 
     <x-docs.callout type="tip" title="After changing configuration">
-        <p>On Nitro, configuration and routes are cached. Run <code>php artisan nitro:optimize</code> after you change them or your <code>.env</code> file.</p>
+        <p>When your deploy caches configuration (<code>php artisan optimize</code> or <code>config:cache</code>), Laravel reads the cache, not <code>config/nitro.php</code>. Run it again after you change the file or your <code>.env</code>.</p>
     </x-docs.callout>
 
     <h2 id="next-steps">Next steps</h2>
