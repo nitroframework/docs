@@ -53,6 +53,47 @@
         layout, the layout stays and only the page changes. A sidebar keeps its scroll position, and a player
         keeps playing.
     </p>
+    <p>
+        <code>#[Layout]</code> takes the layout's data as its second argument, as variables in the layout:
+        <code>#[Layout('components.layouts.app', ['section' =&gt; 'billing'])]</code>. A page whose layout has other
+        data counts as another layout.
+    </p>
+
+    <h3 id="nested-layouts">Layouts inside layouts</h3>
+    <p>
+        A section of your app, such as settings or an account area, often has its own layout around its pages (a
+        sub-navigation, a header) inside the app's layout. Write it as a layout that uses the app's, and mark where
+        each layout's pages go with <code>nitro:layout</code> and a name:
+    </p>
+
+    <x-docs.code src="layout-app-region.blade.php" lang="blade" file="resources/views/components/layouts/app.blade.php" highlight="5" />
+    <x-docs.code src="layout-settings.blade.php" lang="blade" file="resources/views/components/layouts/settings.blade.php" highlight="2,10" />
+
+    <p>A page in the section names its layout:</p>
+
+    <x-docs.code src="layout-nested-page.php" file="app/Nitro/Pages/Settings/Billing.php" highlight="4" />
+
+    <p>A visit then changes only the innermost layout region the two pages share:</p>
+
+    @php
+        $visits = [
+            ['Between two settings pages', 'The settings page. The sub-navigation and the sidebar stay (the same layout)'],
+            ['From a dashboard page to a settings page, or back', 'What is inside `nitro:layout="app"`. The sidebar stays'],
+            ['To a page in a layout without `nitro:layout="app"`', 'The whole page'],
+        ];
+    @endphp
+    <x-docs.table :columns="['A visit', 'Changes']" :rows="$visits" />
+
+    <ul>
+        <li><strong>What stays, stays as it was.</strong> Outside the region, nothing is rendered again: a sidebar keeps its scroll position and what was typed in it, its components keep their state, and its scripts don't run again.</li>
+        <li><strong>What changes starts afresh.</strong> Inside the region, the new page's HTML takes the place of the old, and its components start, as on a page load.</li>
+        <li><strong>Names, in the same nesting.</strong> Regions match by their names, outermost first, each inside the one before it. The first name the two pages don't share ends the match: the region before it is the one that changes.</li>
+        <li><strong>Optional.</strong> Between pages of one layout, a visit keeps the layout without <code>nitro:layout</code>. You only need it where a visit crosses from one layout to another that shares a part of it.</li>
+    </ul>
+
+    <x-docs.callout type="tip" title="Mark the app's layout once">
+        <p>Put <code>nitro:layout="app"</code> around <code>$slot</code> in your app's layout even before you have a nested one. Every layout built on it then shares the sidebar on a visit, with nothing else to do.</p>
+    </x-docs.callout>
 
     <h2 id="components-and-pages">Choosing between a component and a page</h2>
     <p>Use this table to decide which one to write:</p>
