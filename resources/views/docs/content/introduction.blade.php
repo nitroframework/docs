@@ -55,7 +55,7 @@
     <ul>
         <li>PHP 8.3 or higher</li>
         <li>Laravel 13</li>
-        <li>Node.js and esbuild, to minify the compiled code</li>
+        <li>Node.js and esbuild, for production builds (<code>nitro:build</code>) only</li>
     </ul>
     <p>
         Nitro's browser versions of Laravel's helpers (<code>Str::</code>, <code>route()</code>, <code>__()</code>)

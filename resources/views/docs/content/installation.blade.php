@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="Nitro is a Composer package. Once you have installed it and added two directives to your layout, your first component is just one class and one view away."
+    lead="Nitro is a Composer package for Laravel 13. Install it, give your app a layout with two directives, and check it works with a page of a few lines."
 >
     <h2 id="install">Installing Nitro</h2>
 
@@ -7,20 +7,56 @@
         <x-docs.step title="Require the package">
             <p>Install Nitro with Composer, in a Laravel 13 application:</p>
             <x-docs.code src="install.sh" lang="sh" />
+            <p>
+                Laravel finds Nitro by itself: there is no service provider to register and no configuration file to
+                publish. Nitro's endpoint, <code>/_nitro</code>, is ready.
+            </p>
         </x-docs.step>
 
-        <x-docs.step title="Install esbuild">
-            <p>Nitro uses esbuild to minify the code it compiles:</p>
+        <x-docs.step title="Create your layout">
+            <p>
+                A fresh Laravel app has no layout yet, so create this one. Pages render inside it unless they name
+                another (see <a nitro:navigate href="/docs/pages#layouts">Choosing a layout</a>). If your app already
+                has a layout, from a starter kit for example, add the two highlighted lines to it instead.
+            </p>
+            <x-docs.code src="layout.blade.php" lang="blade" file="resources/views/components/layouts/app.blade.php" highlight="6,11" />
+            <ul>
+                <li><strong><code>@@nitroHead</code></strong>, in the <code>&lt;head&gt;</code>, prints the page's <code>&lt;title&gt;</code> and the tags search engines and link previews read (see <a nitro:navigate href="/docs/head">The page's head</a>).</li>
+                <li><strong><code>@@nitroScripts</code></strong>, just before <code>&lt;/body&gt;</code>, loads Nitro in the browser with each component's state. It is what makes the page come alive.</li>
+            </ul>
+            <x-docs.callout type="warning" title="Nothing happens when you click?">
+                <p>Without <code>@@nitroScripts</code>, the page still shows, because the server rendered it, but nothing in it responds and no error appears. Check that the layout has it, and that the page uses that layout.</p>
+            </x-docs.callout>
+        </x-docs.step>
+
+        <x-docs.step title="Check that it works">
+            <p>Create a page: a class, its view, and a route.</p>
+            <x-docs.code src="install-check-page.php" file="app/Nitro/Pages/Hello.php" />
+            <x-docs.code src="install-check-view.blade.php" lang="blade" file="resources/views/nitro/pages/hello.blade.php" />
+            <x-docs.code src="install-check-route.php" file="routes/web.php" />
+            <p>
+                Open <code>/hello</code> and click the button. The number goes up without a reload, and the browser's
+                Network tab shows no request: <code>increment()</code> ran in the browser, compiled from your PHP. The
+                first visit after you change a component takes a moment longer, while Nitro compiles it.
+            </p>
+        </x-docs.step>
+
+        <x-docs.step title="Install esbuild, for production">
+            <p>
+                In development, Nitro needs nothing more: it serves the code it compiles unminified. For production,
+                <code>php artisan nitro:build</code> minifies it with esbuild, which runs on Node. Install it in your
+                app:
+            </p>
             <x-docs.code src="esbuild.sh" lang="sh" />
-        </x-docs.step>
-
-        <x-docs.step title="Add Nitro to your layout">
-            <p>Add <code>@@nitroHead</code> to the <code>&lt;head&gt;</code> of your layout, and <code>@@nitroScripts</code> just before <code>&lt;/body&gt;</code>:</p>
-            <x-docs.code src="layout.blade.php" lang="blade" file="resources/views/components/layouts/app.blade.php" highlight="3,8" />
+            <p>
+                Without Node or esbuild, <code>nitro:build</code> stops with a message that says which one is missing.
+                If Node isn't on your <code>PATH</code>, set <code>NITRO_NODE</code> in <code>.env</code> to its
+                binary.
+            </p>
         </x-docs.step>
 
         <x-docs.step title="Publish the configuration (optional)">
-            <p>Nitro works without a configuration file. When you want to change a default, publish <code>config/nitro.php</code>:</p>
+            <p>Nitro works without a configuration file. When you want to change a default, publish <code>config/nitro.php</code>, and keep only what you change:</p>
             <x-docs.code src="publish-config.sh" lang="sh" />
         </x-docs.step>
     </x-docs.steps>

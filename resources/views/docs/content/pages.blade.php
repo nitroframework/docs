@@ -46,7 +46,7 @@
         <code>&lt;/body&gt;</code>:
     </p>
 
-    <x-docs.code src="layout.blade.php" lang="blade" file="resources/views/components/layouts/app.blade.php" highlight="3,8" />
+    <x-docs.code src="layout.blade.php" lang="blade" file="resources/views/components/layouts/app.blade.php" highlight="6,11" />
 
     <p>
         When a <a nitro:navigate href="/docs/navigation">nitro:navigate</a> visit goes to a page with the same
