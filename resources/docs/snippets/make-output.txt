@@ -1,0 +1,4 @@
+  INFO  Created [app/Nitro/Pages/Posts/Show.php].
+  INFO  Created [resources/views/nitro/pages/posts/show.blade.php].
+
+  Route it: Route::nitro('/posts/show', \App\Nitro\Pages\Posts\Show::class);

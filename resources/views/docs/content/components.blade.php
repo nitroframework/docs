@@ -35,10 +35,15 @@
 
     <h2 id="creating">Creating a component</h2>
     <p>
-        Write a class that extends <code>Nitro\Component</code> in <code>app/Nitro/Components</code>, and its
-        view in <code>resources/views/nitro/components</code>, named after the class in kebab case:
-        <code>FaqItem</code> has <code>faq-item.blade.php</code>.
+        A component is a class that extends <code>Nitro\Component</code> in <code>app/Nitro/Components</code>, and
+        its view in <code>resources/views/nitro/components</code>, named after the class in kebab case:
+        <code>FaqItem</code> has <code>faq-item.blade.php</code>. <code>make:nitro</code> writes both
+        (<a href="#make">more below</a>):
     </p>
+
+    <x-docs.code src="make-component.sh" lang="sh" />
+
+    <p>Then fill them in:</p>
 
     <x-docs.pair class="app/Nitro/Components/FaqItem.php" view="resources/views/nitro/components/faq-item.blade.php" component="faq-item" />
 
@@ -46,6 +51,23 @@
         <li><strong>The public properties</strong> (<code>$question</code>, <code>$answer</code>, <code>$open</code>) are its <a nitro:navigate href="/docs/properties">state</a>: rendered by the server, sent to the browser, and sent back with each <code>#[Server]</code> call.</li>
         <li><strong><code>toggle()</code></strong> is a plain method, so it runs in the browser: opening an answer sends nothing to the server.</li>
         <li><strong>The view</strong> has a single root element. Nitro marks it with the component's id and state.</li>
+    </ul>
+
+    <h3 id="make">make:nitro</h3>
+    <p>One command makes a component, a page or a store, with its view when it has one:</p>
+
+    <x-docs.code src="make-kinds.sh" lang="sh" />
+
+    <p>It says what it wrote, and what to do next: the tag to place a component with, the route for a page.</p>
+
+    <x-docs.code src="make-output.txt" lang="sh" />
+
+    <ul>
+        <li><strong>Folders</strong> are part of the name: <code>Posts/Show</code>, <code>posts.show</code> and <code>Posts\Show</code> all make <code>App\Nitro\Pages\Posts\Show</code>. Each part becomes StudlyCase.</li>
+        <li><strong>Where files go</strong> is what <code>config/nitro.php</code> says (<code>components</code>, <code>pages</code>, <code>stores</code>), the same places Nitro finds them.</li>
+        <li><strong>Nothing is written over.</strong> When a file is there already, the command stops and names it; <code>--force</code> writes over it.</li>
+        <li><strong>Your own templates.</strong> Publish them with <code>php artisan vendor:publish --tag=nitro-stubs</code>, and edit <code>stubs/nitro.component.stub</code>, <code>nitro.page.stub</code>, <code>nitro.store.stub</code> or <code>nitro.view.stub</code>: the command uses yours.</li>
+        <li><strong>A JavaScript view</strong> (Vue, React, Solid, Svelte) isn't made for you yet: make the component, delete its Blade view, and add <code>#[View]</code> (see <a nitro:navigate href="/docs/javascript-views">JavaScript views</a>).</li>
     </ul>
 
     <h3 id="names">Names and folders</h3>

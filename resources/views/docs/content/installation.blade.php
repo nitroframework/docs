@@ -30,7 +30,9 @@
         </x-docs.step>
 
         <x-docs.step title="Check that it works">
-            <p>Create a page: a class, its view, and a route.</p>
+            <p>Make a page, its class and its view:</p>
+            <x-docs.code src="install-check-make.sh" lang="sh" />
+            <p>Give the class a property and a method, the view a button, and the page a route:</p>
             <x-docs.code src="install-check-page.php" file="app/Nitro/Pages/Hello.php" />
             <x-docs.code src="install-check-view.blade.php" lang="blade" file="resources/views/nitro/pages/hello.blade.php" />
             <x-docs.code src="install-check-route.php" file="routes/web.php" />

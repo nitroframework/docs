@@ -49,7 +49,7 @@
     </p>
 
     <h3 id="store-code">The code</h3>
-    <p>You write a store like a component without a view, and you put it in <code>app/Nitro/Stores</code>:</p>
+    <p>You write a store like a component without a view, and you put it in <code>app/Nitro/Stores</code>. <code>php artisan make:nitro Cart --store</code> makes one:</p>
 
     <x-docs.code src="app/Nitro/Stores/Cart.php" file="app/Nitro/Stores/Cart.php" />
 

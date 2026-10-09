@@ -25,6 +25,10 @@
 
     <h2 id="a-page">Writing a page</h2>
     <p>
+        <code>php artisan make:nitro Posts/Show --page</code> writes a page's class and view, and prints the route to add
+        (see <a nitro:navigate href="/docs/components#make">make:nitro</a>).
+    </p>
+    <p>
         A page's <code>mount()</code> method receives the route's parameters, with route model binding. The
         <code>#[Title]</code> and <code>#[Layout]</code> attributes control how the page is shown:
     </p>
