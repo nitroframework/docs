@@ -30,6 +30,8 @@
             ['`uploads`', '', '`directory`, `rules`, `max_files` and `throttle`'],
             ['`public_config`', '`[\'app.name\']`', 'The config keys `config()` may read in the browser. Their values are public'],
             ['`cache.store`', '`null`', 'The cache store `#[Cached]` keeps results in (`NITRO_CACHE_STORE`). With `null`, the application\'s default'],
+            ['`fallbacks.enabled`', '`null`', 'Whether a failed component shows a fallback in its place (`NITRO_FALLBACKS`). With `null`, on when `APP_DEBUG` is off'],
+            ['`fallbacks.view`', '`null`', 'The fallback of components without `fallback()`. With `null`, a short message with a link that loads the page again'],
             ['`compiled`', '`storage/framework/nitro`', 'Where compiled files are written'],
             ['`static`', '`nitro`', 'The directory in `public/` the build is published to'],
             ['`build.obfuscate`', '`true`', 'Whether builds are obfuscated (`NITRO_OBFUSCATE`)'],

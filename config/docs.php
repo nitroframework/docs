@@ -55,6 +55,7 @@ return [
             'islands' => 'Islands',
             'browser-apis' => 'Browser APIs',
             'caching' => 'Caching',
+            'errors' => 'Handling errors',
         ],
         'Going further' => [
             'rendering' => 'Rendering',

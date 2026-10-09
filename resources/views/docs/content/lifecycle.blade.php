@@ -31,6 +31,7 @@
             ['`hydrate()`', 'Server', 'Each `#[Server]` call, once the state is restored, before the browser\'s changes are applied'],
             ['`dehydrate()`', 'Server', 'Every request, last, before the state goes to the browser'],
             ['`exception($e)`', 'Server', 'A `#[Server]` method threw: handled, unless the hook throws it again'],
+            ['`fallback($e)`', 'Server', 'The component failed, in production: what shows in its place (see Handling errors)'],
             ['`mounted()`', 'Browser, or `#[Server]`', 'Once the component is live in the page'],
             ['`updatingSearch($value)`', 'Browser', 'Before the view changes `$search`: `$this->search` still has the old value'],
             ['`updating($property, $value)`', 'Browser', 'Before the view changes any property, with its path'],
@@ -94,6 +95,11 @@
     </p>
 
     <x-docs.code src="lifecycle-exception.php" runs="server" />
+
+    <p>
+        An error the hook throws again, or one in a component without the hook, shows the component's fallback in
+        production. See <a nitro:navigate href="/docs/errors">Handling errors</a>.
+    </p>
 
     <x-docs.callout type="warning" title="Browser hooks protect nothing">
         <p><code>updated*()</code> runs in the browser, so a visitor can skip it and send any value of a property's type. Keep what must hold on the server in <code>#[Validate]</code> rules, <code>#[Locked]</code> properties and <code>#[Server]</code> methods. See <a nitro:navigate href="/docs/security">Security</a>.</p>
