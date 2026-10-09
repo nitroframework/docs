@@ -43,6 +43,7 @@
             ['`views`', 'Vue, React, Solid, Svelte', 'The engines for views written in a JavaScript framework: each one\'s `adapter`, the `path`s its views are in and their `extensions`'],
             ['`ssr`', 'off', 'Server rendering for those views: `enabled` (`NITRO_SSR` in `.env`), the render service\'s `url` (`NITRO_SSR_URL`), a `timeout` and the `bundle` `nitro:ssr` runs'],
             ['`features`', '`[]`', 'Classes that run around every component on the server'],
+            ['`devtools`', '`null`', 'The dev overlay and the Server-Timing header. With `null`, on when `APP_DEBUG` is on (see Debugging)'],
             ['`esbuild`', '', 'The Node binary (`NITRO_NODE` in `.env`) and where esbuild is installed'],
         ];
     @endphp

@@ -65,6 +65,7 @@ return [
             'extending' => 'Extending Nitro',
             'javascript' => 'JavaScript API',
             'testing' => 'Testing',
+            'debugging' => 'Debugging',
             'security' => 'Security',
             'limitations' => 'Limitations',
         ],
