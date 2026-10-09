@@ -19,7 +19,8 @@
             ['`nitro:navigate`', 'Visits the link\'s page without a reload'],
             ['`.keypress`', 'Starts the visit when the mouse button goes down, instead of on the click. Touch and keyboard still use the click'],
             ['`.preserve-scroll`', 'Keeps the scroll position. Without it, a visit scrolls to the top, or to the URL\'s `#fragment`'],
-            ['`.prefetch`', 'Asks for the page once the pointer rests on the link, or the keyboard focuses it, so the click shows it at once. Kept 30 seconds; `.prefetch.60s` keeps it longer'],
+            ['`.transition`', 'Shows this link\'s visit inside a View Transition: the old page animates into the new one (see View Transitions)'],
+            ['`nitro:prefetch`', 'Asks for the page before the click, on hover or with `.visible` when the link is on screen, so the click shows it at once (see Prefetching)'],
             ['`nitro:current="class"`', 'Adds the class while the link points at the current page, and sets `aria-current="page"`. Add `.exact` to match the same path only'],
         ];
     @endphp
@@ -30,6 +31,36 @@
         <code>$this-&gt;redirect($url, navigate: true)</code> in a method. The back and forward buttons return to
         where you left each page.
     </p>
+
+    <h2 id="prefetching">Prefetching</h2>
+    <p>
+        <code>nitro:navigate</code> visits a page without a reload. <code>nitro:prefetch</code>, beside it, asks
+        for the page's data before the click, so the click shows the page at once. A link prefetches only when you
+        add it:
+    </p>
+
+    <x-docs.code src="navigate-prefetch.blade.php" lang="blade" />
+
+    <ul>
+        <li><strong>On hover</strong> (<code>nitro:prefetch</code>). It asks once the pointer has rested on the link for 75ms, so moving across a menu asks for nothing. Focusing the link with the keyboard asks at once.</li>
+        <li><strong>On screen</strong> (<code>nitro:prefetch.visible</code>). It asks as soon as the link scrolls into view, once per link. Give it to the link most visitors follow next, not to every row of a long list: each one is a request to your server.</li>
+        <li><strong>Not at all</strong> (no <code>nitro:prefetch</code>). The page is asked for on the click, as with any visit.</li>
+    </ul>
+
+    <h3 id="prefetch-timing">How long it waits, and how long it keeps the page</h3>
+    <p>
+        A time right after <code>nitro:prefetch</code> is how long the pointer must rest on the link first.
+        <code>.keep</code> is how long the fetched page is kept: after that, the click asks for it again.
+    </p>
+
+    <x-docs.code src="navigate-prefetch-timing.blade.php" lang="blade" />
+
+    <ul>
+        <li><strong>The wait</strong> is 75ms unless you set it. Raise it for a menu people move across; on screen there is no wait, so <code>.visible</code> with one is a build error.</li>
+        <li><strong>The keep</strong> is 30 seconds unless you set it. Times are written <code>150ms</code> or <code>60s</code>.</li>
+        <li><strong>Which pages.</strong> Only a Nitro page the browser renders from its data is prefetched, and only from a Nitro page. A markup-first or client page already shows at once, so it isn't asked for; a plain Blade page is fetched on the click.</li>
+        <li><strong>With <code>nitro:navigate</code> only.</strong> <code>nitro:prefetch</code> on a link without it does nothing.</li>
+    </ul>
 
     <h3 id="prefetch-and-history">Prefetched pages, and back and forward</h3>
     <p>
@@ -42,12 +73,47 @@
         <li>Flash messages are shown once: back and forward don't show them again.</li>
     </ul>
     <p>
-        Prefetching asks for a page before anyone clicks, so only prefetch links to pages that are safe to load: a
-        <code>GET</code> page should never change anything anyway.
+        Prefetching asks for a page before anyone clicks, so only prefetch pages that are safe to load: a
+        <code>GET</code> page should never change anything anyway. Anything that does, such as signing out or
+        deleting, belongs in a form or a <code>#[Server]</code> method, not a link.
     </p>
 
     <x-docs.callout type="note" title="Links are for other pages">
         <p>To filter or sort what a page shows, change a property with <code>$set()</code> or <code>nitro:model</code> and let the view render again. That needs no visit, and in the browser it needs no request.</p>
+    </x-docs.callout>
+
+    <h2 id="view-transitions">View Transitions</h2>
+    <p>
+        A visit can change the page inside the browser's
+        <a href="https://developer.mozilla.org/docs/Web/API/View_Transition_API" target="_blank" rel="noopener">View Transitions</a>:
+        the browser keeps a picture of the old page, Nitro puts the new one in place, and the old page fades into
+        the new. Turn it on for one link with <code>.transition</code>:
+    </p>
+
+    <x-docs.code src="navigate-transition.blade.php" lang="blade" />
+
+    <p>Or for every visit, in <code>config/nitro.php</code>:</p>
+
+    <x-docs.code src="navigate-transition-config.php" />
+
+    <ul>
+        <li><strong>Off by default.</strong> Without <code>view_transitions</code> or <code>.transition</code>, a visit changes the page at once, as it always has.</li>
+        <li><strong>Every kind of visit.</strong> With <code>view_transitions</code> on, links, <code>$visit()</code>, <code>redirect(navigate: true)</code> and back and forward all transition. <code>.transition</code> is for that link's visits only.</li>
+        <li><strong>Where it doesn't run.</strong> In a browser without View Transitions, or in a tab that is hidden, the page changes at once. Nothing else is different, so it is safe to turn on.</li>
+        <li><strong>The visit doesn't wait for it.</strong> The new page is in place and its components start as the animation begins. While it runs (a cross-fade takes a quarter of a second), the browser's animation is on top of the page, so keep custom ones short.</li>
+    </ul>
+
+    <p>
+        The default is a cross-fade of the whole page. Your CSS decides anything else: the
+        <code>::view-transition-old(root)</code> and <code>::view-transition-new(root)</code> pseudo-elements for the
+        page, and <code>view-transition-name</code> for an element that should move from its place on the old page to
+        its place on the new one:
+    </p>
+
+    <x-docs.code src="navigate-transition.css" lang="css" />
+
+    <x-docs.callout type="warning" title="One element per name">
+        <p>A <code>view-transition-name</code> must be on one element at a time. On a list page, where every row would have it, give it only to the row that was clicked, or the browser skips the transition.</p>
     </x-docs.callout>
 
     <h2 id="any-page">Visiting any page</h2>

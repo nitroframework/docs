@@ -37,6 +37,7 @@
             ['`build.obfuscate`', '`true`', 'Whether builds are obfuscated'],
             ['`minify_on_change`', '`true`', 'Whether to minify when recompiling during development'],
             ['`rendering`', '`\'clone\'`', 'How the browser creates elements: `\'clone\'` or `\'create\'`'],
+            ['`view_transitions`', '`false`', 'Whether every visit changes the page inside the browser\'s View Transitions. `nitro:navigate.transition` turns them on for one link'],
             ['`navigation`', '`\'data\'`', 'How a visit shows a page: `\'data\'` or `\'markup\'`. A page can choose with `#[Navigate]`, which also takes `\'client\'`'],
             ['`attributes`', '`[]`', 'Your own `nitro:` attributes, each run by a `Nitro.directive()`'],
             ['`views`', 'Vue, React, Solid, Svelte', 'The engines for views written in a JavaScript framework: each one\'s `adapter`, the `path`s its views are in and their `extensions`'],

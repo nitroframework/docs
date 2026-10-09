@@ -3,7 +3,7 @@ export default function PostNav({ postId, link, visit }) {
         <>
             <nav>
                 <a {...link('/posts')}>All posts</a>
-                <a {...link(`/posts/${postId}/preview`, 'prefetch')}>Preview</a>
+                <a {...link(`/posts/${postId}/preview`, 'prefetch.visible')}>Preview</a>
             </nav>
 
             <select onChange={(e) => visit(`/posts?status=${e.target.value}`)}>

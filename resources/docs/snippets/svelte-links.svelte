@@ -4,7 +4,7 @@
 
 <nav>
     <a {...link('/posts')}>All posts</a>
-    <a {...link(`/posts/${postId}/preview`, 'prefetch')}>Preview</a>
+    <a {...link(`/posts/${postId}/preview`, 'prefetch.visible')}>Preview</a>
 </nav>
 
 <select onchange={(e) => visit(`/posts?status=${e.currentTarget.value}`)}>

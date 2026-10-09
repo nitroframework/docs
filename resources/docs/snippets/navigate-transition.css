@@ -1,0 +1,14 @@
+/* The whole page: slower, sliding in from the right. */
+::view-transition-old(root) { animation: 200ms ease-out both fade-out; }
+::view-transition-new(root) { animation: 250ms ease-out both slide-in; }
+
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes slide-in { from { opacity: 0; transform: translateX(24px); } }
+
+/* One element moving between pages: the same name on both. */
+.student-avatar { view-transition-name: student-avatar; }
+
+/* Visitors who asked for less motion: no animation. */
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none; }
+}

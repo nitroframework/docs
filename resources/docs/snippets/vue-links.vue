@@ -1,7 +1,7 @@
 <template>
     <nav>
         <a v-bind="link('/posts')">All posts</a>
-        <a v-bind="link(`/posts/${postId}/preview`, 'prefetch')">Preview</a>
+        <a v-bind="link(`/posts/${postId}/preview`, 'prefetch.visible')">Preview</a>
     </nav>
 
     <select @change="visit(`/posts?status=${$event.target.value}`)">

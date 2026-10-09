@@ -186,9 +186,9 @@
     <p>
         <code>link(href, ...modifiers)</code> gives the attributes of a <code>nitro:navigate</code> link: spread them on
         an <code>&lt;a&gt;</code>, and the visit happens without a reload. (Svelte can't write
-        <code>nitro:navigate.prefetch</code> as an attribute name, and drops an attribute with no value, which is why
-        it is a function.) The modifiers are the ones a Blade link takes: <code>'prefetch'</code>,
-        <code>'keypress'</code>, <code>'preserve-scroll'</code>. To go somewhere from code, call <code>visit(url)</code>:
+        <code>nitro:navigate.keypress</code> as an attribute name, and drops an attribute with no value, which is why
+        it is a function.) The modifiers are the ones a Blade link takes:
+        <code>'keypress'</code>, <code>'preserve-scroll'</code>, <code>'transition'</code>, and <code>'prefetch'</code> or <code>'prefetch.visible'</code> (with its times: <code>'prefetch.150ms'</code>), which adds <code>nitro:prefetch</code>. To go somewhere from code, call <code>visit(url)</code>:
     </p>
 
     <x-docs.code src="svelte-links.svelte" lang="svelte" />
