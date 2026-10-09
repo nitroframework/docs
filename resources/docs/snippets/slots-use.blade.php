@@ -1,7 +1,7 @@
-<fusion:card>
+<nitro:card>
     <p>{{ $student['name'] }} has {{ $student['credits'] }} credits.</p>
 
-    <fusion:slot name="footer">
-        <button fusion:click="enrol($student['id'])">Enrol</button>
-    </fusion:slot>
-</fusion:card>
+    <nitro:slot name="footer">
+        <button nitro:click="enrol($student['id'])">Enrol</button>
+    </nitro:slot>
+</nitro:card>

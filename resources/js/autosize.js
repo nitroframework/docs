@@ -1,11 +1,11 @@
 /**
- * fusion:autosize: a textarea that grows with its text. Its value is the most lines it grows to,
- * fusion:autosize="8"; past that, it scrolls.
+ * nitro:autosize: a textarea that grows with its text. Its value is the most lines it grows to,
+ * nitro:autosize="8"; past that, it scrolls.
  *
- * This file loads before Fusion does, so it registers the directive when Fusion is starting.
+ * This file loads before Nitro does, so it registers the directive when Nitro is starting.
  */
-document.addEventListener('fusion:starting', ({ detail: { Fusion } }) => {
-    Fusion.directive('autosize', ({ el, value }) => {
+document.addEventListener('nitro:starting', ({ detail: { Nitro } }) => {
+    Nitro.directive('autosize', ({ el, value }) => {
         const style = getComputedStyle(el);
         const line = parseFloat(style.lineHeight) || 20;
         const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);

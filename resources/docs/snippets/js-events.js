@@ -4,17 +4,17 @@ window.addEventListener('cart-updated', (event) => {
 });
 
 // Report failed server calls to your error tracker.
-window.addEventListener('fusion:error', ({ detail }) => {
+window.addEventListener('nitro:error', ({ detail }) => {
     Sentry.captureMessage(`${detail.component}: ${detail.message}`);
 });
 
 // Count page views after each visit.
-window.addEventListener('fusion:navigated', ({ detail }) => {
+window.addEventListener('nitro:navigated', ({ detail }) => {
     plausible('pageview', { u: detail.url });
 });
 
 // Ask before reloading when the session has expired.
-window.addEventListener('fusion:expired', (event) => {
+window.addEventListener('nitro:expired', (event) => {
     event.preventDefault();
     showSessionExpiredDialog();
 });

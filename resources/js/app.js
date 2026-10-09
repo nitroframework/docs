@@ -1,5 +1,5 @@
 // The docs' small behaviours: theme, tabs, copy, "On this page", search, the mobile drawer.
-// Pages change with fusion:navigate (the docs keep their layout, other pages swap the body; this script stays): init() sets up each
+// Pages change with nitro:navigate (the docs keep their layout, other pages swap the body; this script stays): init() sets up each
 // page, on load and after every visit; the window's listeners are added once.
 import './autosize.js';
 
@@ -192,8 +192,8 @@ function searchResult(entry, words) {
     const link = document.createElement('a');
     const path = `/docs/${entry.page}`;
     link.href = entry.anchor ? `${path}#${entry.anchor}` : path;
-    /** Another page is a Fusion visit; a section of this one, the browser's own jump. */
-    if (location.pathname !== path) link.setAttribute('fusion:navigate', '');
+    /** Another page is a Nitro visit; a section of this one, the browser's own jump. */
+    if (location.pathname !== path) link.setAttribute('nitro:navigate', '');
     link.className = 'search-result';
     link.role = 'option';
     link.dataset.searchResult = '';
@@ -217,11 +217,11 @@ function searchResult(entry, words) {
  */
 function openResult(link, event) {
     const search = $('[data-search]');
-    const visit = link.hasAttribute('fusion:navigate') && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey);
+    const visit = link.hasAttribute('nitro:navigate') && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey);
     if (!visit || search.dataset.searchCloseOn !== 'after') return closeSearch();
 
     link.setAttribute('aria-busy', 'true');
-    addEventListener('fusion:navigated', () => {
+    addEventListener('nitro:navigated', () => {
         link.removeAttribute('aria-busy');
         closeSearch();
     }, { once: true });
@@ -382,4 +382,4 @@ function init() {
 }
 
 init();
-addEventListener('fusion:navigated', init);
+addEventListener('nitro:navigated', init);

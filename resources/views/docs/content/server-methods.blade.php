@@ -14,10 +14,10 @@
         When you type, <code>$name</code> changes in the browser. Clicking <strong>Check</strong> calls
         <code>check()</code>, which runs on the server. It validates the name, looks it up and sets
         <code>$result</code>. The <code>taken()</code> method is private, and only <code>check()</code> calls it,
-        so Fusion never compiles it. Open <strong>Compiled</strong> and you'll see that it isn't there.
+        so Nitro never compiles it. Open <strong>Compiled</strong> and you'll see that it isn't there.
     </p>
 
-    <x-docs.pair class="app/Fusion/Components/Username.php" view="resources/views/fusion/components/username.blade.php" component="username" />
+    <x-docs.pair class="app/Nitro/Components/Username.php" view="resources/views/nitro/components/username.blade.php" component="username" />
 
     <h2 id="a-call">What happens during a call</h2>
     <x-docs.steps>
@@ -69,7 +69,7 @@
         To validate the component's properties, call <code>$this-&gt;validate([...])</code>. When a rule fails,
         the method stops, and the messages are available in <code>$errors</code> for <code>@@error</code> in the
         view. If you call it without rules, it checks every property's <code>#[Validate]</code> rules. See
-        <a fusion:navigate href="/docs/forms">Forms and validation</a> for more.
+        <a nitro:navigate href="/docs/forms">Forms and validation</a> for more.
     </p>
 
     <h2 id="redirects">Redirecting</h2>
@@ -79,7 +79,7 @@
 
     <p>
         If you call <code>$this-&gt;redirect($url, navigate: true)</code>, the browser goes there the way a
-        <code>fusion:navigate</code> link does, without a full reload. Fusion accepts only <code>http(s)</code>
+        <code>nitro:navigate</code> link does, without a full reload. Nitro accepts only <code>http(s)</code>
         URLs and paths.
     </p>
 
@@ -93,10 +93,10 @@
 
     <h2 id="loading">Showing that a call is running</h2>
     <p>
-        Add <code>fusion:loading</code> to an element to show it while a <code>#[Server]</code> call runs. With
+        Add <code>nitro:loading</code> to an element to show it while a <code>#[Server]</code> call runs. With
         <code>.remove</code>, the element is hidden instead. With <code>.attr="disabled"</code> or
         <code>.class="..."</code>, an attribute or classes change instead. To react to one method only, add
-        <code>fusion:target</code>.
+        <code>nitro:target</code>.
     </p>
 
     <x-docs.code src="server-loading.blade.php" lang="blade" />
@@ -117,19 +117,19 @@
     </ul>
 
     <p>
-        The runtime also dispatches the <code>fusion:request</code> and <code>fusion:response</code> events around
+        The runtime also dispatches the <code>nitro:request</code> and <code>nitro:response</code> events around
         each call. You can show the progress bar during calls by setting <code>server_calls</code> in
         <code>config/nprogress.php</code>.
     </p>
 
     <h2 id="what-to-trust">What you can trust</h2>
     <ul>
-        <li><strong>The state is signed.</strong> Fusion signs it with the application key, the session's secret and the logged-in user. A changed state, or one from another session or user, is refused.</li>
+        <li><strong>The state is signed.</strong> Nitro signs it with the application key, the session's secret and the logged-in user. A changed state, or one from another session or user, is refused.</li>
         <li><strong>Unlocked properties accept any value of their type.</strong> Add <code>#[Validate]</code> rules to the properties a server method relies on, or validate them in the method.</li>
         <li><strong><code>#[Locked]</code> means unchangeable, not current.</strong> Read anything that must be current, such as a balance or a permission, from the database in the method.</li>
         <li><strong>Every public property is sent to the browser.</strong> Keep secrets in protected or private properties.</li>
     </ul>
-    <p>See <a fusion:navigate href="/docs/security">Security</a> for everything the endpoint refuses.</p>
+    <p>See <a nitro:navigate href="/docs/security">Security</a> for everything the endpoint refuses.</p>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>

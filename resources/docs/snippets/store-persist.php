@@ -1,7 +1,7 @@
-use Nitro\Fusion\Attributes\Locked;
-use Nitro\Fusion\Attributes\Persist;
-use Nitro\Fusion\Attributes\Sync;
-use Nitro\Fusion\Store;
+use Nitro\Attributes\Locked;
+use Nitro\Attributes\Persist;
+use Nitro\Attributes\Sync;
+use Nitro\Store;
 
 #[Persist]                          // Keep the store's values in localStorage.
 class Cart extends Store

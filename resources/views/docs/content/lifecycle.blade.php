@@ -45,7 +45,7 @@
 
     <h2 id="server-hooks">On the server</h2>
 
-    <x-docs.code src="lifecycle-server.php" file="app/Fusion/Components/TeamMembers.php" />
+    <x-docs.code src="lifecycle-server.php" file="app/Nitro/Components/TeamMembers.php" />
 
     <ul>
         <li><strong><code>boot()</code></strong> is for what every request needs, such as a check that must pass on creation and on each call alike.</li>
@@ -60,7 +60,7 @@
     <x-docs.code src="lifecycle-browser.php" runs="browser" />
 
     <ul>
-        <li><strong>The property hooks run for the view's changes</strong>: <code>fusion:model</code>, <code>$set()</code>, and in a JavaScript view, <code>set()</code>, <code>v-model</code> or a binding. A method that assigns a property doesn't run them: the method already knows what it changed.</li>
+        <li><strong>The property hooks run for the view's changes</strong>: <code>nitro:model</code>, <code>$set()</code>, and in a JavaScript view, <code>set()</code>, <code>v-model</code> or a binding. A method that assigns a property doesn't run them: the method already knows what it changed.</li>
         <li><strong><code>updating*()</code> runs before the change</strong>, so <code>$this->search</code> still holds the old value and the hook gets the new one; <code>updated*()</code> runs after it. A property's own hook runs first, then <code>updating()</code> or <code>updated()</code>.</li>
         <li><strong>A hook names its property in StudlyCase</strong>: <code>updatedFirstName()</code> is <code>$firstName</code>'s, or <code>$first_name</code>'s. A method whose name names no property, such as <code>updatedAt()</code>, is an ordinary method.</li>
         <li><strong>For a key under an array</strong>, <code>updatedFilters()</code> gets the new value of that key, and the key's path (<code>status</code>); <code>updated()</code> gets the full path (<code>filters.status</code>).</li>
@@ -78,7 +78,7 @@
     <x-docs.code src="lifecycle-server-hook.php" runs="server" />
 
     <p>
-        Pair it with <code>fusion:model.debounce</code>, so it runs once the visitor stops typing rather than on every
+        Pair it with <code>nitro:model.debounce</code>, so it runs once the visitor stops typing rather than on every
         key. Two hooks stay in the browser, and <code>#[Server]</code> on them is an error that says so:
         <code>updating*()</code> runs before the change, which can't wait for a request, and <code>rendered()</code>
         runs after every render, which would make each render a request. Have them call a <code>#[Server]</code>
@@ -96,13 +96,13 @@
     <x-docs.code src="lifecycle-exception.php" runs="server" />
 
     <x-docs.callout type="warning" title="Browser hooks protect nothing">
-        <p><code>updated*()</code> runs in the browser, so a visitor can skip it and send any value of a property's type. Keep what must hold on the server in <code>#[Validate]</code> rules, <code>#[Locked]</code> properties and <code>#[Server]</code> methods. See <a fusion:navigate href="/docs/security">Security</a>.</p>
+        <p><code>updated*()</code> runs in the browser, so a visitor can skip it and send any value of a property's type. Keep what must hold on the server in <code>#[Validate]</code> rules, <code>#[Locked]</code> properties and <code>#[Server]</code> methods. See <a nitro:navigate href="/docs/security">Security</a>.</p>
     </x-docs.callout>
 
     <h2 id="after-render">After the next render</h2>
     <p>
         To run JavaScript once the view has rendered, as a hook would, call <code>$this-&gt;js()</code>. The snippet can
-        use <code>$fusion</code> (the component), <code>$refs</code> (its elements marked with <code>fusion:ref</code>)
+        use <code>$nitro</code> (the component), <code>$refs</code> (its elements marked with <code>nitro:ref</code>)
         and <code>$el</code> (its root element):
     </p>
 

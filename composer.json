@@ -9,7 +9,7 @@
         "php": "^8.3",
         "laravel/tinker": "^3.0",
         "nitro/framework": "@dev",
-        "nitro/fusion": "@dev",
+        "nitro/nitro": "@dev",
         "phiki/phiki": "^2.2"
     },
     "require-dev": {
@@ -92,7 +92,7 @@
             "symlink": true
         }
     },{
-        "name": "fusion",
+        "name": "nitro",
         "type": "path",
         "url": "../nitro-fusion",
         "options": {

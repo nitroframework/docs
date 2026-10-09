@@ -1,8 +1,8 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { useFusion } from 'nitro-fusion/vue';
+import { useNitro } from 'nitro/vue';
 
-const { title, tags, words, addTag, save, errors } = useFusion();
+const { title, tags, words, addTag, save, errors } = useNitro();
 const tag = ref('');
 const said = ref('');
 

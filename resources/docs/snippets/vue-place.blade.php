@@ -1,1 +1,1 @@
-<fusion:vue.post-editor :post="$post" />
+<nitro:vue.post-editor :post="$post" />

@@ -1,9 +1,9 @@
-namespace App\Fusion\Attributes;
+namespace App\Nitro\Attributes;
 
 use Attribute;
 use Illuminate\Support\Facades\RateLimiter;
-use Nitro\Fusion\Component;
-use Nitro\Fusion\FeatureAttribute;
+use Nitro\Component;
+use Nitro\FeatureAttribute;
 
 #[Attribute(Attribute::TARGET_METHOD)]
 class Throttle extends FeatureAttribute
@@ -12,7 +12,7 @@ class Throttle extends FeatureAttribute
 
     public function calling(Component $component, string $method, array $arguments): void
     {
-        $key = 'fusion:'.$component::class.':'.$method.':'.request()->ip();
+        $key = 'nitro:'.$component::class.':'.$method.':'.request()->ip();
 
         abort_if(RateLimiter::tooManyAttempts($key, $this->perMinute), 429);
 

@@ -17,7 +17,7 @@
         on the server.
     </p>
 
-    <x-docs.pair class="app/Fusion/Components/Contacts.php" view="resources/views/fusion/components/contacts.blade.php" component="contacts" />
+    <x-docs.pair class="app/Nitro/Components/Contacts.php" view="resources/views/nitro/components/contacts.blade.php" component="contacts" />
 
     <x-docs.callout type="note" title="One root element">
         <p>A view must have a single root element, which is the component's own element. Everything the view renders goes inside it.</p>
@@ -33,11 +33,11 @@
             ['Forms', '`@error` and `$errors`, `@csrf`, `@method`'],
             ['Data', '`@json`'],
             ['Children', 'Components by their tag, with `:key` in a loop'],
-            ['Dynamic children', '`fusion:dynamic-component` with `:is`'],
-            ['Slots', '`fusion:slot`, printed as `$slot` and `$slots[\'name\']`'],
+            ['Dynamic children', '`nitro:dynamic-component` with `:is`'],
+            ['Slots', '`nitro:slot`, printed as `$slot` and `$slots[\'name\']`'],
             ['Teleport', '`@teleport(\'modals\')` ... `@endteleport`, rendered at `@portal(\'modals\')` in the layout'],
             ['Deferred', '`@deferred(\'stats\')` ... `@placeholder` ... `@enddeferred` in a page (see Page data)'],
-            ['Laravel helpers', '`route()`, `url()`, `asset()`, `__()` / `trans()`, and `config()` for the keys in `fusion.public_config`'],
+            ['Laravel helpers', '`route()`, `url()`, `asset()`, `__()` / `trans()`, and `config()` for the keys in `nitro.public_config`'],
             ['PHP', 'Operators, casts and PHP\'s functions: strings, mbstring, arrays, math, ctype, URLs, HTML entities, `preg_*`, `sprintf`, `json_encode` and more, tested against PHP'],
             ['`Str::`', '54 of Laravel\'s string helpers (`slug`, `limit`, `title`, `headline`, `camel`, `snake`, `mask`, `squish`, ...), tested against Laravel'],
         ];
@@ -45,7 +45,7 @@
     <x-docs.table :columns="['', 'In a view']" :rows="$features" />
 
     <p>
-        Fusion inlines <code>@@include</code> and anonymous Blade components (<code>&lt;x-panel&gt;</code>) when
+        Nitro inlines <code>@@include</code> and anonymous Blade components (<code>&lt;x-panel&gt;</code>) when
         it compiles the view. Anything else, such as <code>@@php</code>, class-based Blade components or custom
         directives, can't run in the browser, and the build fails with the file and line.
     </p>
@@ -60,9 +60,9 @@
     <h2 id="children">Rendering child components</h2>
     <p>
         A view can place other components by their tag and pass data to their <code>mount()</code> method (see
-        <a fusion:navigate href="/docs/components#placing">Components</a>). Inside a loop, give each one a
+        <a nitro:navigate href="/docs/components#placing">Components</a>). Inside a loop, give each one a
         <code>:key</code>. To render a component whose name comes from a value, use
-        <code>fusion:dynamic-component</code>:
+        <code>nitro:dynamic-component</code>:
     </p>
 
     <x-docs.code src="dynamic.blade.php" lang="blade" />
@@ -82,7 +82,7 @@
     <p>
         To check whether a slot was given, use <code>$slots-&gt;has('footer')</code> or
         <code>$slot-&gt;isEmpty()</code>. Slot content belongs to the parent, so its handlers and
-        <code>fusion:model</code> act on the parent component. In the example above, <code>enrol()</code> is the
+        <code>nitro:model</code> act on the parent component. In the example above, <code>enrol()</code> is the
         parent's method.
     </p>
 
@@ -97,7 +97,7 @@
 
     <h2 id="config">Reading config in the browser</h2>
     <p>
-        In a view, <code>config()</code> can only read the keys listed in <code>fusion.public_config</code>, which
+        In a view, <code>config()</code> can only read the keys listed in <code>nitro.public_config</code>, which
         is <code>app.name</code> by default. Their values are sent to the browser, so only list keys that can be
         public:
     </p>
@@ -106,7 +106,7 @@
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/directives" title="Directives" icon="bolt">Handle events, use modifiers and actions, and add fusion: attributes.</x-docs.card>
+        <x-docs.card href="/docs/directives" title="Directives" icon="bolt">Handle events, use modifiers and actions, and add nitro: attributes.</x-docs.card>
         <x-docs.card href="/docs/rendering" title="Rendering" icon="browser" runs="browser">Learn how the browser updates only what changed.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

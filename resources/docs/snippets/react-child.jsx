@@ -6,10 +6,10 @@ export default function PostEditor() {
 }
 
 // resources/js/components/TagList.jsx: an ordinary React component, inside the view
-import { useFusion } from 'nitro-fusion/react';
+import { useNitro } from 'nitro/react';
 
 export default function TagList() {
-    const { tags, removeTag } = useFusion();
+    const { tags, removeTag } = useNitro();
 
     return (
         <ul>

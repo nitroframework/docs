@@ -1,10 +1,10 @@
 <html>
 <head>
-    @fusionHead
+    @nitroHead
 </head>
 <body>
     {{ $slot }}
 
-    @fusionScripts
+    @nitroScripts
 </body>
 </html>

@@ -1,7 +1,7 @@
-use Nitro\Fusion\Facades\Fusion;
+use Nitro\Facades\Nitro;
 
-Fusion::share('user', fn () => $request->user()?->only('id', 'name'));
-Fusion::share('locale', app()->getLocale());
+Nitro::share('user', fn () => $request->user()?->only('id', 'name'));
+Nitro::share('locale', app()->getLocale());
 
-Fusion::shareOnce('countries', fn () => Country::pluck('name', 'code'));
-Fusion::share('permissions', Fusion::once(fn () => $user->permissions())->until(3600));
+Nitro::shareOnce('countries', fn () => Country::pluck('name', 'code'));
+Nitro::share('permissions', Nitro::once(fn () => $user->permissions())->until(3600));

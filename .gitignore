@@ -22,6 +22,6 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
-/public/fusion
-/storage/framework/fusion
+/public/nitro
+/storage/framework/nitro
 /storage/framework/docs-search.json

@@ -1,1 +1,1 @@
-<fusion:react.post-editor :post="$post" />
+<nitro:react.post-editor :post="$post" />

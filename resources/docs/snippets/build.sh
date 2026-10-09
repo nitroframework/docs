@@ -1,1 +1,1 @@
-php artisan fusion:build
+php artisan nitro:build

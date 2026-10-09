@@ -1,10 +1,10 @@
 import Chart from 'chart.js/auto';
 
 /** The revenue chart: drawn from the component's months, and again when they change. */
-export default function revenue(el, fusion) {
+export default function revenue(el, nitro) {
     const canvas = el.appendChild(document.createElement('canvas'));
     const data = () => {
-        const months = fusion.get('months');
+        const months = nitro.get('months');
 
         return {
             labels: months.map((month) => month.label),

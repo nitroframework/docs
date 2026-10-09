@@ -2,15 +2,15 @@
     lead="A component's view can be a Vue, React, Solid or Svelte component instead of Blade. The PHP class doesn't change: its properties, its methods compiled to run in the browser, its #[Server] methods and their rules. Only the view does, and it works with the component by the same names, in the framework's own way."
 >
     <p>
-        Blade is Fusion's own view engine: Fusion compiles it, and renders it on the server and in the browser. A
-        JavaScript view is a component of the framework you choose, built by your app's Vite like any other. Fusion
+        Blade is Nitro's own view engine: Nitro compiles it, and renders it on the server and in the browser. A
+        JavaScript view is a component of the framework you choose, built by your app's Vite like any other. Nitro
         gives it the component (its state, its methods, its server calls, its validation messages) and keeps them in
-        step. You write the view the way that framework is written, and the PHP the way Fusion is.
+        step. You write the view the way that framework is written, and the PHP the way Nitro is.
     </p>
 
     <x-docs.cards>
-        <x-docs.card href="/docs/vue" title="Vue" icon="browser">Templates and <code>v-model</code> on the component's properties; <code>useFusion()</code> refs in <code>&lt;script setup&gt;</code>.</x-docs.card>
-        <x-docs.card href="/docs/react" title="React" icon="browser">The component as props, re-rendered as it changes; <code>useFusion()</code> for the tree below.</x-docs.card>
+        <x-docs.card href="/docs/vue" title="Vue" icon="browser">Templates and <code>v-model</code> on the component's properties; <code>useNitro()</code> refs in <code>&lt;script setup&gt;</code>.</x-docs.card>
+        <x-docs.card href="/docs/react" title="React" icon="browser">The component as props, re-rendered as it changes; <code>useNitro()</code> for the tree below.</x-docs.card>
         <x-docs.card href="/docs/solid" title="Solid" icon="browser">Fine-grained props: only what reads a changed value updates.</x-docs.card>
         <x-docs.card href="/docs/svelte" title="Svelte" icon="browser">The component from <code>$props()</code>, reactive with runes.</x-docs.card>
     </x-docs.cards>
@@ -24,7 +24,7 @@
     </ul>
     <p>
         You don't have to choose for the whole app. The choice is per component, and components with different views
-        sit side by side on a page, talking through events and stores as any Fusion components do.
+        sit side by side on a page, talking through events and stores as any Nitro components do.
     </p>
 
     <h2 id="same-component">One component, any view</h2>
@@ -33,7 +33,7 @@
         <code>solid:</code> or <code>svelte:</code>. Everything else is the class you would write for Blade:
     </p>
 
-    <x-docs.code src="js-views-component.php" file="app/Fusion/Components/PostEditor.php" runs="both" />
+    <x-docs.code src="js-views-component.php" file="app/Nitro/Components/PostEditor.php" runs="both" />
 
     <p>Whichever view it has, the component behaves the same:</p>
     <ul>
@@ -44,7 +44,7 @@
     </ul>
 
     <x-docs.callout type="note" title="Tested as one">
-        <p>Fusion's browser tests run one component against its Blade, Vue, React, Solid and Svelte views, with the same steps, and expect the same results from each: typing, methods, server calls, validation, uploads, links, server rendering and hydration.</p>
+        <p>Nitro's browser tests run one component against its Blade, Vue, React, Solid and Svelte views, with the same steps, and expect the same results from each: typing, methods, server calls, validation, uploads, links, server rendering and hydration.</p>
     </x-docs.callout>
 
     <h2 id="what-the-view-gets">What every view gets</h2>
@@ -66,7 +66,7 @@
             ['`set(path, value)`', '`set(\'form.email\', value)`', 'Writes a property, or a key under one'],
             ['`upload(path, files)`', '`upload(\'cover\', files)`', 'Files into an `Upload` or `#[Uploads]` property'],
             ['`dispatch(event, ...)`', '`dispatch(\'saved\', id)`', 'As `$dispatch` in Blade'],
-            ['`link(href, ...modifiers)`', '`link(\'/posts\', \'prefetch\')`', 'A `fusion:navigate` link\'s attributes, to spread on an `<a>`'],
+            ['`link(href, ...modifiers)`', '`link(\'/posts\', \'prefetch\')`', 'A `nitro:navigate` link\'s attributes, to spread on an `<a>`'],
             ['`visit(url)`', '`visit(\'/posts\')`', 'A visit without a reload, as `$visit` in Blade'],
         ];
     @endphp
@@ -81,10 +81,10 @@
     <x-docs.code src="js-views-setup.js" lang="js" />
 
     <p>
-        Fusion's Vite plugin gives you <code>nitro-fusion/vue</code>, <code>/react</code>, <code>/solid</code> and
+        Nitro's Vite plugin gives you <code>nitro/vue</code>, <code>/react</code>, <code>/solid</code> and
         <code>/svelte</code> (and their <code>/server</code> parts for server rendering), keeps a single copy of each
         framework in the bundle, and leaves a <code>.vue</code> or <code>.svelte</code> file's <code>&lt;php&gt;</code>
-        block to Fusion. Only the frameworks you register are bundled.
+        block to Nitro. Only the frameworks you register are bundled.
     </p>
 
     <h2 id="side-by-side">Side by side on a page</h2>
@@ -97,13 +97,13 @@
 
     <p>
         Each JavaScript view is its own app (its own Vue app, React root, Solid root or Svelte app) mounted in its
-        component's element. A JavaScript view can't place <code>&lt;fusion:...&gt;</code> components inside itself;
+        component's element. A JavaScript view can't place <code>&lt;nitro:...&gt;</code> components inside itself;
         compose them from Blade, as above.
     </p>
 
     <h2 id="talking">Components that talk to each other</h2>
     <p>
-        Components with different views talk the way any Fusion components do: through their PHP. One dispatches an
+        Components with different views talk the way any Nitro components do: through their PHP. One dispatches an
         event, the others listen with <code>#[On]</code>. None of them needs to know what the others are written in,
         and their listeners run in the browser, so the views follow at once.
     </p>
@@ -130,7 +130,7 @@
     <p>
         A small component can live in one file: its class in a <code>&lt;php&gt;</code> block at the top of a
         <code>.vue</code> or <code>.svelte</code> file, or in a <code>/* &lt;php&gt; ... &lt;/php&gt; */</code> comment
-        at the top of a <code>.jsx</code> or <code>.tsx</code> file. Fusion makes it a class named after the view, and
+        at the top of a <code>.jsx</code> or <code>.tsx</code> file. Nitro makes it a class named after the view, and
         an error in it names the line in the view. Each framework's page has an example.
     </p>
     <p>
@@ -153,7 +153,7 @@
 
     <h2 id="visits">On a visit</h2>
     <p>
-        When <code>fusion:navigate</code> visits a page, the browser loads the code of the JavaScript views the page
+        When <code>nitro:navigate</code> visits a page, the browser loads the code of the JavaScript views the page
         places before it shows the page, alongside its data. The page appears with its views already rendered, not
         filling in one by one after it. A view's code loads once, and is kept for the next page that shows it.
     </p>
@@ -169,18 +169,18 @@
 
     <h2 id="upgrades">Framework upgrades</h2>
     <p>
-        All four adapters share one core, which holds everything about a Fusion component that isn't a framework's own
+        All four adapters share one core, which holds everything about a Nitro component that isn't a framework's own
         reactivity. Each adapter only binds that core to its framework, through the framework's public API alone (Vue's
         refs, React's <code>useSyncExternalStore</code>, Solid's stores, Svelte's <code>$state</code>). A new release of
-        Vue, React, Solid or Svelte needs nothing from Fusion beyond the tests that run each view against the others.
+        Vue, React, Solid or Svelte needs nothing from Nitro beyond the tests that run each view against the others.
     </p>
 
     <h2 id="own-engine">Another framework</h2>
     <p>
-        <code>fusion.views</code> lists the engines: where each one's views are, their extensions, and the adapter that
+        <code>nitro.views</code> lists the engines: where each one's views are, their extensions, and the adapter that
         knows the framework's files. Add an entry for another framework, with an adapter class of your own (extending
-        <code>Nitro\Fusion\View\ScriptEngine</code>) or none, and register its browser side with
-        <code>Fusion.engine()</code>. See <a href="/docs/javascript#engines">a view engine of your own</a>.
+        <code>Nitro\View\ScriptEngine</code>) or none, and register its browser side with
+        <code>Nitro.engine()</code>. See <a href="/docs/javascript#engines">a view engine of your own</a>.
     </p>
 
     <h2 id="next-steps">Next steps</h2>

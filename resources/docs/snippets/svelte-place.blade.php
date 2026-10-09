@@ -1,1 +1,1 @@
-<fusion:svelte.post-editor :post="$post" />
+<nitro:svelte.post-editor :post="$post" />

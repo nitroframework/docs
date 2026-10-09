@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Fusion\Components;
+namespace App\Nitro\Components;
 
-use Nitro\Fusion\Component;
+use Nitro\Component;
 
 class Panel extends Component
 {

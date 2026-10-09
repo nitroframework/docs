@@ -2,7 +2,7 @@
 
 namespace App\Support;
 
-use Nitro\Fusion\Attributes\Browser;
+use Nitro\Attributes\Browser;
 
 #[Browser]
 final class Money

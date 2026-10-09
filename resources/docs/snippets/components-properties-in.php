@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Fusion\Components;
+namespace App\Nitro\Components;
 
-use Nitro\Fusion\Component;
+use Nitro\Component;
 
 /** No mount(): the tag's values set these properties, and follow the parent when they change. */
 class OrderLine extends Component

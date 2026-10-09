@@ -1,5 +1,5 @@
 // resources/js/ssr.js: a renderer for a view engine of your own
-import { serve } from 'nitro-fusion/ssr';
+import { serve } from 'nitro/ssr';
 import { renderToString } from 'my-framework/server';
 
 const views = import.meta.glob('../views/mine/**/*.mine', { eager: true });

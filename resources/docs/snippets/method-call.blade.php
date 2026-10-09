@@ -1,4 +1,4 @@
-<button fusion:click="add">Add</button>
-<button fusion:click="remove($i)">Remove</button>
-<button fusion:click="$set('postcode', '')">Clear the postcode</button>
-<button fusion:click="$toggle('open')">Details</button>
+<button nitro:click="add">Add</button>
+<button nitro:click="remove($i)">Remove</button>
+<button nitro:click="$set('postcode', '')">Clear the postcode</button>
+<button nitro:click="$toggle('open')">Details</button>

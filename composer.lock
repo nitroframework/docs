@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b31208faaf075cb07c4f9047524921d1",
+    "content-hash": "9092e25c200d05652598744b057eb2e8",
     "packages": [
         {
             "name": "brick/math",
@@ -2533,12 +2533,12 @@
             }
         },
         {
-            "name": "nitro/fusion",
+            "name": "nitro/nitro",
             "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../nitro-fusion",
-                "reference": "e6f96f683490ccf1dcaf58c94750ce092e782acb"
+                "reference": "46e7f739f32bc64738b5b61981f992d5020ba04b"
             },
             "require": {
                 "laravel/framework": "^13.0",
@@ -2547,7 +2547,6 @@
             },
             "require-dev": {
                 "livewire/livewire": "^4.4",
-                "nitro/framework": "@dev",
                 "phpstan/phpstan": "^2.2",
                 "phpunit/phpunit": "^12.0"
             },
@@ -2555,21 +2554,21 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Nitro\\Fusion\\FusionServiceProvider"
+                        "Nitro\\NitroServiceProvider"
                     ],
                     "aliases": {
-                        "Fusion": "Nitro\\Fusion\\Facades\\Fusion"
+                        "Nitro": "Nitro\\Facades\\Nitro"
                     }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Nitro\\Fusion\\": "src/"
+                    "Nitro\\": "src/"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Nitro\\Fusion\\Tests\\": "tests/"
+                    "Nitro\\Tests\\": "tests/"
                 }
             },
             "scripts": {
@@ -2581,6 +2580,9 @@
                 ],
                 "fuzz": [
                     "@php tests/Fuzz/fuzz.php"
+                ],
+                "fuzz:all": [
+                    "@php tests/Fuzz/all.php"
                 ]
             },
             "license": [
@@ -2593,11 +2595,11 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Fusion: Livewire-style components (a PHP class and a Blade view) compiled to JavaScript that runs in the browser. Works on Laravel and on Nitro.",
+            "description": "Nitro: Livewire-style components (a PHP class and a Blade view) compiled to JavaScript that runs in the browser. Works on Laravel.",
             "keywords": [
                 "components",
-                "fusion",
                 "laravel",
+                "nitro",
                 "nitro",
                 "reactive",
                 "transpiler"
@@ -8445,7 +8447,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "nitro/framework": 20,
-        "nitro/fusion": 20
+        "nitro/nitro": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

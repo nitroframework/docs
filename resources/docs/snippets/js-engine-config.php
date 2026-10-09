@@ -1,4 +1,4 @@
-// config/fusion.php
+// config/nitro.php
 'views' => [
     // Vue, React, Solid and Svelte, as published...
     'chart' => ['path' => resource_path('js/charts'), 'extensions' => ['js']],

@@ -7,7 +7,7 @@
     <x-docs.header drawer active="docs" />
 
     <div class="mx-auto flex max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        {{-- Sidebar (a drawer on small screens); fusion:current marks the page's link, on every visit. --}}
+        {{-- Sidebar (a drawer on small screens); nitro:current marks the page's link, on every visit. --}}
         <div data-drawer-backdrop class="fixed inset-0 z-40 hidden bg-zinc-950/40 backdrop-blur-sm lg:hidden"></div>
         <aside data-drawer class="fixed inset-y-0 left-0 z-50 w-72 -translate-x-full overflow-y-auto bg-white px-5 pt-5 pb-10 shadow-xl transition-transform duration-200 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100dvh-4rem)] lg:w-64 lg:shrink-0 lg:translate-x-0 lg:bg-transparent lg:px-0 lg:pt-8 lg:pr-6 lg:shadow-none dark:bg-zinc-950 lg:dark:bg-transparent">
             <div class="mb-6 flex items-center justify-between lg:hidden">
@@ -23,7 +23,7 @@
                         <ul class="space-y-0.5 border-l border-zinc-200 dark:border-white/[0.07]">
                             @foreach ($pages as $pageSlug => $label)
                                 <li>
-                                    <a fusion:navigate fusion:current.exact="sidebar-current" href="{{ \App\Docs\Nav::url($pageSlug) }}" @class([
+                                    <a nitro:navigate nitro:current.exact="sidebar-current" href="{{ \App\Docs\Nav::url($pageSlug) }}" @class([
                                         'sidebar-link relative block py-1.5 pl-4 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white',
                                         'sidebar-current' => request()->is(ltrim(\App\Docs\Nav::url($pageSlug), '/')),
                                     ])>{{ $label }}</a>
@@ -35,7 +35,7 @@
             </nav>
         </aside>
 
-        {{-- Content: the docs page (App\Fusion\Pages\Docs\Show) --}}
+        {{-- Content: the docs page (App\Nitro\Pages\Docs\Show) --}}
         <main class="min-w-0 flex-1 py-10 lg:px-10 xl:px-14">
             {{ $slot }}
         </main>
@@ -49,6 +49,6 @@
 
     <x-docs.search />
 
-    @fusionScripts
+    @nitroScripts
 </body>
 </html>

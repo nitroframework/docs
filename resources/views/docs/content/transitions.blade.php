@@ -1,9 +1,9 @@
 <x-docs.page
-    lead="Transitions animate elements as they enter and leave the page. Add fusion:transition to an element inside an @if or a @foreach, and Fusion animates it when it appears and when it goes."
+    lead="Transitions animate elements as they enter and leave the page. Add nitro:transition to an element inside an @if or a @foreach, and Nitro animates it when it appears and when it goes."
 >
     <p>
-        To animate an element, add <code>fusion:transition</code> to an element that an <code>@@if</code> or a
-        <code>@@foreach</code> renders. The element animates as it enters. When it leaves, Fusion keeps it in the
+        To animate an element, add <code>nitro:transition</code> to an element that an <code>@@if</code> or a
+        <code>@@foreach</code> renders. The element animates as it enters. When it leaves, Nitro keeps it in the
         page until its animation ends. Without a name, the transition is a built-in fade and scale that needs no
         CSS.
     </p>
@@ -18,7 +18,7 @@
     </p>
 
     <h2 id="the-component">The component</h2>
-    <x-docs.pair class="app/Fusion/Components/TransitionDemo.php" view="resources/views/fusion/components/transition-demo.blade.php" component="transition-demo" />
+    <x-docs.pair class="app/Nitro/Components/TransitionDemo.php" view="resources/views/nitro/components/transition-demo.blade.php" component="transition-demo" />
 
     <h2 id="built-in">Using the built-in transition</h2>
     <p>The built-in transition fades and scales the element. Modifiers let you change how it animates:</p>
@@ -49,14 +49,14 @@
 
     <h2 id="lists">Animating lists and tabs</h2>
     <p>
-        Give each row of a list a <code>fusion:key</code>, so Fusion can follow it as the list changes. When two
+        Give each row of a list a <code>nitro:key</code>, so Nitro can follow it as the list changes. When two
         elements replace each other, put <code>.out-in</code> on both of them.
     </p>
 
     <x-docs.code src="transitions-list.blade.php" lang="blade" highlight="2,6,8" />
 
     <x-docs.callout type="note" title="When nothing animates">
-        <p>Fusion doesn't animate the server's HTML, elements in a hidden tab, or anything for visitors who have asked their system for reduced motion.</p>
+        <p>Nitro doesn't animate the server's HTML, elements in a hidden tab, or anything for visitors who have asked their system for reduced motion.</p>
     </x-docs.callout>
 
     <h2 id="next-steps">Next steps</h2>

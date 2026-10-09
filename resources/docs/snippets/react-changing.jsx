@@ -1,7 +1,7 @@
 export default function Checkout({ form, lines, set, addLine, removeLine }) {
     return (
         <>
-            {/* A key inside a property: its path, as fusion:model writes it. */}
+            {/* A key inside a property: its path, as nitro:model writes it. */}
             <input value={form.email} onChange={(e) => set('form.email', e.target.value)} />
             <label>
                 <input type="checkbox" checked={form.gift} onChange={(e) => set('form.gift', e.target.checked)} />

@@ -19,7 +19,7 @@
         <strong>Compiled</strong> to see what the browser runs.
     </p>
 
-    <x-docs.pair class="app/Fusion/Components/Counter.php" view="resources/views/fusion/components/counter.blade.php" component="counter" />
+    <x-docs.pair class="app/Nitro/Components/Counter.php" view="resources/views/nitro/components/counter.blade.php" component="counter" />
 
     <x-docs.callout type="note" title="This demo saves to the session">
         <p>So that the example works for every visitor, without an account or a database, <code>save()</code> keeps the count in your session. Your application would save it to the database in the same way. The call to the server, the validation and the new state that comes back all stay the same.</p>
@@ -45,7 +45,7 @@
     <x-docs.api-table :columns="['Type', 'How it behaves']" :rows="$types" />
 
     <h3 id="models">Model properties</h3>
-    <p>Fusion reads a model property again from the database on each server call:</p>
+    <p>Nitro reads a model property again from the database on each server call:</p>
 
     <x-docs.code src="model-property.php" />
 
@@ -69,9 +69,9 @@
     @php
         $propertyAttributes = [
             ['#[Locked]', 'The browser can read it, but only the server can change it.'],
-            ['#[Url]', 'Keeps the property in the query string (with as, history, keep and except). Fusion reads it before mount() and keeps it in sync with the property.'],
+            ['#[Url]', 'Keeps the property in the query string (with as, history, keep and except). Nitro reads it before mount() and keeps it in sync with the property.'],
             ['#[Remember]', 'Keeps the value in the browser’s history entry, so back, forward and a reload bring it back, such as a half-filled form.'],
-            ['#[Modelable]', 'Lets a parent bind this property with fusion:model. Only one property can have it.'],
+            ['#[Modelable]', 'Lets a parent bind this property with nitro:model. Only one property can have it.'],
             ['#[Validate]', 'Rules the server checks whenever the browser changes the property.'],
         ];
     @endphp
@@ -84,7 +84,7 @@
         a changed value.
     </p>
 
-    <x-docs.code src="locked.php" file="app/Fusion/Components/Wallet.php" highlight="5,6" />
+    <x-docs.code src="locked.php" file="app/Nitro/Components/Wallet.php" highlight="5,6" />
 
     <x-docs.callout type="warning" title="Locked doesn't mean current">
         <p>Signing stops the browser from changing <code>$balance</code>. It doesn't stop the same visitor from sending an older state from their own session. So read anything that must be current, such as a balance or a permission, from the database in the <code>#[Server]</code> method.</p>
@@ -118,7 +118,7 @@
     <x-docs.cards>
         <x-docs.card href="/docs/methods" title="Methods" icon="browser" runs="browser">Write code that runs in the browser, with no request and no waiting.</x-docs.card>
         <x-docs.card href="/docs/server-methods" title="Server methods" icon="server" runs="server">Use the database, mail and anything else that needs the server.</x-docs.card>
-        <x-docs.card href="/docs/forms" title="Forms and validation" icon="book">Bind inputs with fusion:model, and validate with #[Validate] and $errors.</x-docs.card>
+        <x-docs.card href="/docs/forms" title="Forms and validation" icon="book">Bind inputs with nitro:model, and validate with #[Validate] and $errors.</x-docs.card>
         <x-docs.card href="/docs/uploads" title="Uploads" icon="bolt">Preview files from a file input at once, and store them on the server.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

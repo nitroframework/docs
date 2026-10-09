@@ -1,10 +1,10 @@
-use Nitro\Fusion\Attributes\Uploads;
-use Nitro\Fusion\Upload;
+use Nitro\Attributes\Uploads;
+use Nitro\Upload;
 
-public ?Upload $photo = null;   // One file, from <input type="file" fusion:model="photo">
+public ?Upload $photo = null;   // One file, from <input type="file" nitro:model="photo">
 
 #[Uploads]
-public array $photos = [];      // Several files, from <input type="file" multiple fusion:model="photos">
+public array $photos = [];      // Several files, from <input type="file" multiple nitro:model="photos">
 
 #[Server]
 public function save(): void

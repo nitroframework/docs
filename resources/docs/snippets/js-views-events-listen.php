@@ -1,6 +1,6 @@
 <?php
 
-// app/Fusion/Components/React/StudentCard.php: #[View(react: 'student-card')]
+// app/Nitro/Components/React/StudentCard.php: #[View(react: 'student-card')]
 
 #[On('student-picked')]
 public function show(int $id): void

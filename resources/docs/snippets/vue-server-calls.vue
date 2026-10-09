@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { useFusion } from 'nitro-fusion/vue';
+import { useNitro } from 'nitro/vue';
 
-const { save } = useFusion();
+const { save } = useNitro();
 const notice = ref('');
 
 async function submit() {

@@ -1,9 +1,9 @@
 <head>
-    {{-- Your views first: they register with Fusion before its components start. --}}
+    {{-- Your views first: they register with Nitro before its components start. --}}
     @vite('resources/js/app.js')
 </head>
 <body>
     {{ $slot }}
 
-    @fusionScripts
+    @nitroScripts
 </body>

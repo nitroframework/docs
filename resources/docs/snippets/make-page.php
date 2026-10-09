@@ -1,3 +1,3 @@
-use App\Fusion\Pages\Todos;
+use App\Nitro\Pages\Todos;
 
-Route::fusion('/todos', Todos::class)->name('todos');
+Route::nitro('/todos', Todos::class)->name('todos');

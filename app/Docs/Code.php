@@ -3,7 +3,7 @@
 namespace App\Docs;
 
 use Illuminate\Support\Facades\Cache;
-use Nitro\Fusion\Build\Bundle;
+use Nitro\Build\Bundle;
 use Phiki\Phiki;
 
 /**
@@ -14,7 +14,7 @@ final class Code
 {
     private const THEMES = ['light' => 'github-light', 'dark' => 'github-dark-default'];
 
-    /** A file of the app (app/Fusion/..., resources/views/...), or a snippet from resources/docs/snippets. */
+    /** A file of the app (app/Nitro/..., resources/views/...), or a snippet from resources/docs/snippets. */
     public static function snippet(string $path): string
     {
         $file = is_file(base_path($path)) ? base_path($path) : resource_path('docs/snippets/'.$path);
@@ -70,7 +70,7 @@ final class Code
         }, $html);
     }
 
-    /** What the browser runs for a component: its definition, from Fusion's own compiler. */
+    /** What the browser runs for a component: its definition, from Nitro's own compiler. */
     public static function compiled(string $component): string
     {
         /** Compiling every component is slow: kept per build (the version changes with any component's files). */
@@ -82,7 +82,7 @@ final class Code
     private static function definition(Bundle $bundle, string $component): string
     {
         $bundle = $bundle->compileAll()[''];
-        $start = strpos($bundle, 'Fusion.define('.json_encode($component));
+        $start = strpos($bundle, 'Nitro.define('.json_encode($component));
 
         if ($start === false) {
             return '// '.$component.' is not compiled';

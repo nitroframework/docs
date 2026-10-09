@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Fusion\Components;
+namespace App\Nitro\Components;
 
 use App\Models\Post;
-use Nitro\Fusion\Attributes\Computed;
-use Nitro\Fusion\Attributes\Server;
-use Nitro\Fusion\Attributes\Validate;
-use Nitro\Fusion\Attributes\View;
-use Nitro\Fusion\Component;
+use Nitro\Attributes\Computed;
+use Nitro\Attributes\Server;
+use Nitro\Attributes\Validate;
+use Nitro\Attributes\View;
+use Nitro\Component;
 
 #[View(vue: 'post-editor')]
 class PostEditor extends Component

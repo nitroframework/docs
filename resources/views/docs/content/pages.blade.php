@@ -2,14 +2,14 @@
     lead="A page is a whole screen of your application. It is a component with its own route, layout and title, and it loads its data in mount(). The server renders it the first time it loads."
 >
     <p>
-        Pages live in <code>app/Fusion/Pages</code>, and their views live in
-        <code>resources/views/fusion/pages</code>. A page has everything a component has: properties, browser
+        Pages live in <code>app/Nitro/Pages</code>, and their views live in
+        <code>resources/views/nitro/pages</code>. A page has everything a component has: properties, browser
         methods, <code>#[Server]</code> methods and the same Blade. On top of that, a page has a route, a layout
         around it, and a <code>&lt;head&gt;</code> for search engines and link previews.
     </p>
 
     <x-docs.callout type="tip" title="You are reading one">
-        <p>Every page of these docs is a Fusion page, and you can read <a href="#this-page">its class and view</a> below. When you move between pages with the sidebar, the layout stays and only the page changes.</p>
+        <p>Every page of these docs is a Nitro page, and you can read <a href="#this-page">its class and view</a> below. When you move between pages with the sidebar, the layout stays and only the page changes.</p>
     </x-docs.callout>
 
     <h2 id="routing">Routing a page</h2>
@@ -18,8 +18,8 @@
     <x-docs.code src="page-routes.php" file="routes/web.php" highlight="3,4" />
 
     <p>
-        <code>Route::fusion()</code> returns a normal Laravel route. Route names, middleware, groups and route
-        model binding all work as usual. The page <code>App\Fusion\Pages\Students\Index</code> is named
+        <code>Route::nitro()</code> returns a normal Laravel route. Route names, middleware, groups and route
+        model binding all work as usual. The page <code>App\Nitro\Pages\Students\Index</code> is named
         <code>pages::students.index</code>.
     </p>
 
@@ -29,7 +29,7 @@
         <code>#[Title]</code> and <code>#[Layout]</code> attributes control how the page is shown:
     </p>
 
-    <x-docs.code src="page-show.php" file="app/Fusion/Pages/Students/Show.php" highlight="10,11,19" />
+    <x-docs.code src="page-show.php" file="app/Nitro/Pages/Students/Show.php" highlight="10,11,19" />
 
     <ul>
         <li><code>mount(Student $student)</code> runs once, on the server, with the bound model. It stores what the view needs in properties. Here the student is kept as an array and marked <code>#[Locked]</code>, so the browser can't change it.</li>
@@ -41,15 +41,15 @@
     <p>
         A page renders inside its layout as <code>$slot</code>, and its title is available as
         <code>$title</code>. If a page has no <code>#[Layout]</code>, it uses the layout set in
-        <code>fusion.layout</code>, which is <code>components.layouts.app</code> by default. Your layout needs
-        <code>@@fusionHead</code> in its <code>&lt;head&gt;</code> and <code>@@fusionScripts</code> before
+        <code>nitro.layout</code>, which is <code>components.layouts.app</code> by default. Your layout needs
+        <code>@@nitroHead</code> in its <code>&lt;head&gt;</code> and <code>@@nitroScripts</code> before
         <code>&lt;/body&gt;</code>:
     </p>
 
     <x-docs.code src="layout.blade.php" lang="blade" file="resources/views/components/layouts/app.blade.php" highlight="3,8" />
 
     <p>
-        When a <a fusion:navigate href="/docs/navigation">fusion:navigate</a> visit goes to a page with the same
+        When a <a nitro:navigate href="/docs/navigation">nitro:navigate</a> visit goes to a page with the same
         layout, the layout stays and only the page changes. A sidebar keeps its scroll position, and a player
         keeps playing.
     </p>
@@ -68,13 +68,13 @@
     <x-docs.table :columns="['You need', 'Write']" :rows="$kinds" />
 
     <p>
-        You can't place a page inside a view, and you can't route a component. If you try, Fusion's error
+        You can't place a page inside a view, and you can't route a component. If you try, Nitro's error
         message tells you what to use instead.
     </p>
 
     <h2 id="chunks">Loading a page's code</h2>
     <p>
-        Fusion compiles each page into a chunk of its own. The browser loads that chunk the first time someone
+        Nitro compiles each page into a chunk of its own. The browser loads that chunk the first time someone
         visits the page, so a large application doesn't send every page up front. You can change this with
         <code>#[LazyLoad]</code>:
     </p>
@@ -83,12 +83,12 @@
 
     <h2 id="this-page">This page</h2>
     <p>
-        The docs you are reading are a single Fusion page, <code>Docs\Show</code>, routed as
+        The docs you are reading are a single Nitro page, <code>Docs\Show</code>, routed as
         <code>/docs/{page}</code>. Its <code>mount()</code> method renders the page's content on the server and
         sets its head. Its view places the live examples as real components.
     </p>
 
-    <x-docs.pair class="app/Fusion/Pages/Docs/Show.php" view="resources/views/fusion/pages/docs/show.blade.php" />
+    <x-docs.pair class="app/Nitro/Pages/Docs/Show.php" view="resources/views/nitro/pages/docs/show.blade.php" />
     <x-docs.code src="routes/web.php" file="routes/web.php" highlight="10" />
 
     <h2 id="next-steps">Next steps</h2>

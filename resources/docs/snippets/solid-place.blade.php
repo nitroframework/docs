@@ -1,1 +1,1 @@
-<fusion:solid.post-editor :post="$post" />
+<nitro:solid.post-editor :post="$post" />

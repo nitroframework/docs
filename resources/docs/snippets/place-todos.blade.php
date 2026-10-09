@@ -1,5 +1,5 @@
 <x-layouts.app>
     <h1>My todos</h1>
 
-    <fusion:todos />
+    <nitro:todos />
 </x-layouts.app>

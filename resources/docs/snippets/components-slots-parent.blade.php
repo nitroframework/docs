@@ -1,12 +1,12 @@
-{{-- resources/views/fusion/components/team.blade.php --}}
+{{-- resources/views/nitro/components/team.blade.php --}}
 <div>
-    <fusion:panel :collapsible="true">
+    <nitro:panel :collapsible="true">
         {{-- The default slot: rendered here, with this view's values and methods. --}}
         <p>{{ count($members) }} members</p>
-        <button fusion:click="invite">Invite someone</button>
+        <button nitro:click="invite">Invite someone</button>
 
-        <fusion:slot name="footer">
-            <a href="/team/settings" fusion:navigate>Team settings</a>
-        </fusion:slot>
-    </fusion:panel>
+        <nitro:slot name="footer">
+            <a href="/team/settings" nitro:navigate>Team settings</a>
+        </nitro:slot>
+    </nitro:panel>
 </div>

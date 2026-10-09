@@ -1,1 +1,1 @@
-<fusion:counter />
+<nitro:counter />

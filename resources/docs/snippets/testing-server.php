@@ -1,4 +1,4 @@
-use App\Fusion\Components\Counter;
+use App\Nitro\Components\Counter;
 
 public function test_save_keeps_the_count(): void
 {

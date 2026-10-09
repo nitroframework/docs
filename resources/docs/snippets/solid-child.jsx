@@ -7,15 +7,15 @@ export default function PostEditor() {
 
 // resources/js/solid/components/TagList.jsx: an ordinary Solid component, inside the view
 import { For } from 'solid-js';
-import { useFusion } from 'nitro-fusion/solid';
+import { useNitro } from 'nitro/solid';
 
 export default function TagList() {
-    const fusion = useFusion();
+    const nitro = useNitro();
 
     return (
         <ul>
-            <For each={fusion.tags}>
-                {(tag, index) => <li>{tag} <button onClick={() => fusion.removeTag(index())}>×</button></li>}
+            <For each={nitro.tags}>
+                {(tag, index) => <li>{tag} <button onClick={() => nitro.removeTag(index())}>×</button></li>}
             </For>
         </ul>
     );

@@ -1,1 +1,1 @@
-<fusion:dynamic-component :is="$tab" />   {{-- 'settings.profile', 'settings.billing', or '' to render nothing --}}
+<nitro:dynamic-component :is="$tab" />   {{-- 'settings.profile', 'settings.billing', or '' to render nothing --}}

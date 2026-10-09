@@ -1,6 +1,6 @@
 @use('App\Enums\OrderStatus')
 
-<select fusion:model="status">
+<select nitro:model="status">
     @foreach (OrderStatus::cases() as $case)
         <option value="{{ $case->value }}">{{ $case->label() }}</option>
     @endforeach

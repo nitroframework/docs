@@ -6,7 +6,7 @@
         sound to play. A component dispatches an event with <code>$this-&gt;dispatch()</code>, or with
         <code>$dispatch()</code> from its view. Components that listen with <code>#[On]</code> then run their
         method, with the event's parameters. If several components need to read the same state, use a
-        <a fusion:navigate href="/docs/sharing-state">store</a> instead.
+        <a nitro:navigate href="/docs/sharing-state">store</a> instead.
     </p>
 
     <x-docs.example component="notifier" title="Two ways to say something" source="#the-components" />
@@ -19,8 +19,8 @@
     </p>
 
     <h2 id="the-components">The components</h2>
-    <x-docs.pair class="app/Fusion/Components/Notifier.php" view="resources/views/fusion/components/notifier.blade.php" component="notifier" />
-    <x-docs.pair class="app/Fusion/Components/Toaster.php" view="resources/views/fusion/components/toaster.blade.php" component="toaster" />
+    <x-docs.pair class="app/Nitro/Components/Notifier.php" view="resources/views/nitro/components/notifier.blade.php" component="notifier" />
+    <x-docs.pair class="app/Nitro/Components/Toaster.php" view="resources/views/nitro/components/toaster.blade.php" component="toaster" />
 
     <h2 id="dispatching">Dispatching and listening for events</h2>
     <x-docs.code src="events-dispatch.php" highlight="5" />

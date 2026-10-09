@@ -20,7 +20,7 @@ return [
             'introduction' => 'Introduction',
             'installation' => 'Installation',
             'quickstart' => 'Quickstart',
-            'how-it-works' => 'How Fusion works',
+            'how-it-works' => 'How Nitro works',
         ],
         'Essentials' => [
             'components' => 'Components',
@@ -60,7 +60,7 @@ return [
             'server-rendering' => 'Server rendering',
             'production' => 'Building for production',
             'configuration' => 'Configuration',
-            'extending' => 'Extending Fusion',
+            'extending' => 'Extending Nitro',
             'javascript' => 'JavaScript API',
             'testing' => 'Testing',
             'security' => 'Security',

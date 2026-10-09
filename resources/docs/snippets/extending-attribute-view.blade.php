@@ -1,1 +1,1 @@
-<textarea fusion:model="reply" fusion:autosize="8"></textarea>
+<textarea nitro:model="reply" nitro:autosize="8"></textarea>

@@ -1,4 +1,4 @@
 $this->head()
     ->title($meta['title'])
-    ->description($this->lead !== '' ? $this->lead : "{$meta['title']}: {$meta['section']} in the Fusion documentation.")
+    ->description($this->lead !== '' ? $this->lead : "{$meta['title']}: {$meta['section']} in the Nitro documentation.")
     ->canonical(url(Nav::url($page)));

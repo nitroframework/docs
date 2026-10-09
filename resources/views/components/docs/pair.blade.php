@@ -24,7 +24,7 @@
             <button type="button" data-compiled-toggle aria-expanded="false" class="group/c flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-xs font-medium text-zinc-600 transition hover:bg-zinc-100/70 dark:text-zinc-400 dark:hover:bg-white/[0.03]">
                 <svg class="size-3.5 transition group-aria-expanded/c:rotate-90" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="m6 4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>Compiled</span>
-                <span class="text-zinc-400 dark:text-zinc-500">what the browser runs, from Fusion's compiler</span>
+                <span class="text-zinc-400 dark:text-zinc-500">what the browser runs, from Nitro's compiler</span>
                 <x-docs.badge runs="browser" class="ml-auto" />
             </button>
             <div data-compiled hidden class="max-h-96 overflow-auto border-t border-dashed border-zinc-200 bg-white/60 dark:border-white/10 dark:bg-black/20">

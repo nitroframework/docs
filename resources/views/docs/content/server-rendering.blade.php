@@ -2,7 +2,7 @@
     lead="Put a page's Vue, React, Solid and Svelte views in its first HTML. Search engines and link previews see them, the first paint shows them, and the browser hydrates them: it takes over the elements that are there rather than rendering them again."
 >
     <p>
-        Blade views are always rendered on the server: they are Fusion's own. A JavaScript view is different. Without
+        Blade views are always rendered on the server: they are Nitro's own. A JavaScript view is different. Without
         server rendering, the page's HTML has the view's element and the component's state, and the browser renders
         the view once its code has loaded. With it, your app's <strong>render service</strong>, a small Node process,
         renders the view, Laravel puts the HTML in the page, and the browser picks up from there.
@@ -62,11 +62,11 @@
 
     <p>
         <code>vite build --ssr</code> bundles the entry to <code>bootstrap/ssr/ssr.js</code>.
-        <code>php artisan fusion:ssr</code> runs that bundle with Node, on the port in <code>fusion.ssr.url</code>.
+        <code>php artisan nitro:ssr</code> runs that bundle with Node, on the port in <code>nitro.ssr.url</code>.
         Then turn server rendering on:
     </p>
 
-    <x-docs.code code="FUSION_SSR=true" lang="sh" file=".env" />
+    <x-docs.code code="NITRO_SSR=true" lang="sh" file=".env" />
 
     <h2 id="configuration">Configuration</h2>
 
@@ -75,9 +75,9 @@
     @php
         $options = [
             ['`enabled`', '`false`', 'Whether pages ask the render service. Off, the browser renders every JavaScript view'],
-            ['`url`', '`http://127.0.0.1:13714`', 'Where the service listens. `fusion:ssr` takes its port from here'],
+            ['`url`', '`http://127.0.0.1:13714`', 'Where the service listens. `nitro:ssr` takes its port from here'],
             ['`timeout`', '`2`', 'Seconds a view may take before the page goes out without it'],
-            ['`bundle`', '`bootstrap/ssr/ssr.js`', 'What `fusion:ssr` runs. `php artisan fusion:ssr --bundle=...` runs another'],
+            ['`bundle`', '`bootstrap/ssr/ssr.js`', 'What `nitro:ssr` runs. `php artisan nitro:ssr --bundle=...` runs another'],
         ];
     @endphp
     <x-docs.table :columns="['Option', 'Default', 'What it does']" :rows="$options" />
@@ -111,14 +111,14 @@
 
     <h2 id="production">In production</h2>
     <p>
-        Build both bundles in your deploy, then keep <code>fusion:ssr</code> running as a service, and restart it after
+        Build both bundles in your deploy, then keep <code>nitro:ssr</code> running as a service, and restart it after
         each deploy so it serves the new views. With Supervisor:
     </p>
 
     <x-docs.code src="ssr-supervisor.ini" lang="ini" />
 
     <p>
-        Run <code>supervisorctl restart fusion-ssr</code> as a deploy step. Pages keep working while it restarts: their
+        Run <code>supervisorctl restart nitro-ssr</code> as a deploy step. Pages keep working while it restarts: their
         views are rendered by the browser for those few moments.
     </p>
 
@@ -139,7 +139,7 @@
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/javascript-views" title="JavaScript views" icon="book">Vue, React, Solid and Svelte views, and how they fit into Fusion.</x-docs.card>
-        <x-docs.card href="/docs/production" title="Building for production" icon="bolt">Fusion's build, caches and what to run on each deploy.</x-docs.card>
+        <x-docs.card href="/docs/javascript-views" title="JavaScript views" icon="book">Vue, React, Solid and Svelte views, and how they fit into Nitro.</x-docs.card>
+        <x-docs.card href="/docs/production" title="Building for production" icon="bolt">Nitro's build, caches and what to run on each deploy.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

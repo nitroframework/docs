@@ -1,11 +1,11 @@
-namespace App\Fusion\Pages\Students;
+namespace App\Nitro\Pages\Students;
 
 use App\Models\Student;
-use Nitro\Fusion\Attributes\Layout;
-use Nitro\Fusion\Attributes\Locked;
-use Nitro\Fusion\Attributes\Server;
-use Nitro\Fusion\Attributes\Title;
-use Nitro\Fusion\Component;
+use Nitro\Attributes\Layout;
+use Nitro\Attributes\Locked;
+use Nitro\Attributes\Server;
+use Nitro\Attributes\Title;
+use Nitro\Component;
 
 #[Title('Student')]
 #[Layout('components.layouts.app')]

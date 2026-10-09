@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="A page loads its data from its route, and Fusion gives you tools to shape that. You can load slow data after the page shows, reload some properties, merge and scroll lists, share data with every component, and flash data once."
+    lead="A page loads its data from its route, and Nitro gives you tools to shape that. You can load slow data after the page shows, reload some properties, merge and scroll lists, share data with every component, and flash data once."
 >
     <p>
         A page loads its data in <code>mount()</code>, on the server, from its route. The tools on this page
@@ -16,7 +16,7 @@
     <x-docs.code src="defer.blade.php" lang="blade" />
 
     <p>
-        Fusion renders the page without the deferred properties, and the page then asks its own URL for them. The
+        Nitro renders the page without the deferred properties, and the page then asks its own URL for them. The
         page stays usable while they load, and anything that changes in the meantime is kept. Use
         <code>@@deferred</code> without names to wait for every deferred property.
     </p>
@@ -69,17 +69,17 @@
 
     <h2 id="shared">Sharing data with every component</h2>
     <p>
-        <code>Fusion::share()</code> gives every component and page the same data. Call it in a middleware, so it
+        <code>Nitro::share()</code> gives every component and page the same data. Call it in a middleware, so it
         runs on every request:
     </p>
 
-    <x-docs.code src="share.php" file="app/Http/Middleware/ShareFusionData.php" runs="server" />
+    <x-docs.code src="share.php" file="app/Http/Middleware/ShareNitroData.php" runs="server" />
     <x-docs.code src="share.blade.php" lang="blade" />
 
     <ul>
         <li>Read shared data with <code>$this-&gt;shared()</code>, in views and in methods. It takes dot notation and a default.</li>
         <li>The data is sent with the page, with each visit and with each <code>#[Server]</code> answer. Closures are called when the data is read.</li>
-        <li>Use <code>shareOnce()</code> and <code>Fusion::once()</code> for data that rarely changes. The browser keeps it across visits and calls, and the server doesn't send it again until it expires or you send it with <code>-&gt;fresh()</code>. Set the expiry with <code>-&gt;until()</code>, as seconds, an interval or a date. Once data is shared at the top level, under a key without dots.</li>
+        <li>Use <code>shareOnce()</code> and <code>Nitro::once()</code> for data that rarely changes. The browser keeps it across visits and calls, and the server doesn't send it again until it expires or you send it with <code>-&gt;fresh()</code>. Set the expiry with <code>-&gt;until()</code>, as seconds, an interval or a date. Once data is shared at the top level, under a key without dots.</li>
     </ul>
 
     <x-docs.callout type="danger" title="Everything shared is public">
@@ -88,23 +88,23 @@
 
     <h2 id="flash">Flashing data</h2>
     <p>
-        <code>Fusion::flash()</code> sends data with the next response only, such as a message after a save. The
+        <code>Nitro::flash()</code> sends data with the next response only, such as a message after a save. The
         example above flashes a message from its <code>#[Server]</code> method, and its view shows the message with
         <code>$this-&gt;flashed()</code>.
     </p>
 
-    <x-docs.pair class="app/Fusion/Components/Flash.php" view="resources/views/fusion/components/flash.blade.php" component="flash" />
+    <x-docs.pair class="app/Nitro/Components/Flash.php" view="resources/views/nitro/components/flash.blade.php" component="flash" />
 
     <p>
         Flash data goes with this request's page, visit or <code>#[Server]</code> answer. After a redirect, it goes
         with the page the redirect leads to. After that it is gone, and the back button doesn't bring it back. The
-        browser also emits a <code>fusion:flash</code> event with the data in <code>event.detail.flash</code>.
+        browser also emits a <code>nitro:flash</code> event with the data in <code>event.detail.flash</code>.
         Flash data needs the session, so the request must run through the <code>web</code> middleware.
     </p>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/forms" title="Forms and validation" icon="book">Bind inputs with fusion:model, and validate them with #[Validate].</x-docs.card>
+        <x-docs.card href="/docs/forms" title="Forms and validation" icon="book">Bind inputs with nitro:model, and validate them with #[Validate].</x-docs.card>
         <x-docs.card href="/docs/events" title="Events" icon="bolt">Let components talk to each other, and to Laravel broadcasting.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

@@ -2,17 +2,17 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import solid from 'vite-plugin-solid';
-import fusion from './vendor/nitro/fusion/js/vite.js';
+import nitro from './vendor/nitro/nitro/js/vite.js';
 
 export default defineConfig({
     plugins: [
         laravel({ input: ['resources/js/app.js'], refresh: true }),
-        fusion(),
+        nitro(),
         solid(),
     ],
 });
 
 // resources/js/app.js
-import { fusionSolid } from 'nitro-fusion/solid';
+import { nitroSolid } from 'nitro/solid';
 
-fusionSolid(import.meta.glob(['../views/solid/**/*.{jsx,tsx}', './solid/**/*.{jsx,tsx}']));
+nitroSolid(import.meta.glob(['../views/solid/**/*.{jsx,tsx}', './solid/**/*.{jsx,tsx}']));

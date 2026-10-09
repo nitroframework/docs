@@ -2,7 +2,7 @@ use App\Enums\Status;
 use App\Models\Post;
 use App\Services\Search;
 use Illuminate\Support\Facades\Gate;
-use Nitro\Fusion\Attributes\Server;
+use Nitro\Attributes\Server;
 
 #[Server]
 public function remove(Post $post): void              // Receives the record the key names, or answers 404.

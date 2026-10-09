@@ -1,5 +1,5 @@
-// resources/js/app.js, loaded before @fusionScripts
-document.addEventListener('fusion:starting', ({ detail: { Fusion } }) => {
-    Fusion.directive('autosize', autosize);    // Before any component starts.
-    Fusion.use(analytics);
+// resources/js/app.js, loaded before @nitroScripts
+document.addEventListener('nitro:starting', ({ detail: { Nitro } }) => {
+    Nitro.directive('autosize', autosize);    // Before any component starts.
+    Nitro.use(analytics);
 });

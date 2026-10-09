@@ -1,5 +1,5 @@
-use Nitro\Fusion\Attributes\Description;
-use Nitro\Fusion\Attributes\Title;
+use Nitro\Attributes\Description;
+use Nitro\Attributes\Title;
 
 #[Title('Pricing')]
 #[Description('Plans for every school size')]

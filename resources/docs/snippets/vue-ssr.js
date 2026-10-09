@@ -1,7 +1,7 @@
 // resources/js/ssr.js
 import { createPinia } from 'pinia';
-import { serve } from 'nitro-fusion/ssr';
-import { renderVue } from 'nitro-fusion/vue/server';
+import { serve } from 'nitro/ssr';
+import { renderVue } from 'nitro/vue/server';
 
 serve({
     vue: renderVue(import.meta.glob(['../views/vue/**/*.vue', './vue/**/*.vue'], { eager: true }), {

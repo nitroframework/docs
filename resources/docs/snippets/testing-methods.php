@@ -1,4 +1,4 @@
-use App\Fusion\Components\Cart;
+use App\Nitro\Components\Cart;
 
 public function test_delivery_is_free_from_30(): void
 {

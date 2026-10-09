@@ -1,6 +1,6 @@
 const input = document.querySelector('#photo');
 
-input.addEventListener('fusion-upload-start', () => bar.hidden = false);
-input.addEventListener('fusion-upload-progress', (e) => bar.value = e.detail.progress);
-input.addEventListener('fusion-upload-finish', () => bar.hidden = true);
-input.addEventListener('fusion-upload-error', () => bar.hidden = true);
+input.addEventListener('nitro-upload-start', () => bar.hidden = false);
+input.addEventListener('nitro-upload-progress', (e) => bar.value = e.detail.progress);
+input.addEventListener('nitro-upload-finish', () => bar.hidden = true);
+input.addEventListener('nitro-upload-error', () => bar.hidden = true);

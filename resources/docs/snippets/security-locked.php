@@ -1,5 +1,5 @@
-use Nitro\Fusion\Attributes\Locked;
-use Nitro\Fusion\Attributes\Server;
+use Nitro\Attributes\Locked;
+use Nitro\Attributes\Server;
 
 class Checkout extends Component
 {

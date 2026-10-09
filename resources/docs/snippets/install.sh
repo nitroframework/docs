@@ -1,1 +1,1 @@
-composer require nitro/fusion
+composer require nitro/nitro

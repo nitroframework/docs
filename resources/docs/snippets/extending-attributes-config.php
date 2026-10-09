@@ -1,2 +1,2 @@
-// config/fusion.php
+// config/nitro.php
 'attributes' => ['autosize'],

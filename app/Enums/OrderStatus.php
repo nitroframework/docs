@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-use Nitro\Fusion\Attributes\Browser;
+use Nitro\Attributes\Browser;
 
 #[Browser]
 enum OrderStatus: string

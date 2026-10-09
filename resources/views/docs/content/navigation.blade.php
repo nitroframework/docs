@@ -1,8 +1,8 @@
 <x-docs.page
-    lead="fusion:navigate moves between pages without a full reload. The first page load is the server's HTML. After that, the browser asks only for the next page's data and renders it in place, keeping the layout."
+    lead="nitro:navigate moves between pages without a full reload. The first page load is the server's HTML. After that, the browser asks only for the next page's data and renders it in place, keeping the layout."
 >
     <p>
-        To make a link navigate without a reload, add <code>fusion:navigate</code> to it. Laravel handles the
+        To make a link navigate without a reload, add <code>nitro:navigate</code> to it. Laravel handles the
         visit as usual, including middleware, route bindings and redirects. The page runs <code>mount()</code>
         and answers with its state and title. The browser then renders the new page in place of the current one,
         and the layout and its components stay where they are.
@@ -16,11 +16,11 @@
 
     @php
         $linkOptions = [
-            ['`fusion:navigate`', 'Visits the link\'s page without a reload'],
+            ['`nitro:navigate`', 'Visits the link\'s page without a reload'],
             ['`.keypress`', 'Starts the visit when the mouse button goes down, instead of on the click. Touch and keyboard still use the click'],
             ['`.preserve-scroll`', 'Keeps the scroll position. Without it, a visit scrolls to the top, or to the URL\'s `#fragment`'],
             ['`.prefetch`', 'Asks for the page once the pointer rests on the link, or the keyboard focuses it, so the click shows it at once. Kept 30 seconds; `.prefetch.60s` keeps it longer'],
-            ['`fusion:current="class"`', 'Adds the class while the link points at the current page, and sets `aria-current="page"`. Add `.exact` to match the same path only'],
+            ['`nitro:current="class"`', 'Adds the class while the link points at the current page, and sets `aria-current="page"`. Add `.exact` to match the same path only'],
         ];
     @endphp
     <x-docs.table :columns="['Attribute', 'Does']" :rows="$linkOptions" />
@@ -47,12 +47,12 @@
     </p>
 
     <x-docs.callout type="note" title="Links are for other pages">
-        <p>To filter or sort what a page shows, change a property with <code>$set()</code> or <code>fusion:model</code> and let the view render again. That needs no visit, and in the browser it needs no request.</p>
+        <p>To filter or sort what a page shows, change a property with <code>$set()</code> or <code>nitro:model</code> and let the view render again. That needs no visit, and in the browser it needs no request.</p>
     </x-docs.callout>
 
     <h2 id="any-page">Visiting any page</h2>
     <p>
-        A link can lead anywhere in your application. When the target is a Fusion page in the same layout, the
+        A link can lead anywhere in your application. When the target is a Nitro page in the same layout, the
         browser renders it from its data. Anything else is fetched as HTML and replaces the document, still
         without a reload. That includes a plain Blade view, a page in another layout, or a view returned by a
         controller. When this happens:
@@ -87,14 +87,14 @@
     <p>The first page load is always the server's HTML. The mode only decides what later visits do.</p>
 
     <p>
-        Name the mode as a string, or by its case of <code>Nitro\Fusion\NavigationMode</code>, which your editor
+        Name the mode as a string, or by its case of <code>Nitro\NavigationMode</code>, which your editor
         completes and checks: <code>#[Navigate(NavigationMode::Markup)]</code>. Pages without <code>#[Navigate]</code>
-        follow <code>fusion.navigation</code>, which may be <code>data</code> or <code>markup</code>. A client page has to
+        follow <code>nitro.navigation</code>, which may be <code>data</code> or <code>markup</code>. A client page has to
         say so itself, because it must need nothing from the server.
     </p>
 
     <h3 id="markup-first">Showing the markup first</h3>
-    <p>Set the default in <code>config/fusion.php</code>, and choose for a single page with <code>#[Navigate]</code>:</p>
+    <p>Set the default in <code>config/nitro.php</code>, and choose for a single page with <code>#[Navigate]</code>:</p>
 
     <x-docs.code src="navigate-config.php" />
     <x-docs.code src="navigate-markup.php" highlight="3" />

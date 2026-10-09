@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Fusion\Components;
+namespace App\Nitro\Components;
 
 use App\Models\Invoice;
 use App\Services\Currency;
-use Nitro\Fusion\Attributes\Locked;
-use Nitro\Fusion\Component;
+use Nitro\Attributes\Locked;
+use Nitro\Component;
 
 class InvoiceSummary extends Component
 {

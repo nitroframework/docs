@@ -1,3 +1,3 @@
-photoInput.addEventListener('fusion-upload-progress', (event) => {
+photoInput.addEventListener('nitro-upload-progress', (event) => {
     bar.style.width = `${event.detail.progress}%`;
 });

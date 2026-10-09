@@ -2,12 +2,12 @@
     lead="Every #[Server] call carries the component's state, signed with the application key, the session's own secret and the logged-in user. The endpoint refuses anything the page could not have sent."
 >
     <h2 id="refused">What the endpoint refuses</h2>
-    <p>Fusion checks every request to its endpoint. It refuses these requests, with these status codes:</p>
+    <p>Nitro checks every request to its endpoint. It refuses these requests, with these status codes:</p>
 
     @php
         $refused = [
             ['A changed state, or a state made in another session or for another user. This includes another visitor\'s state, and one from before a logout, even an `Auth::logout()` that keeps the session', '419'],
-            ['A state older than `fusion.state.lifetime`, when you have set one', '419'],
+            ['A state older than `nitro.state.lifetime`, when you have set one', '419'],
             ['A method that isn\'t `#[Server]`, a locked or unknown property, or a value or argument of the wrong type', '403'],
             ['An upload to anything other than an `Upload` or `#[Uploads]` property', '403'],
             ['A visitor who no longer passes the page\'s authorization middleware (`auth`, `can`, `verified`, ..., and your own middleware that extends them), or a page whose route no longer exists', '403'],
@@ -60,7 +60,7 @@
 
     <p>
         When a call is refused with a 419, the page reloads with fresh state. To do something else instead, listen
-        for the <code>fusion:expired</code> event and call <code>preventDefault()</code>:
+        for the <code>nitro:expired</code> event and call <code>preventDefault()</code>:
     </p>
     <x-docs.code src="security-expired.js" lang="js" />
 

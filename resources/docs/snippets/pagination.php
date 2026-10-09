@@ -1,5 +1,5 @@
-use Nitro\Fusion\Concerns\WithPagination;
-use Nitro\Fusion\Concerns\WithSorting;
+use Nitro\Concerns\WithPagination;
+use Nitro\Concerns\WithSorting;
 
 class Students extends Component
 {

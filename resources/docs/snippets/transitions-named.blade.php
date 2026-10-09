@@ -1,1 +1,1 @@
-<p fusion:transition="fade">...</p>
+<p nitro:transition="fade">...</p>

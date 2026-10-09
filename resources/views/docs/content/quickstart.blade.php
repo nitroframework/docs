@@ -5,16 +5,16 @@
 
     <h2 id="the-class">1. Write the class</h2>
     <p>
-        Create <code>app/Fusion/Components/Todos.php</code>. The component's public properties are its state.
+        Create <code>app/Nitro/Components/Todos.php</code>. The component's public properties are its state.
         Here they hold the list, the title being typed, and the time the list was last saved.
     </p>
 
-    <x-docs.code src="app/Fusion/Components/Todos.php" file="app/Fusion/Components/Todos.php" highlight="12,14,17" />
+    <x-docs.code src="app/Nitro/Components/Todos.php" file="app/Nitro/Components/Todos.php" highlight="12,14,17" />
 
     <ul>
         <li><code>mount()</code> runs <strong>on the server</strong> when the component is created. It loads the saved list.</li>
         <li><code>add()</code> and <code>toggle()</code> are plain methods. They run <strong>in the browser</strong>, so adding and ticking off todos doesn't send anything to the server.</li>
-        <li><code>remaining()</code> is marked <code>#[Computed]</code>. You read it as <code>$this-&gt;remaining</code>, and Fusion works it out once and keeps it until the list changes.</li>
+        <li><code>remaining()</code> is marked <code>#[Computed]</code>. You read it as <code>$this-&gt;remaining</code>, and Nitro works it out once and keeps it until the list changes.</li>
         <li><code>save()</code> is marked <code>#[Server]</code>, so it runs <strong>on the server</strong>. The list comes from the browser, so <code>save()</code> validates it before storing it.</li>
         <li><code>$savedAt</code> is marked <code>#[Locked]</code>. The browser can read it, but only the server can set it.</li>
     </ul>
@@ -25,19 +25,19 @@
 
     <h2 id="the-view">2. Write the view</h2>
     <p>
-        Create <code>resources/views/fusion/components/todos.blade.php</code>. The view is ordinary Blade, so
+        Create <code>resources/views/nitro/components/todos.blade.php</code>. The view is ordinary Blade, so
         <code>@@foreach</code>, <code>@@class</code>, <code>@@checked</code> and echoes work as they always do.
-        The <code>fusion:</code> attributes connect the view to the class.
+        The <code>nitro:</code> attributes connect the view to the class.
     </p>
 
-    <x-docs.code src="resources/views/fusion/components/todos.blade.php" lang="blade" file="resources/views/fusion/components/todos.blade.php" highlight="2,3,11,23" />
+    <x-docs.code src="resources/views/nitro/components/todos.blade.php" lang="blade" file="resources/views/nitro/components/todos.blade.php" highlight="2,3,11,23" />
 
     @php
         $directives = [
-            ['`fusion:submit="add"`', 'Calls `add()` when the form is submitted, without reloading the page'],
-            ['`fusion:model="title"`', 'Keeps the input and `$title` in sync'],
-            ['`fusion:click="toggle($i)"`', 'Calls `toggle()` with the row\'s index'],
-            ['`fusion:loading.attr="disabled"`', 'Disables the button while `save()` runs'],
+            ['`nitro:submit="add"`', 'Calls `add()` when the form is submitted, without reloading the page'],
+            ['`nitro:model="title"`', 'Keeps the input and `$title` in sync'],
+            ['`nitro:click="toggle($i)"`', 'Calls `toggle()` with the row\'s index'],
+            ['`nitro:loading.attr="disabled"`', 'Disables the button while `save()` runs'],
         ];
     @endphp
     <x-docs.table :columns="['Attribute', 'What it does']" :rows="$directives" />
@@ -66,20 +66,20 @@
     <h2 id="a-page">4. Turn it into a page (optional)</h2>
     <p>
         A component is one part of a page. When it fills the whole screen, you can turn it into a
-        <strong>page</strong> instead. Move the class to <code>app/Fusion/Pages</code> and its view to
-        <code>fusion/pages</code>, then give it a route. A page has its own layout and title, and loads its data
+        <strong>page</strong> instead. Move the class to <code>app/Nitro/Pages</code> and its view to
+        <code>nitro/pages</code>, then give it a route. A page has its own layout and title, and loads its data
         in <code>mount()</code>.
     </p>
 
     <x-docs.code src="make-page.php" file="routes/web.php" />
 
     <h2 id="the-whole-component">The whole component</h2>
-    <p>Here are the class and the view side by side, along with the JavaScript that Fusion compiles them to.</p>
+    <p>Here are the class and the view side by side, along with the JavaScript that Nitro compiles them to.</p>
 
-    <x-docs.pair class="app/Fusion/Components/Todos.php" view="resources/views/fusion/components/todos.blade.php" component="todos" />
+    <x-docs.pair class="app/Nitro/Components/Todos.php" view="resources/views/nitro/components/todos.blade.php" component="todos" />
 
     <x-docs.cards>
-        <x-docs.card href="/docs/how-it-works" title="How Fusion works" icon="book">Learn what happened when you clicked: the compiler, the first render and a server call.</x-docs.card>
+        <x-docs.card href="/docs/how-it-works" title="How Nitro works" icon="book">Learn what happened when you clicked: the compiler, the first render and a server call.</x-docs.card>
         <x-docs.card href="/docs/components" title="Components" icon="browser" runs="both">See everything a component can do.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

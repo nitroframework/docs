@@ -1,4 +1,4 @@
-use Nitro\Fusion\Attributes\Navigate;
+use Nitro\Attributes\Navigate;
 
 #[Navigate('markup')]
 class Dashboard extends Component

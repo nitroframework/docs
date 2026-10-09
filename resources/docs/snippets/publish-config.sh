@@ -1,1 +1,1 @@
-php artisan vendor:publish --tag=fusion-config
+php artisan vendor:publish --tag=nitro-config

@@ -1,6 +1,6 @@
 <?php
 
-// app/Fusion/Components/Vue/PaymentDesk.php: #[View(vue: 'payment-desk')]
+// app/Nitro/Components/Vue/PaymentDesk.php: #[View(vue: 'payment-desk')]
 
 /** Picked: said at once, in the browser. */
 public function pick(int $id): void

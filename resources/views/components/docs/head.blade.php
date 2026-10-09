@@ -3,11 +3,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @if ($title === null)
-    {{-- A Fusion page: its title, description and canonical link (config/fusion.php's head). --}}
-    @fusionHead
+    {{-- A Nitro page: its title, description and canonical link (config/nitro.php's head). --}}
+    @nitroHead
 @else
     <title>{{ $title }}</title>
-    <meta name="description" content="{{ config('fusion.head.description') }}">
+    <meta name="description" content="{{ config('nitro.head.description') }}">
 @endif
 {{-- The theme before the first paint: no flash of the wrong one. --}}
 <script>

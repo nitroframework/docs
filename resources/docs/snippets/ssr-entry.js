@@ -1,9 +1,9 @@
 // resources/js/ssr.js
-import { serve } from 'nitro-fusion/ssr';
-import { renderVue } from 'nitro-fusion/vue/server';
-import { renderReact } from 'nitro-fusion/react/server';
-import { renderSolid } from 'nitro-fusion/solid/server';
-import { renderSvelte } from 'nitro-fusion/svelte/server';
+import { serve } from 'nitro/ssr';
+import { renderVue } from 'nitro/vue/server';
+import { renderReact } from 'nitro/react/server';
+import { renderSolid } from 'nitro/solid/server';
+import { renderSvelte } from 'nitro/svelte/server';
 
 /** A renderer for each framework the app's views use; leave out the ones it doesn't. */
 serve({

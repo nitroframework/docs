@@ -1,7 +1,7 @@
 <x-docs.page
-    lead="Fusion is a full-stack framework for Laravel and Nitro. You write components and pages as a PHP class and a Blade view, just as you write Laravel code today, and Fusion compiles them to JavaScript that runs in the browser."
+    lead="Nitro is a full-stack framework for Laravel and Nitro. You write components and pages as a PHP class and a Blade view, just as you write Laravel code today, and Nitro compiles them to JavaScript that runs in the browser."
 >
-    <h2 id="what-fusion-does">What Fusion does</h2>
+    <h2 id="what-nitro-does">What Nitro does</h2>
     <ul>
         <li><strong>The server renders the first page.</strong> Blade renders it, so it appears quickly and search engines can read all of it.</li>
         <li><strong>The browser takes over from there.</strong> Clicks, typing, filtering and re-rendering all happen in the page, without a request.</li>
@@ -17,10 +17,10 @@
         clicking it doesn't send anything to the server. The <code>save()</code> method is marked
         <code>#[Server]</code>, so it runs on the server. It keeps the count in the session and sends the new
         state back. When the page loads again, <code>mount()</code> reads the count back, so it survives a reload.
-        Open <strong>Compiled</strong> to see the JavaScript that Fusion makes from them.
+        Open <strong>Compiled</strong> to see the JavaScript that Nitro makes from them.
     </p>
 
-    <x-docs.pair class="app/Fusion/Components/Counter.php" view="resources/views/fusion/components/counter.blade.php" component="counter" />
+    <x-docs.pair class="app/Nitro/Components/Counter.php" view="resources/views/nitro/components/counter.blade.php" component="counter" />
 
     <x-docs.callout type="note" title="This demo saves to the session">
         <p>So that the example works for every visitor, without an account or a database, <code>save()</code> keeps the count in your session. Your application would save it to the database in the same way. The call to the server, the validation and the new state that comes back all stay the same.</p>
@@ -32,7 +32,7 @@
 
     <h2 id="where-code-runs">Where your code runs</h2>
     <p>
-        Every part of a component runs in one place. If you put code in the wrong place, Fusion tells you. For
+        Every part of a component runs in one place. If you put code in the wrong place, Nitro tells you. For
         example, a browser method that queries the database fails the build, and the error names the file and
         line.
     </p>
@@ -58,17 +58,17 @@
         <li>Node.js and esbuild, to minify the compiled code</li>
     </ul>
     <p>
-        Fusion's browser versions of Laravel's helpers (<code>Str::</code>, <code>route()</code>, <code>__()</code>)
-        follow Laravel 13, so earlier Laravel versions are not supported. Fusion uses only Laravel's public APIs.
+        Nitro's browser versions of Laravel's helpers (<code>Str::</code>, <code>route()</code>, <code>__()</code>)
+        follow Laravel 13, so earlier Laravel versions are not supported. Nitro uses only Laravel's public APIs.
         It can also run on the same page as Livewire, because its tags, attributes, scripts and endpoints all use
-        the <code>fusion:</code> prefix.
+        the <code>nitro:</code> prefix.
     </p>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/installation" title="Installation" icon="bolt">Add Fusion to a Laravel or Nitro application.</x-docs.card>
+        <x-docs.card href="/docs/installation" title="Installation" icon="bolt">Add Nitro to a Laravel or Nitro application.</x-docs.card>
         <x-docs.card href="/docs/quickstart" title="Quickstart" icon="arrow">Build a todo list with a component, its view and a server method.</x-docs.card>
-        <x-docs.card href="/docs/how-it-works" title="How Fusion works" icon="book">Learn what the compiler does, and what happens on the first render and on a click.</x-docs.card>
+        <x-docs.card href="/docs/how-it-works" title="How Nitro works" icon="book">Learn what the compiler does, and what happens on the first render and on a click.</x-docs.card>
         <x-docs.card href="/docs/components" title="Components" icon="browser" runs="both">Write classes and views, and learn where each part runs.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

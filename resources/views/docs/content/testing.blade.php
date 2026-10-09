@@ -1,9 +1,9 @@
 <x-docs.page
-    lead="A component is a PHP class, so you test its methods like any other PHP: create it, call a method, and assert on the result. To check what a page sends the browser, use assertFusion()."
+    lead="A component is a PHP class, so you test its methods like any other PHP: create it, call a method, and assert on the result. To check what a page sends the browser, use assertNitro()."
 >
     <h2 id="methods">Testing methods as plain PHP</h2>
     <p>
-        A browser method is ordinary PHP that Fusion also compiles for the browser, and both versions give the
+        A browser method is ordinary PHP that Nitro also compiles for the browser, and both versions give the
         same results. That means you can test it with PHPUnit directly, without a browser. This test checks the
         <a href="/docs/methods">cart</a> from these docs:
     </p>
@@ -32,7 +32,7 @@
 
     <h2 id="pages">Testing pages</h2>
     <p>
-        <code>assertFusion()</code> reads the page from a response, whether the page was rendered in full or sent as
+        <code>assertNitro()</code> reads the page from a response, whether the page was rendered in full or sent as
         the answer to a visit. You can then assert on its name and its state. Use dot notation for keys.
     </p>
     <x-docs.code src="testing-page.php" />
@@ -51,14 +51,14 @@
     @endphp
     <x-docs.table :columns="['Method', 'Asserts']" :rows="$asserts" />
 
-    <p>To write your own assertions, <code>fusionState()</code> returns the state itself:</p>
+    <p>To write your own assertions, <code>nitroState()</code> returns the state itself:</p>
     <x-docs.code src="testing-state.php" />
 
     <h3 id="visits">Visits and deferred properties</h3>
     <p>
-        A <code>fusion:navigate</code> visit asks for the page's data rather than its HTML, and a page with
+        A <code>nitro:navigate</code> visit asks for the page's data rather than its HTML, and a page with
         <code>$this-&gt;defer()</code> properties is asked again for them once it shows. Send the same headers the
-        browser does, and <code>assertFusion()</code> reads either answer:
+        browser does, and <code>assertNitro()</code> reads either answer:
     </p>
     <x-docs.code src="testing-visit.php" />
 
@@ -67,7 +67,7 @@
         A browser method or a view that uses something the browser can't run fails the build, with the file and
         line. Run the build in your CI, so such code never reaches production:
     </p>
-    <x-docs.code code="php artisan fusion:build" lang="sh" />
+    <x-docs.code code="php artisan nitro:build" lang="sh" />
     <p>
         It exits with an error when a component doesn't compile, and lists what it compiled when they all do:
         how many components, stores and pages, and what their views are written in.

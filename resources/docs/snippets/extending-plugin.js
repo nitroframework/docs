@@ -1,4 +1,4 @@
-Fusion.use(({ on }) => {
+Nitro.use(({ on }) => {
     on('request', ({ headers }) => {
         headers['X-Tenant'] = document.body.dataset.tenant;
     });

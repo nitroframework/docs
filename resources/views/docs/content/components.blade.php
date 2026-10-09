@@ -12,77 +12,77 @@
 
     <h2 id="components-and-pages">Components and pages</h2>
     <p>
-        Fusion has two kinds of classes, written the same way. A <strong>component</strong> is placed in a view. A
+        Nitro has two kinds of classes, written the same way. A <strong>component</strong> is placed in a view. A
         <strong>page</strong> is a whole screen with a route, a layout and a title (see
-        <a fusion:navigate href="/docs/pages">Pages</a>). Everything on this page is true of both.
+        <a nitro:navigate href="/docs/pages">Pages</a>). Everything on this page is true of both.
     </p>
 
     @php
         $kinds = [
-            ['Class', '`app/Fusion/Components`', '`app/Fusion/Pages`'],
-            ['View', '`resources/views/fusion/components`', '`resources/views/fusion/pages`'],
-            ['Name', '`students.table` for `App\Fusion\Components\Students\Table`', '`pages::students.index` for `App\Fusion\Pages\Students\Index`'],
-            ['Used', 'placed in a view: `<'.'fusion:students.table />`', 'routed: `Route::fusion(\'/students\', Index::class)`'],
+            ['Class', '`app/Nitro/Components`', '`app/Nitro/Pages`'],
+            ['View', '`resources/views/nitro/components`', '`resources/views/nitro/pages`'],
+            ['Name', '`students.table` for `App\Nitro\Components\Students\Table`', '`pages::students.index` for `App\Nitro\Pages\Students\Index`'],
+            ['Used', 'placed in a view: `<'.'nitro:students.table />`', 'routed: `Route::nitro(\'/students\', Index::class)`'],
             ['Layout and title', 'no', '`#[Layout]`, `#[Title]`'],
         ];
     @endphp
     <x-docs.table :columns="['', 'Components', 'Pages']" :rows="$kinds" />
 
     <p>
-        You can't route a component or place a page inside a view; Fusion's error says what to use instead. The
-        directories, namespaces and view paths are in <code>config/fusion.php</code>.
+        You can't route a component or place a page inside a view; Nitro's error says what to use instead. The
+        directories, namespaces and view paths are in <code>config/nitro.php</code>.
     </p>
 
     <h2 id="creating">Creating a component</h2>
     <p>
-        Write a class that extends <code>Nitro\Fusion\Component</code> in <code>app/Fusion/Components</code>, and its
-        view in <code>resources/views/fusion/components</code>, named after the class in kebab case:
+        Write a class that extends <code>Nitro\Component</code> in <code>app/Nitro/Components</code>, and its
+        view in <code>resources/views/nitro/components</code>, named after the class in kebab case:
         <code>FaqItem</code> has <code>faq-item.blade.php</code>.
     </p>
 
-    <x-docs.pair class="app/Fusion/Components/FaqItem.php" view="resources/views/fusion/components/faq-item.blade.php" component="faq-item" />
+    <x-docs.pair class="app/Nitro/Components/FaqItem.php" view="resources/views/nitro/components/faq-item.blade.php" component="faq-item" />
 
     <ul>
-        <li><strong>The public properties</strong> (<code>$question</code>, <code>$answer</code>, <code>$open</code>) are its <a fusion:navigate href="/docs/properties">state</a>: rendered by the server, sent to the browser, and sent back with each <code>#[Server]</code> call.</li>
+        <li><strong>The public properties</strong> (<code>$question</code>, <code>$answer</code>, <code>$open</code>) are its <a nitro:navigate href="/docs/properties">state</a>: rendered by the server, sent to the browser, and sent back with each <code>#[Server]</code> call.</li>
         <li><strong><code>toggle()</code></strong> is a plain method, so it runs in the browser: opening an answer sends nothing to the server.</li>
-        <li><strong>The view</strong> has a single root element. Fusion marks it with the component's id and state.</li>
+        <li><strong>The view</strong> has a single root element. Nitro marks it with the component's id and state.</li>
     </ul>
 
     <h3 id="names">Names and folders</h3>
     <p>
-        A component's name comes from its class's place under <code>app/Fusion/Components</code>: each folder is a
+        A component's name comes from its class's place under <code>app/Nitro/Components</code>: each folder is a
         dot, and each part is kebab case. The name is its tag and its view's path:
     </p>
 
     @php
         $names = [
-            ['`App\Fusion\Components\Counter`', '`counter`', '`<'.'fusion:counter />`', '`fusion/components/counter.blade.php`'],
-            ['`App\Fusion\Components\FaqItem`', '`faq-item`', '`<'.'fusion:faq-item />`', '`fusion/components/faq-item.blade.php`'],
-            ['`App\Fusion\Components\Students\Table`', '`students.table`', '`<'.'fusion:students.table />`', '`fusion/components/students/table.blade.php`'],
+            ['`App\Nitro\Components\Counter`', '`counter`', '`<'.'nitro:counter />`', '`nitro/components/counter.blade.php`'],
+            ['`App\Nitro\Components\FaqItem`', '`faq-item`', '`<'.'nitro:faq-item />`', '`nitro/components/faq-item.blade.php`'],
+            ['`App\Nitro\Components\Students\Table`', '`students.table`', '`<'.'nitro:students.table />`', '`nitro/components/students/table.blade.php`'],
         ];
     @endphp
     <x-docs.table :columns="['Class', 'Name', 'Tag', 'View']" :rows="$names" />
 
     <p>
         <code>#[View]</code> gives a component another view: a Blade view elsewhere, shared by several classes, or a
-        view written in <a fusion:navigate href="/docs/javascript-views">Vue, React, Solid or Svelte</a>:
+        view written in <a nitro:navigate href="/docs/javascript-views">Vue, React, Solid or Svelte</a>:
     </p>
 
     <x-docs.code src="components-view-attribute.php" />
 
     <h2 id="placing">Placing a component</h2>
     <p>
-        A <code>&lt;fusion:...&gt;</code> tag places a component in any Blade view: a page, a layout, a plain Laravel
+        A <code>&lt;nitro:...&gt;</code> tag places a component in any Blade view: a page, a layout, a plain Laravel
         view, or another component's view, where it is a <strong>child</strong>. Each tag is its own instance with its
         own state, so opening one answer leaves the others closed:
     </p>
 
-    <x-docs.code src="place-child.blade.php" lang="blade" file="resources/views/fusion/components/faq.blade.php" highlight="2" />
+    <x-docs.code src="place-child.blade.php" lang="blade" file="resources/views/nitro/components/faq.blade.php" highlight="2" />
 
     <p>
         A tag inside PHP (an <code>@@php</code> block, an echo, a string), a Blade comment or <code>@@verbatim</code>
         is text, not a component. In a Blade view that isn't a component's, such as a plain Laravel page, a tag is an
-        <a fusion:navigate href="/docs/islands">island</a>, which can start later: when it is visible, when the browser is idle,
+        <a nitro:navigate href="/docs/islands">island</a>, which can start later: when it is visible, when the browser is idle,
         or on interaction.
     </p>
 
@@ -105,7 +105,7 @@
         is an error, so a typo in a tag is caught where it is written:
     </p>
 
-    <x-docs.code src="components-properties-in.php" file="app/Fusion/Components/OrderLine.php" runs="both" />
+    <x-docs.code src="components-properties-in.php" file="app/Nitro/Components/OrderLine.php" runs="both" />
 
     <p>
         These values <strong>follow the parent</strong>: when the parent's <code>$quantity</code> changes and its view
@@ -121,11 +121,11 @@
         container calls it, so anything it can give, it can take, as a controller does:
     </p>
 
-    <x-docs.code src="components-mount.php" file="app/Fusion/Components/InvoiceSummary.php" />
+    <x-docs.code src="components-mount.php" file="app/Nitro/Components/InvoiceSummary.php" />
 
     <p>
         A page's <code>mount()</code> takes the route's parameters the same way, with route model binding. See
-        <a fusion:navigate href="/docs/pages">Pages</a>.
+        <a nitro:navigate href="/docs/pages">Pages</a>.
     </p>
 
     @php
@@ -144,7 +144,7 @@
 
     <h2 id="keys">Keys and lists</h2>
     <p>
-        Fusion tells children apart by their place in the view: the first tag, the second, and inside a loop, its
+        Nitro tells children apart by their place in the view: the first tag, the second, and inside a loop, its
         index. That is enough while a list only grows at the end. When it is sorted, filtered or added to in the
         middle, give each child a <code>:key</code> from its data, so each keeps its own state as it moves:
     </p>
@@ -159,13 +159,13 @@
     <h2 id="slots">Slots</h2>
     <p>
         What you put between a component's tags is its <strong>slot</strong>. It renders inside the child, where the
-        child's view prints <code>@{{ $slot }}</code>. Named slots go in <code>&lt;fusion:slot name="..."&gt;</code>
+        child's view prints <code>@{{ $slot }}</code>. Named slots go in <code>&lt;nitro:slot name="..."&gt;</code>
         and are printed with <code>@{{ $slots['name'] }}</code>:
     </p>
 
     <x-docs.code src="components-slots-parent.blade.php" lang="blade" />
     <x-docs.code src="components-slots-child.blade.php" lang="blade" />
-    <x-docs.code src="components-panel.php" file="app/Fusion/Components/Panel.php" runs="both" />
+    <x-docs.code src="components-panel.php" file="app/Nitro/Components/Panel.php" runs="both" />
 
     <ul>
         <li><strong>A slot belongs to the parent.</strong> It renders with the parent's values and methods: <code>$members</code> and <code>invite</code> above are the team's, not the panel's. When the team's state changes, the slot updates inside the panel.</li>
@@ -175,11 +175,11 @@
 
     <h2 id="binding">Binding a child like an input</h2>
     <p>
-        A component of your own can be bound with <code>fusion:model</code>, as an <code>&lt;input&gt;</code> is. Mark
+        A component of your own can be bound with <code>nitro:model</code>, as an <code>&lt;input&gt;</code> is. Mark
         the property that holds its value with <code>#[Modelable]</code>:
     </p>
 
-    <x-docs.code src="components-modelable.php" file="app/Fusion/Components/DatePicker.php" runs="both" />
+    <x-docs.code src="components-modelable.php" file="app/Nitro/Components/DatePicker.php" runs="both" />
     <x-docs.code src="components-modelable.blade.php" lang="blade" />
 
     <p>
@@ -191,7 +191,7 @@
 
     <h2 id="dynamic">Dynamic components</h2>
     <p>
-        <code>&lt;fusion:dynamic-component :is="..."&gt;</code> places the component an expression names, and changes
+        <code>&lt;nitro:dynamic-component :is="..."&gt;</code> places the component an expression names, and changes
         it when the expression does. Tabs and wizards are the usual case:
     </p>
 
@@ -211,8 +211,8 @@
     <p>Components are independent: each has its own state, and none reaches into another's. They work together in three ways:</p>
     <ul>
         <li><strong>Down, through the tag</strong>: the values a parent passes, and its slots.</li>
-        <li><strong>Up, with <code>fusion:model</code></strong> on a <code>#[Modelable]</code> child, or <strong>across, with <a fusion:navigate href="/docs/events">events</a></strong>: one dispatches, any others listen with <code>#[On]</code>, wherever they are on the page.</li>
-        <li><strong>Shared, with <a fusion:navigate href="/docs/sharing-state">stores</a></strong>: state several components read and change, such as a cart.</li>
+        <li><strong>Up, with <code>nitro:model</code></strong> on a <code>#[Modelable]</code> child, or <strong>across, with <a nitro:navigate href="/docs/events">events</a></strong>: one dispatches, any others listen with <code>#[On]</code>, wherever they are on the page.</li>
+        <li><strong>Shared, with <a nitro:navigate href="/docs/sharing-state">stores</a></strong>: state several components read and change, such as a cart.</li>
     </ul>
 
     <h2 id="where-code-runs">Where your code runs</h2>
@@ -232,11 +232,11 @@
     <x-docs.table :columns="['Code', 'Runs']" :rows="$where" />
 
     <x-docs.callout type="tip" title="Server-only code can use anything">
-        <p>Fusion compiles only the methods the browser can reach. A private helper called only from <code>mount()</code> or a <code>#[Server]</code> method is never compiled, so it can use anything PHP can: Eloquent, facades, packages.</p>
+        <p>Nitro compiles only the methods the browser can reach. A private helper called only from <code>mount()</code> or a <code>#[Server]</code> method is never compiled, so it can use anything PHP can: Eloquent, facades, packages.</p>
     </x-docs.callout>
 
     <p>
-        Each step of that life, and the hooks you can use at each, are on <a fusion:navigate href="/docs/lifecycle">Lifecycle</a>.
+        Each step of that life, and the hooks you can use at each, are on <a nitro:navigate href="/docs/lifecycle">Lifecycle</a>.
     </p>
 
     <h2 id="lazy-loading">Loading a component's code later</h2>

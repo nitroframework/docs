@@ -1,10 +1,10 @@
 <x-docs.page
-    lead="Fusion renders every page on the server the first time it loads. Search engines and link previews get complete HTML, with the content, the title, the description and the tags they read."
+    lead="Nitro renders every page on the server the first time it loads. Search engines and link previews get complete HTML, with the content, the title, the description and the tags they read."
 >
     <p>
-        Add <code>@@fusionHead</code> to your layout's <code>&lt;head&gt;</code>. It prints the page's
+        Add <code>@@nitroHead</code> to your layout's <code>&lt;head&gt;</code>. It prints the page's
         <code>&lt;title&gt;</code> and the tags that search engines and link previews read. Each page sets only what
-        it needs, and the rest comes from defaults in <code>config/fusion.php</code>.
+        it needs, and the rest comes from defaults in <code>config/nitro.php</code>.
     </p>
 
     <h2 id="defaults">Setting defaults</h2>
@@ -43,18 +43,18 @@
     <h2 id="these-docs">How these docs set their head</h2>
     <p>
         This page sets its head in <code>mount()</code>, from the title in the sidebar and the page's lead. The
-        title format is <code>'%s · Fusion'</code>:
+        title format is <code>'%s · Nitro'</code>:
     </p>
 
-    <x-docs.code src="head-docs.php" file="app/Fusion/Pages/Docs/Show.php" runs="server" />
+    <x-docs.code src="head-docs.php" file="app/Nitro/Pages/Docs/Show.php" runs="server" />
 
-    <p>For this page, <code>@@fusionHead</code> prints:</p>
+    <p>For this page, <code>@@nitroHead</code> prints:</p>
 
     <x-docs.code src="head-output.html" lang="html" />
 
     <h2 id="visits">Updating the head on a visit</h2>
     <p>
-        A <code>fusion:navigate</code> visit brings the new page's head along with its data. The browser replaces
+        A <code>nitro:navigate</code> visit brings the new page's head along with its data. The browser replaces
         the previous page's tab title, description and canonical link with the new ones. Move to another page of
         these docs, and the tab's title follows.
     </p>
@@ -71,6 +71,6 @@
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
         <x-docs.card href="/docs/page-data" title="Page data" icon="server" runs="server">Defer, reload and merge properties, and share data with every page.</x-docs.card>
-        <x-docs.card href="/docs/production" title="Building for production" icon="bolt">Run fusion:build, and see what a client page's head needs at build time.</x-docs.card>
+        <x-docs.card href="/docs/production" title="Building for production" icon="bolt">Run nitro:build, and see what a client page's head needs at build time.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

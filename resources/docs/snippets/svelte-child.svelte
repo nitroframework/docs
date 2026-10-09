@@ -7,14 +7,14 @@
 
 <!-- resources/js/components/TagList.svelte: an ordinary Svelte component, inside the view -->
 <script>
-    import { useFusion } from 'nitro-fusion/svelte';
+    import { useNitro } from 'nitro/svelte';
 
-    /** Read from it in place: fusion.tags follows the component, a copy taken from it would not. */
-    const fusion = useFusion();
+    /** Read from it in place: nitro.tags follows the component, a copy taken from it would not. */
+    const nitro = useNitro();
 </script>
 
 <ul>
-    {#each fusion.tags as tag, index (tag)}
-        <li>{tag} <button onclick={() => fusion.removeTag(index)}>×</button></li>
+    {#each nitro.tags as tag, index (tag)}
+        <li>{tag} <button onclick={() => nitro.removeTag(index)}>×</button></li>
     {/each}
 </ul>

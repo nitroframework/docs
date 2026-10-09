@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Fusion\Components;
+namespace App\Nitro\Components;
 
-use Nitro\Fusion\Attributes\Modelable;
-use Nitro\Fusion\Component;
+use Nitro\Attributes\Modelable;
+use Nitro\Component;
 
 /** A date input of your own, bound by its parent like any input. */
 class DatePicker extends Component

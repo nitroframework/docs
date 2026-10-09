@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="Fusion runs your methods in the browser, and that has a few consequences. Server work stays on the server, numbers and regular expressions follow the browser's rules, and a few PHP functions aren't available. None of these ever gives a different result silently."
+    lead="Nitro runs your methods in the browser, and that has a few consequences. Server work stays on the server, numbers and regular expressions follow the browser's rules, and a few PHP functions aren't available. None of these ever gives a different result silently."
 >
     <h2 id="server-work">Keeping server work in #[Server] methods</h2>
     <p>
@@ -14,7 +14,7 @@
         Only the server can create a component that has a <code>mount()</code> method. It does so on the first
         request, on a visit, or during a <code>#[Server]</code> call of the component whose view places it. A change
         made only in the browser, such as <code>$set</code> or a browser method, can't place a new one. So a
-        <code>&lt;fusion:dynamic-component&gt;</code> that switches to such a component needs one of those first.
+        <code>&lt;nitro:dynamic-component&gt;</code> that switches to such a component needs one of those first.
     </p>
 
     <h2 id="values">Numbers, strings and patterns</h2>
@@ -42,12 +42,12 @@
     </p>
 
     <x-docs.callout type="tip" title="Checked in both places">
-        <p>Fusion's own tests run thousands of random methods and views in PHP and, compiled, in the browser, and treat any difference as a bug. What this page lists is what remains different by design.</p>
+        <p>Nitro's own tests run thousands of random methods and views in PHP and, compiled, in the browser, and treat any difference as a bug. What this page lists is what remains different by design.</p>
     </x-docs.callout>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
         <x-docs.card href="/docs/server-methods" title="Server methods" icon="server" runs="server">Put the work that needs the server in #[Server] methods.</x-docs.card>
-        <x-docs.card href="/docs/how-it-works" title="How Fusion works" icon="book">Learn how the compiler, the runtime and the endpoint fit together.</x-docs.card>
+        <x-docs.card href="/docs/how-it-works" title="How Nitro works" icon="book">Learn how the compiler, the runtime and the endpoint fit together.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

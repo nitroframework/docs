@@ -1,2 +1,2 @@
 npx vite build && npx vite build --ssr
-php artisan fusion:ssr
+php artisan nitro:ssr

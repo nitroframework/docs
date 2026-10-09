@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Fusion\Components;
+namespace App\Nitro\Components;
 
 use App\Models\Team;
-use Nitro\Fusion\Attributes\Locked;
-use Nitro\Fusion\Attributes\Server;
-use Nitro\Fusion\Component;
+use Nitro\Attributes\Locked;
+use Nitro\Attributes\Server;
+use Nitro\Component;
 
 class TeamMembers extends Component
 {

@@ -1,5 +1,5 @@
-<button fusion:click="save">Save</button>
-<form fusion:submit="add">...</form>
-<input fusion:keydown.enter="search">
-<div fusion:click.outside="$set('open', false)">...</div>
-<input fusion:input.debounce.300ms="suggest">
+<button nitro:click="save">Save</button>
+<form nitro:submit="add">...</form>
+<input nitro:keydown.enter="search">
+<div nitro:click.outside="$set('open', false)">...</div>
+<input nitro:input.debounce.300ms="suggest">

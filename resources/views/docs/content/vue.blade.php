@@ -3,14 +3,14 @@
 >
     <p>
         A Vue view is a <code>.vue</code> file your Vite builds with <code>@vitejs/plugin-vue</code>, like any other
-        Vue component. Fusion gives it the component: every property and <code>#[Computed]</code> value, every
+        Vue component. Nitro gives it the component: every property and <code>#[Computed]</code> value, every
         method, and what the component knows about itself (validation messages, unsaved changes, uploads, a call's
         status). You write templates, <code>v-model</code>, <code>&lt;script setup&gt;</code> and composables as you
-        always do. Fusion takes care of state, the server and navigation.
+        always do. Nitro takes care of state, the server and navigation.
     </p>
 
     <x-docs.callout type="note" title="Vue 3">
-        <p>Fusion's Vue adapter uses Vue 3's public API only: <code>createApp</code>, <code>createSSRApp</code>, refs, <code>computed</code>, <code>watch</code>, <code>provide</code>/<code>inject</code>. A Vue 3 release needs nothing from Fusion.</p>
+        <p>Nitro's Vue adapter uses Vue 3's public API only: <code>createApp</code>, <code>createSSRApp</code>, refs, <code>computed</code>, <code>watch</code>, <code>provide</code>/<code>inject</code>. A Vue 3 release needs nothing from Nitro.</p>
     </x-docs.callout>
 
     <h2 id="setup">Setting it up</h2>
@@ -20,28 +20,28 @@
             <x-docs.code code="npm install vue @vitejs/plugin-vue" lang="sh" bare />
         </x-docs.step>
         <x-docs.step title="Add the plugins, and register your views">
-            <p>Fusion's Vite plugin goes before Vue's. <code>fusionVue()</code> takes your views as <code>import.meta.glob()</code> gives them; each view loads when a page first shows it.</p>
+            <p>Nitro's Vite plugin goes before Vue's. <code>nitroVue()</code> takes your views as <code>import.meta.glob()</code> gives them; each view loads when a page first shows it.</p>
             <x-docs.code src="vue-setup.js" lang="js" bare />
         </x-docs.step>
-        <x-docs.step title="Load them before Fusion starts">
-            <p>Put <code>@@vite</code> before <code>@@fusionScripts</code> in your layout, so the views are registered when the components start.</p>
+        <x-docs.step title="Load them before Nitro starts">
+            <p>Put <code>@@vite</code> before <code>@@nitroScripts</code> in your layout, so the views are registered when the components start.</p>
             <x-docs.code src="vue-layout.blade.php" lang="blade" bare />
         </x-docs.step>
     </x-docs.steps>
 
     <p>
         Views live in <code>resources/views/vue</code> or <code>resources/js/vue</code>, whichever you prefer
-        (both are in the <code>fusion.views</code> config). Subfolders work: <code>#[View(vue: 'blog/editor')]</code> is
+        (both are in the <code>nitro.views</code> config). Subfolders work: <code>#[View(vue: 'blog/editor')]</code> is
         <code>blog/editor.vue</code>.
     </p>
 
     <h2 id="first-view">A component with a Vue view</h2>
     <p>
-        The class is an ordinary Fusion component. <code>#[View(vue: 'post-editor')]</code> says its view is
+        The class is an ordinary Nitro component. <code>#[View(vue: 'post-editor')]</code> says its view is
         <code>post-editor.vue</code>:
     </p>
 
-    <x-docs.code src="vue-editor.php" file="app/Fusion/Components/Vue/PostEditor.php" runs="both" />
+    <x-docs.code src="vue-editor.php" file="app/Nitro/Components/Vue/PostEditor.php" runs="both" />
 
     <p>The template uses the component's names as they are, as a Blade view does:</p>
 
@@ -70,7 +70,7 @@
             ['`set(path, value)`', '`set(\'form.email\', value)`', 'Writes a property, or a key under it'],
             ['`upload(path, files)`', '`upload(\'cover\', files)`', 'Uploads files into an `Upload` property'],
             ['`dispatch(event, ...)`', '`dispatch(\'saved\', id)`', 'Sends an event to the components listening for it'],
-            ['`link(href, ...modifiers)`', '`v-bind="link(\'/posts\')"`', 'The attributes of a `fusion:navigate` link'],
+            ['`link(href, ...modifiers)`', '`v-bind="link(\'/posts\')"`', 'The attributes of a `nitro:navigate` link'],
             ['`visit(url)`', '`visit(\'/posts\')`', 'Goes to a page without reloading'],
         ];
     @endphp
@@ -83,7 +83,7 @@
 
     <h2 id="script-setup">In &lt;script setup&gt;</h2>
     <p>
-        <code>useFusion()</code> gives the same names to your script. Properties and <code>#[Computed]</code> values
+        <code>useNitro()</code> gives the same names to your script. Properties and <code>#[Computed]</code> values
         are refs, so you use <code>.value</code> in the script and the bare name in the template, as with any ref.
         Assigning a property's ref writes the property. <code>errors</code>, <code>unsaved</code> and
         <code>uploads</code> are refs too; the methods are plain functions.
@@ -118,8 +118,8 @@
 
     @php
         $status = [
-            ['`save.processing`', 'The call is running', '`fusion:loading`'],
-            ['`save.slow`', 'It has been running for 200 ms', '`fusion:loading.delay`'],
+            ['`save.processing`', 'The call is running', '`nitro:loading`'],
+            ['`save.slow`', 'It has been running for 200 ms', '`nitro:loading.delay`'],
             ['`save.failed`', 'The request itself failed: an error on the server, or no connection', ''],
             ['`save.error`', 'Why it failed, as a message', ''],
         ];
@@ -160,14 +160,14 @@
     <ul>
         <li><strong>A preview</strong>: <code>cover.temporaryUrl()</code> is a URL the browser can show for an image.</li>
         <li><strong>What it is</strong>: <code>getClientOriginalName()</code>, <code>getClientOriginalExtension()</code>, <code>getSize()</code> and <code>getMimeType()</code>, as on the server.</li>
-        <li><strong>Refused files</strong>: a file the <code>fusion.uploads.rules</code> refuse puts the message in <code>errors.cover</code>, and the property keeps what it had. The promise resolves with <code>null</code>.</li>
+        <li><strong>Refused files</strong>: a file the <code>nitro.uploads.rules</code> refuse puts the message in <code>errors.cover</code>, and the property keeps what it had. The promise resolves with <code>null</code>.</li>
         <li><strong>Several files</strong>: for an <code>#[Uploads]</code> array, <code>upload('photos', files)</code> sets the list.</li>
         <li><strong>Keeping them</strong>: the file is stored for good only when a <code>#[Server]</code> method calls <code>$this-&gt;cover-&gt;store(...)</code>, after its rules (<code>image</code>, <code>max:2048</code>) pass.</li>
     </ul>
 
     <h2 id="navigation">Links and visits</h2>
     <p>
-        <code>link(href, ...modifiers)</code> gives the attributes of a <code>fusion:navigate</code> link, so the visit
+        <code>link(href, ...modifiers)</code> gives the attributes of a <code>nitro:navigate</code> link, so the visit
         happens without a reload. Bind them with <code>v-bind</code>. The modifiers are the ones a Blade link takes:
         <code>'prefetch'</code>, <code>'keypress'</code>, <code>'preserve-scroll'</code>. To go somewhere from code,
         call <code>visit(url)</code>:
@@ -192,18 +192,18 @@
     <h2 id="components">Vue components inside the view</h2>
     <p>
         The view is the root of a Vue app, so it can use any Vue component: your own, or a library's. A component
-        inside the view reaches the Fusion component with <code>useFusion()</code>, without passing props down:
+        inside the view reaches the Nitro component with <code>useNitro()</code>, without passing props down:
     </p>
 
     <x-docs.code src="vue-child.vue" lang="vue" />
 
-    <x-docs.callout type="note" title="Fusion components go around a Vue view, not inside it">
-        <p>A Vue view can't place <code>&lt;fusion:...&gt;</code> components. Compose them from Blade: a Blade page or component can hold several components with Vue, React, Solid, Svelte and Blade views side by side, and they talk through events and stores.</p>
+    <x-docs.callout type="note" title="Nitro components go around a Vue view, not inside it">
+        <p>A Vue view can't place <code>&lt;nitro:...&gt;</code> components. Compose them from Blade: a Blade page or component can hold several components with Vue, React, Solid, Svelte and Blade views side by side, and they talk through events and stores.</p>
     </x-docs.callout>
 
     <h2 id="plugins">Plugins: Pinia, i18n, a UI library</h2>
     <p>
-        Each component with a Vue view is its own Vue app. <code>fusionVue()</code>'s <code>setup(app)</code> runs for
+        Each component with a Vue view is its own Vue app. <code>nitroVue()</code>'s <code>setup(app)</code> runs for
         each one before it mounts, so install your plugins there. Pass the same Pinia instance to all of them, and
         their stores are shared across the page:
     </p>
@@ -213,15 +213,15 @@
     <h2 id="colocated">The PHP in the .vue file</h2>
     <p>
         A small component can live in one file. Put its class in a <code>&lt;php&gt;</code> block at the top of the
-        <code>.vue</code> file. Fusion makes it a class named after the view, and Fusion's Vite plugin leaves the block
-        out of what Vue compiles. <code>Component</code> and Fusion's attributes need no <code>use</code>; anything
+        <code>.vue</code> file. Nitro makes it a class named after the view, and Nitro's Vite plugin leaves the block
+        out of what Vue compiles. <code>Component</code> and Nitro's attributes need no <code>use</code>; anything
         else does.
     </p>
 
     <x-docs.code src="vue-colocated.vue" lang="vue" file="resources/views/vue/newsletter.vue" />
 
     <p>
-        Place it by the view's name, <code>&lt;fusion:newsletter /&gt;</code>. An error in the block names the line in
+        Place it by the view's name, <code>&lt;nitro:newsletter /&gt;</code>. An error in the block names the line in
         the <code>.vue</code> file.
     </p>
 
@@ -244,17 +244,17 @@
 
     @php
         $equivalents = [
-            ['`fusion:model="title"`', '`v-model="title"`'],
-            ['`fusion:model.blur="title"`', '`v-model.lazy="title"`'],
-            ['`fusion:click="addTag(\'vue\')"`', '`@click="addTag(\'vue\')"`'],
-            ['`fusion:submit="save"`', '`@submit.prevent="save"`'],
-            ['`fusion:loading` (`fusion:target="save"`)', '`v-if="save.processing"`'],
-            ['`fusion:loading.delay`', '`v-if="save.slow"`'],
-            ['`fusion:loading.attr="disabled"`', '`:disabled="save.processing"`'],
-            ['`fusion:dirty`', '`v-if="unsaved.length"`'],
+            ['`nitro:model="title"`', '`v-model="title"`'],
+            ['`nitro:model.blur="title"`', '`v-model.lazy="title"`'],
+            ['`nitro:click="addTag(\'vue\')"`', '`@click="addTag(\'vue\')"`'],
+            ['`nitro:submit="save"`', '`@submit.prevent="save"`'],
+            ['`nitro:loading` (`nitro:target="save"`)', '`v-if="save.processing"`'],
+            ['`nitro:loading.delay`', '`v-if="save.slow"`'],
+            ['`nitro:loading.attr="disabled"`', '`:disabled="save.processing"`'],
+            ['`nitro:dirty`', '`v-if="unsaved.length"`'],
             ['`@error(\'title\') {{ $message }} @enderror`', '`{{ errors.title?.[0] }}`'],
-            ['`fusion:model` on a file input', '`@change="upload(\'cover\', $event.target.files)"`'],
-            ['`<a href="/posts" fusion:navigate>`', '`<a v-bind="link(\'/posts\')">`'],
+            ['`nitro:model` on a file input', '`@change="upload(\'cover\', $event.target.files)"`'],
+            ['`<a href="/posts" nitro:navigate>`', '`<a v-bind="link(\'/posts\')">`'],
             ['`$dispatch(\'saved\', $id)`', '`dispatch(\'saved\', id)`'],
             ['`$visit(\'/posts\')`', '`visit(\'/posts\')`'],
             ['`{{ $this->words }}`', '`{{ words }}`'],
@@ -264,15 +264,15 @@
 
     <h2 id="limits">Good to know</h2>
     <ul>
-        <li><strong>The view's root</strong> is rendered inside the component's element, a <code>&lt;div&gt;</code> Fusion puts on the page. Style it from the inside.</li>
-        <li><strong>Several Vue views on a page</strong> are separate Vue apps. Share state between them with Fusion's <a href="/docs/sharing-state">stores</a> or events, or with one Pinia.</li>
-        <li><strong>TypeScript</strong>: <code>&lt;script setup lang="ts"&gt;</code> works as usual. What <code>useFusion()</code> returns isn't typed yet.</li>
+        <li><strong>The view's root</strong> is rendered inside the component's element, a <code>&lt;div&gt;</code> Nitro puts on the page. Style it from the inside.</li>
+        <li><strong>Several Vue views on a page</strong> are separate Vue apps. Share state between them with Nitro's <a href="/docs/sharing-state">stores</a> or events, or with one Pinia.</li>
+        <li><strong>TypeScript</strong>: <code>&lt;script setup lang="ts"&gt;</code> works as usual. What <code>useNitro()</code> returns isn't typed yet.</li>
         <li><strong>A visit</strong> to a page loads its Vue views' code before the page shows, so the page appears with them rendered, not filling in after it.</li>
     </ul>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/javascript-views" title="JavaScript views" icon="book">How views in Vue, React, Solid and Svelte fit into Fusion, and when to choose one.</x-docs.card>
+        <x-docs.card href="/docs/javascript-views" title="JavaScript views" icon="book">How views in Vue, React, Solid and Svelte fit into Nitro, and when to choose one.</x-docs.card>
         <x-docs.card href="/docs/server-methods" title="Server methods" icon="server">What a #[Server] method can take, return and check.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

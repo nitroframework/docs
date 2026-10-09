@@ -9,9 +9,9 @@ import TagList from '../../js/components/TagList.vue';
 
 <!-- resources/js/components/TagList.vue: an ordinary Vue component, inside the view -->
 <script setup>
-import { useFusion } from 'nitro-fusion/vue';
+import { useNitro } from 'nitro/vue';
 
-const { tags, removeTag } = useFusion();
+const { tags, removeTag } = useNitro();
 </script>
 
 <template>

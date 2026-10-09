@@ -3,7 +3,7 @@ import { For } from 'solid-js';
 export default function Checkout(props) {
     return (
         <>
-            {/* A key inside a property: its path, as fusion:model writes it. */}
+            {/* A key inside a property: its path, as nitro:model writes it. */}
             <input value={props.form.email} onInput={(e) => props.set('form.email', e.currentTarget.value)} />
             <label>
                 <input type="checkbox" checked={props.form.gift} onChange={(e) => props.set('form.gift', e.currentTarget.checked)} />

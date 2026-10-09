@@ -1,4 +1,4 @@
-use App\Fusion\Pages\Students\Show;
+use App\Nitro\Pages\Students\Show;
 use App\Models\Student;
 
 public function test_a_student_page_lists_what_they_owe(): void

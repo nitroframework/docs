@@ -4,7 +4,7 @@
     <p>
         A view runs twice: as Blade on the server, and compiled in the browser. So the rules are PHP's rules. An array
         is read with <code>$task['title']</code>. A model, or any other object, is read with
-        <code>$post-&gt;title</code>. Fusion keeps track of which values are models, so the browser reads them just
+        <code>$post-&gt;title</code>. Nitro keeps track of which values are models, so the browser reads them just
         as Laravel does.
     </p>
 
@@ -38,7 +38,7 @@
 
     <ul>
         <li><strong>Write to any depth.</strong> <code>$this-&gt;lines[$i]['quantity']++</code> and <code>$this-&gt;lines[] = [...]</code> work in browser methods, as in PHP.</li>
-        <li><strong>Bind any depth.</strong> <code>fusion:model="lines.@{{ $i }}.quantity"</code> binds an input to one row's field, on an input or on a child component's tag.</li>
+        <li><strong>Bind any depth.</strong> <code>nitro:model="lines.@{{ $i }}.quantity"</code> binds an input to one row's field, on an input or on a child component's tag.</li>
         <li><strong>Use PHP's array functions.</strong> <code>array_map()</code>, <code>array_filter()</code>, <code>usort()</code>, <code>array_splice()</code> and the rest run in the browser.</li>
         <li><strong>Arrays are values.</strong> <code>$copy = $this-&gt;lines</code> makes a copy, so changing <code>$copy</code> never changes the property.</li>
         <li><strong>Keys and their order survive.</strong> An array keyed by id stays keyed by id, in its order, on the way to the browser and back.</li>
@@ -59,7 +59,7 @@
 
     <ul>
         <li><strong>The browser gets their visible attributes.</strong> Hidden attributes (<code>$hidden</code>) are never sent.</li>
-        <li><strong>Load relations with <code>with()</code>.</strong> The browser can't query the database, so a relation you didn't load isn't there. Fusion loads the same relations again on every <code>#[Server]</code> call.</li>
+        <li><strong>Load relations with <code>with()</code>.</strong> The browser can't query the database, so a relation you didn't load isn't there. Nitro loads the same relations again on every <code>#[Server]</code> call.</li>
         <li><strong>The server reads them again on every call.</strong> A model property always comes from the database, never from what the browser sends back.</li>
         <li><strong>Change them on the server.</strong> Update a record in a <code>#[Server]</code> method. The next state the browser gets has the new values.</li>
     </ul>
@@ -100,7 +100,7 @@
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
         <x-docs.card href="/docs/properties" title="Properties" icon="book">Every type a property can hold, and the attributes that change how it behaves.</x-docs.card>
-        <x-docs.card href="/docs/forms" title="Forms and validation" icon="book">Bind inputs to arrays with fusion:model, and validate every row.</x-docs.card>
+        <x-docs.card href="/docs/forms" title="Forms and validation" icon="book">Bind inputs to arrays with nitro:model, and validate every row.</x-docs.card>
         <x-docs.card href="/docs/server-methods" title="Server methods" icon="server" runs="server">Receive models and act on them on the server.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

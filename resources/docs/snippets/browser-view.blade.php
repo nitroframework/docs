@@ -1,2 +1,2 @@
-<canvas fusion:ref="chart" fusion:init="draw"></canvas>
-<button fusion:click="Fusion::browser()->storage()->forget('draft')">Discard the draft</button>
+<canvas nitro:ref="chart" nitro:init="draw"></canvas>
+<button nitro:click="Nitro::browser()->storage()->forget('draft')">Discard the draft</button>

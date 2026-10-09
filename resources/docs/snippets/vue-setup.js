@@ -2,17 +2,17 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import fusion from './vendor/nitro/fusion/js/vite.js';
+import nitro from './vendor/nitro/nitro/js/vite.js';
 
 export default defineConfig({
     plugins: [
         laravel({ input: ['resources/js/app.js'], refresh: true }),
-        fusion(),
+        nitro(),
         vue(),
     ],
 });
 
 // resources/js/app.js
-import { fusionVue } from 'nitro-fusion/vue';
+import { nitroVue } from 'nitro/vue';
 
-fusionVue(import.meta.glob(['../views/vue/**/*.vue', './vue/**/*.vue']));
+nitroVue(import.meta.glob(['../views/vue/**/*.vue', './vue/**/*.vue']));

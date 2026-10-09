@@ -1,9 +1,9 @@
-namespace App\Fusion\Features;
+namespace App\Nitro\Features;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Nitro\Fusion\Component;
-use Nitro\Fusion\Feature;
+use Nitro\Component;
+use Nitro\Feature;
 
 class AuditCalls extends Feature
 {
@@ -11,7 +11,7 @@ class AuditCalls extends Feature
 
     public function called(Component $component, string $method, mixed $result): void
     {
-        Log::info('Fusion call', [
+        Log::info('Nitro call', [
             'component' => $component::class,
             'method' => $method,
             'user' => $this->request->user()?->id,

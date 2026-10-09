@@ -2,17 +2,17 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
-import fusion from './vendor/nitro/fusion/js/vite.js';
+import nitro from './vendor/nitro/nitro/js/vite.js';
 
 export default defineConfig({
     plugins: [
         laravel({ input: ['resources/js/app.js'], refresh: true }),
-        fusion(),
+        nitro(),
         react(),
     ],
 });
 
 // resources/js/app.js
-import { fusionReact } from 'nitro-fusion/react';
+import { nitroReact } from 'nitro/react';
 
-fusionReact(import.meta.glob(['../views/react/**/*.{jsx,tsx}', './react/**/*.{jsx,tsx}']));
+nitroReact(import.meta.glob(['../views/react/**/*.{jsx,tsx}', './react/**/*.{jsx,tsx}']));

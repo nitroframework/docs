@@ -1,4 +1,4 @@
-use Nitro\Fusion\Attributes\LazyLoad;
+use Nitro\Attributes\LazyLoad;
 
 #[LazyLoad]                 // its own chunk, loaded when a page first shows it
 class ReportBuilder extends Component { /* ... */ }

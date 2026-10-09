@@ -1,1 +1,1 @@
-/public/fusion
+/public/nitro

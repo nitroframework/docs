@@ -1,4 +1,4 @@
-use App\Fusion\Components\PostEditor;
+use App\Nitro\Components\PostEditor;
 use Illuminate\Validation\ValidationException;
 
 public function test_a_post_needs_a_title(): void

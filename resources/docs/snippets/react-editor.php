@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Fusion\Components\React;
+namespace App\Nitro\Components\React;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
-use Nitro\Fusion\Attributes\Computed;
-use Nitro\Fusion\Attributes\Locked;
-use Nitro\Fusion\Attributes\Server;
-use Nitro\Fusion\Attributes\Validate;
-use Nitro\Fusion\Attributes\View;
-use Nitro\Fusion\Component;
-use Nitro\Fusion\Upload;
+use Nitro\Attributes\Computed;
+use Nitro\Attributes\Locked;
+use Nitro\Attributes\Server;
+use Nitro\Attributes\Validate;
+use Nitro\Attributes\View;
+use Nitro\Component;
+use Nitro\Upload;
 
 #[View(react: 'post-editor')]
 class PostEditor extends Component

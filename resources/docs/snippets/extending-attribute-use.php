@@ -1,4 +1,4 @@
-use App\Fusion\Attributes\Throttle;
+use App\Nitro\Attributes\Throttle;
 
 #[Server]
 #[Throttle(perMinute: 3)]

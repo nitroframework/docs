@@ -1,8 +1,8 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { useFusion } from 'nitro-fusion/vue';
+import { useNitro } from 'nitro/vue';
 
-const { dispatch } = useFusion();
+const { dispatch } = useNitro();
 const lastSaved = ref(null);
 
 /** An event another component dispatched (without ->to()), heard in the view's own code: its values in order. */

@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="A Fusion form is a set of properties bound to inputs with fusion:model, a #[Server] method that saves them, and rules that the server checks before that method runs. The browser gives instant hints, and the server has the final say."
+    lead="A Nitro form is a set of properties bound to inputs with nitro:model, a #[Server] method that saves them, and rules that the server checks before that method runs. The browser gives instant hints, and the server has the final say."
 >
     <p>
         As you type, the component's properties change in the browser, so hints and computed values update on
@@ -17,7 +17,7 @@
     </p>
 
     <h2 id="the-component">The component</h2>
-    <x-docs.pair class="app/Fusion/Components/SignupForm.php" view="resources/views/fusion/components/signup-form.blade.php" component="signup-form" />
+    <x-docs.pair class="app/Nitro/Components/SignupForm.php" view="resources/views/nitro/components/signup-form.blade.php" component="signup-form" />
 
     <x-docs.callout type="note" title="Saved in the session, for this demo">
         <p>So that the example works for every visitor, <code>submit()</code> keeps the email in your session. Your app would create the account in the database the same way.</p>
@@ -25,7 +25,7 @@
 
     <h2 id="binding">Binding inputs</h2>
     <p>
-        <code>fusion:model</code> keeps an input and a property in sync, in both directions. It works with text
+        <code>nitro:model</code> keeps an input and a property in sync, in both directions. It works with text
         fields, text areas, radio buttons, checkboxes and selects. Use a dotted path to bind a key of an array
         property.
     </p>
@@ -38,7 +38,7 @@
         $modifiers = [
             ['`.blur`', 'Sets the property when the field loses focus, instead of on every keystroke'],
             ['`.change`, `.lazy`', 'Sets it when the field\'s value is committed (the `change` event), like `.blur`'],
-            ['`.live`', 'Sets it on every keystroke. That is what `fusion:model` does already, so it changes nothing; it is accepted for code written for Livewire'],
+            ['`.live`', 'Sets it on every keystroke. That is what `nitro:model` does already, so it changes nothing; it is accepted for code written for Livewire'],
             ['`.debounce.300ms`', 'Sets it once typing pauses'],
             ['`.trim`', 'Removes spaces around the text'],
             ['`.number`', 'Sets it as a number, or `null` when the field is empty'],
@@ -83,16 +83,16 @@
 
     <h2 id="loading">Showing that the form is saving</h2>
     <p>
-        <code>fusion:loading</code> shows an element while a <code>#[Server]</code> call runs. Add
+        <code>nitro:loading</code> shows an element while a <code>#[Server]</code> call runs. Add
         <code>.attr="disabled"</code> to disable a button, or <code>.remove</code> to hide its label (see
-        <a fusion:navigate href="/docs/server-methods#loading">Server methods</a>). Add <code>.delay</code> so a
+        <a nitro:navigate href="/docs/server-methods#loading">Server methods</a>). Add <code>.delay</code> so a
         quick save shows nothing.
     </p>
 
     <h2 id="unsaved">Showing unsaved changes</h2>
     <p>
-        Your browser methods and <code>fusion:model</code> change the state at once, without a request. So the
-        page can hold changes that the server hasn't seen yet. <code>fusion:dirty</code> shows an element while it
+        Your browser methods and <code>nitro:model</code> change the state at once, without a request. So the
+        page can hold changes that the server hasn't seen yet. <code>nitro:dirty</code> shows an element while it
         does, and hides it again once a <code>#[Server]</code> call has taken the changes:
     </p>
 
@@ -100,8 +100,8 @@
 
     <ul>
         <li><strong>It compares values.</strong> Type a field back to what the server has, and it is no longer a change.</li>
-        <li><strong>Narrow it with <code>fusion:target</code>.</strong> Name properties or paths: <code>fusion:target="title,form.email"</code>. Without it, any change counts.</li>
-        <li><strong>The same forms as <code>fusion:loading</code>.</strong> <code>.remove</code> hides the element instead, <code>.class="..."</code> and <code>.class.remove="..."</code> change classes, <code>.attr="..."</code> sets an attribute.</li>
+        <li><strong>Narrow it with <code>nitro:target</code>.</strong> Name properties or paths: <code>nitro:target="title,form.email"</code>. Without it, any change counts.</li>
+        <li><strong>The same forms as <code>nitro:loading</code>.</strong> <code>.remove</code> hides the element instead, <code>.class="..."</code> and <code>.class.remove="..."</code> change classes, <code>.attr="..."</code> sets an attribute.</li>
     </ul>
 
     <h2 id="next-steps">Next steps</h2>

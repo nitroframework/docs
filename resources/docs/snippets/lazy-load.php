@@ -1,4 +1,4 @@
-use Nitro\Fusion\Attributes\LazyLoad;
+use Nitro\Attributes\LazyLoad;
 
 #[LazyLoad(false)]       // In the main bundle, so the first visit has no chunk to load.
 class Dashboard extends Component

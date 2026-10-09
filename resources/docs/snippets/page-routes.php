@@ -1,8 +1,8 @@
-use App\Fusion\Pages\Students\Show;
+use App\Nitro\Pages\Students\Show;
 
-Route::fusion('/students/{student}', Show::class)->name('students.show');
-Route::fusion('/students', 'pages::students.index')->name('students.index');
+Route::nitro('/students/{student}', Show::class)->name('students.show');
+Route::nitro('/students', 'pages::students.index')->name('students.index');
 
 Route::middleware('auth')->group(function () {
-    Route::fusion('/settings', Settings::class)->name('settings');
+    Route::nitro('/settings', Settings::class)->name('settings');
 });

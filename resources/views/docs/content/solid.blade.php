@@ -3,15 +3,15 @@
 >
     <p>
         A Solid view is a <code>.jsx</code> or <code>.tsx</code> file your Vite builds with <code>vite-plugin-solid</code>.
-        Its default export is a Solid component, and its props are the Fusion component: every property and
+        Its default export is a Solid component, and its props are the Nitro component: every property and
         <code>#[Computed]</code> value, every method, and what the component knows about itself (validation messages,
         unsaved changes, uploads, a call's status). Signals, memos, effects, control flow and context work as they
-        always do. Fusion takes care of state, the server and navigation, so there is no resource to fetch, no API
+        always do. Nitro takes care of state, the server and navigation, so there is no resource to fetch, no API
         route and no store to set up.
     </p>
 
     <x-docs.callout type="note" title="Solid 1.x">
-        <p>Fusion's Solid adapter uses Solid's public API only: <code>render</code>, <code>hydrate</code>, <code>createStore</code>, <code>reconcile</code>, <code>createMutable</code>, context and <code>renderToString</code>. A Solid release needs nothing from Fusion.</p>
+        <p>Nitro's Solid adapter uses Solid's public API only: <code>render</code>, <code>hydrate</code>, <code>createStore</code>, <code>reconcile</code>, <code>createMutable</code>, context and <code>renderToString</code>. A Solid release needs nothing from Nitro.</p>
     </x-docs.callout>
 
     <h2 id="setup">Setting it up</h2>
@@ -21,11 +21,11 @@
             <x-docs.code code="npm install solid-js vite-plugin-solid" lang="sh" bare />
         </x-docs.step>
         <x-docs.step title="Add the plugins, and register your views">
-            <p><code>fusionSolid()</code> takes your views as <code>import.meta.glob()</code> gives them; each view loads when a page first shows it.</p>
+            <p><code>nitroSolid()</code> takes your views as <code>import.meta.glob()</code> gives them; each view loads when a page first shows it.</p>
             <x-docs.code src="solid-setup.js" lang="js" bare />
         </x-docs.step>
-        <x-docs.step title="Load them before Fusion starts">
-            <p>Put <code>@@vite</code> before <code>@@fusionScripts</code> in your layout, so the views are registered when the components start.</p>
+        <x-docs.step title="Load them before Nitro starts">
+            <p>Put <code>@@vite</code> before <code>@@nitroScripts</code> in your layout, so the views are registered when the components start.</p>
             <x-docs.code src="vue-layout.blade.php" lang="blade" bare />
         </x-docs.step>
     </x-docs.steps>
@@ -43,11 +43,11 @@
 
     <h2 id="first-view">A component with a Solid view</h2>
     <p>
-        The class is an ordinary Fusion component. <code>#[View(solid: 'post-editor')]</code> says its view is
+        The class is an ordinary Nitro component. <code>#[View(solid: 'post-editor')]</code> says its view is
         <code>post-editor.jsx</code>:
     </p>
 
-    <x-docs.code src="solid-editor.php" file="app/Fusion/Components/Solid/PostEditor.php" runs="both" />
+    <x-docs.code src="solid-editor.php" file="app/Nitro/Components/Solid/PostEditor.php" runs="both" />
 
     <p>The view reads what it uses from its props, where it uses it:</p>
 
@@ -76,7 +76,7 @@
             ['`set(path, value)`', '`props.set(\'form.email\', value)`', 'Writes a property, or a key under it'],
             ['`upload(path, files)`', '`props.upload(\'cover\', files)`', 'Uploads files into an `Upload` property'],
             ['`dispatch(event, ...)`', '`props.dispatch(\'saved\', id)`', 'Sends an event to the components listening for it'],
-            ['`link(href, ...modifiers)`', '`{...props.link(\'/posts\')}`', 'The attributes of a `fusion:navigate` link'],
+            ['`link(href, ...modifiers)`', '`{...props.link(\'/posts\')}`', 'The attributes of a `nitro:navigate` link'],
             ['`visit(url)`', '`props.visit(\'/posts\')`', 'Goes to a page without reloading'],
         ];
     @endphp
@@ -107,7 +107,7 @@
         the property at once, in the browser:
     </p>
     <ul>
-        <li><strong><code>props.set(path, value)</code></strong> writes a property, or a key inside one by its dotted path: <code>props.set('form.email', ...)</code>, <code>props.set('lines.0.quantity', ...)</code>. It is what <code>fusion:model</code> does in Blade.</li>
+        <li><strong><code>props.set(path, value)</code></strong> writes a property, or a key inside one by its dotted path: <code>props.set('form.email', ...)</code>, <code>props.set('lines.0.quantity', ...)</code>. It is what <code>nitro:model</code> does in Blade.</li>
         <li><strong>A browser method</strong>, which is the PHP you wrote, compiled: <code>props.addTag(tag)</code>, <code>props.removeLine(index)</code>.</li>
     </ul>
 
@@ -133,8 +133,8 @@
 
     @php
         $status = [
-            ['`save.processing`', 'The call is running', '`fusion:loading`'],
-            ['`save.slow`', 'It has been running for 200 ms', '`fusion:loading.delay`'],
+            ['`save.processing`', 'The call is running', '`nitro:loading`'],
+            ['`save.slow`', 'It has been running for 200 ms', '`nitro:loading.delay`'],
             ['`save.failed`', 'The request itself failed: an error on the server, or no connection', ''],
             ['`save.error`', 'Why it failed, as a message', ''],
         ];
@@ -176,16 +176,16 @@
     <ul>
         <li><strong>A preview</strong>: <code>cover.temporaryUrl()</code> is a URL the browser can show for an image.</li>
         <li><strong>What it is</strong>: <code>getClientOriginalName()</code>, <code>getClientOriginalExtension()</code>, <code>getSize()</code> and <code>getMimeType()</code>, as on the server.</li>
-        <li><strong>Refused files</strong>: a file the <code>fusion.uploads.rules</code> refuse puts the message in <code>props.errors.cover</code>, and the property keeps what it had. The promise resolves with <code>null</code>.</li>
+        <li><strong>Refused files</strong>: a file the <code>nitro.uploads.rules</code> refuse puts the message in <code>props.errors.cover</code>, and the property keeps what it had. The promise resolves with <code>null</code>.</li>
         <li><strong>Several files</strong>: for an <code>#[Uploads]</code> array, <code>props.upload('photos', files)</code> sets the list.</li>
         <li><strong>Keeping them</strong>: the file is stored for good only when a <code>#[Server]</code> method calls <code>$this-&gt;cover-&gt;store(...)</code>, after its rules (<code>image</code>, <code>max:2048</code>) pass.</li>
     </ul>
 
     <h2 id="navigation">Links and visits</h2>
     <p>
-        <code>props.link(href, ...modifiers)</code> gives the attributes of a <code>fusion:navigate</code> link: spread
+        <code>props.link(href, ...modifiers)</code> gives the attributes of a <code>nitro:navigate</code> link: spread
         them on an <code>&lt;a&gt;</code>, and the visit happens without a reload. (JSX can't write
-        <code>fusion:navigate.prefetch</code> as an attribute name, which is why it is a function.) The modifiers are
+        <code>nitro:navigate.prefetch</code> as an attribute name, which is why it is a function.) The modifiers are
         the ones a Blade link takes: <code>'prefetch'</code>, <code>'keypress'</code>, <code>'preserve-scroll'</code>.
         To go somewhere from code, call <code>props.visit(url)</code>:
     </p>
@@ -209,14 +209,14 @@
     <h2 id="components">Solid components inside the view</h2>
     <p>
         The view is the root of a Solid tree, so it can render any Solid component: your own, or a library's. A
-        component anywhere inside the view reaches the Fusion component with <code>useFusion()</code>, which returns
+        component anywhere inside the view reaches the Nitro component with <code>useNitro()</code>, which returns
         the same reactive props the view gets, without passing them down. Read from it in place, as from props:
     </p>
 
     <x-docs.code src="solid-child.jsx" lang="jsx" />
 
-    <x-docs.callout type="note" title="Fusion components go around a Solid view, not inside it">
-        <p>A Solid view can't render <code>&lt;fusion:...&gt;</code> components. Compose them from Blade: a Blade page or component can hold several components with Solid, Vue, React, Svelte and Blade views side by side, and they talk through events and stores.</p>
+    <x-docs.callout type="note" title="Nitro components go around a Solid view, not inside it">
+        <p>A Solid view can't render <code>&lt;nitro:...&gt;</code> components. Compose them from Blade: a Blade page or component can hold several components with Solid, Vue, React, Svelte and Blade views side by side, and they talk through events and stores.</p>
     </x-docs.callout>
 
     <h2 id="providers">Context providers</h2>
@@ -229,7 +229,7 @@
 
     <p>
         For state that several views on a page share, create it in a module of its own (<code>createRoot</code> with a
-        store, say) and import it in each view, or use Fusion's <a href="/docs/sharing-state">stores</a>, which the
+        store, say) and import it in each view, or use Nitro's <a href="/docs/sharing-state">stores</a>, which the
         server and other engines see too.
     </p>
 
@@ -237,14 +237,14 @@
     <p>
         A small component can live in one file. Put its class at the top of the <code>.jsx</code> or <code>.tsx</code>
         file, in a <code>&lt;php&gt;</code> block inside a comment, so the file stays plain JavaScript to your tools.
-        Fusion makes it a class named after the view. <code>Component</code> and Fusion's attributes need no
+        Nitro makes it a class named after the view. <code>Component</code> and Nitro's attributes need no
         <code>use</code>; anything else does.
     </p>
 
     <x-docs.code src="solid-colocated.jsx" lang="jsx" file="resources/views/solid/newsletter.jsx" />
 
     <p>
-        Place it by the view's name, <code>&lt;fusion:newsletter /&gt;</code>. An error in the block names the line in
+        Place it by the view's name, <code>&lt;nitro:newsletter /&gt;</code>. An error in the block names the line in
         the <code>.jsx</code> file.
     </p>
 
@@ -268,17 +268,17 @@
 
     @php
         $equivalents = [
-            ['`fusion:model="title"`', '`value={props.title} onInput={(e) => props.set(\'title\', e.currentTarget.value)}`'],
-            ['`fusion:model.blur="title"`', '`value={props.title} onChange={(e) => props.set(\'title\', e.currentTarget.value)}`'],
-            ['`fusion:click="addTag(\'solid\')"`', '`onClick={() => props.addTag(\'solid\')}`'],
-            ['`fusion:submit="save"`', '`onSubmit={(e) => (e.preventDefault(), props.save())}`'],
-            ['`fusion:loading` (`fusion:target="save"`)', '`<Show when={props.save.processing}>`'],
-            ['`fusion:loading.delay`', '`<Show when={props.save.slow}>`'],
-            ['`fusion:loading.attr="disabled"`', '`disabled={props.save.processing}`'],
-            ['`fusion:dirty`', '`<Show when={props.unsaved.length}>`'],
+            ['`nitro:model="title"`', '`value={props.title} onInput={(e) => props.set(\'title\', e.currentTarget.value)}`'],
+            ['`nitro:model.blur="title"`', '`value={props.title} onChange={(e) => props.set(\'title\', e.currentTarget.value)}`'],
+            ['`nitro:click="addTag(\'solid\')"`', '`onClick={() => props.addTag(\'solid\')}`'],
+            ['`nitro:submit="save"`', '`onSubmit={(e) => (e.preventDefault(), props.save())}`'],
+            ['`nitro:loading` (`nitro:target="save"`)', '`<Show when={props.save.processing}>`'],
+            ['`nitro:loading.delay`', '`<Show when={props.save.slow}>`'],
+            ['`nitro:loading.attr="disabled"`', '`disabled={props.save.processing}`'],
+            ['`nitro:dirty`', '`<Show when={props.unsaved.length}>`'],
             ['`@error(\'title\') {{ $message }} @enderror`', '`{props.errors.title?.[0]}`'],
-            ['`fusion:model` on a file input', '`onChange={(e) => props.upload(\'cover\', e.currentTarget.files)}`'],
-            ['`<a href="/posts" fusion:navigate>`', '`<a {...props.link(\'/posts\')}>`'],
+            ['`nitro:model` on a file input', '`onChange={(e) => props.upload(\'cover\', e.currentTarget.files)}`'],
+            ['`<a href="/posts" nitro:navigate>`', '`<a {...props.link(\'/posts\')}>`'],
             ['`$dispatch(\'saved\', $id)`', '`props.dispatch(\'saved\', id)`'],
             ['`$visit(\'/posts\')`', '`props.visit(\'/posts\')`'],
             ['`{{ $this->words }}`', '`{props.words}`'],
@@ -288,14 +288,14 @@
 
     <h2 id="limits">Good to know</h2>
     <ul>
-        <li><strong>The view's root</strong> is rendered inside the component's element, a <code>&lt;div&gt;</code> Fusion puts on the page. Style it from the inside.</li>
+        <li><strong>The view's root</strong> is rendered inside the component's element, a <code>&lt;div&gt;</code> Nitro puts on the page. Style it from the inside.</li>
         <li><strong>TypeScript</strong>: <code>.tsx</code> views work as usual. The props aren't typed for you yet; describe them with an interface of your own.</li>
         <li><strong>A visit</strong> to a page loads its Solid views' code before the page shows, so the page appears with them rendered, not filling in after it.</li>
     </ul>
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
-        <x-docs.card href="/docs/javascript-views" title="JavaScript views" icon="book">How views in Vue, React, Solid and Svelte fit into Fusion, and when to choose one.</x-docs.card>
+        <x-docs.card href="/docs/javascript-views" title="JavaScript views" icon="book">How views in Vue, React, Solid and Svelte fit into Nitro, and when to choose one.</x-docs.card>
         <x-docs.card href="/docs/server-methods" title="Server methods" icon="server">What a #[Server] method can take, return and check.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

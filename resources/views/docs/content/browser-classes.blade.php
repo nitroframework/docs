@@ -4,7 +4,7 @@
     <p>
         Code that several components need doesn't have to be copied into each of them, or moved into a
         <code>#[Server]</code> method that costs a request. Put it in a class of its own, mark the class with
-        <code>#[Browser]</code>, and Fusion compiles it for the browser too. On the server, it stays an ordinary PHP
+        <code>#[Browser]</code>, and Nitro compiles it for the browser too. On the server, it stays an ordinary PHP
         class.
     </p>
 
@@ -31,7 +31,7 @@
 
     <ul>
         <li><strong>The same rules as browser methods.</strong> A browser class can't use the database, the clock or anything else that needs the server. If one of its methods does, the build fails and tells you the file and line.</li>
-        <li><strong>Only what you use is compiled.</strong> Fusion compiles the methods your browser code calls, and the methods they call in turn. A method that nothing calls in the browser is never compiled, so it can use anything.</li>
+        <li><strong>Only what you use is compiled.</strong> Nitro compiles the methods your browser code calls, and the methods they call in turn. A method that nothing calls in the browser is never compiled, so it can use anything.</li>
         <li><strong>Constants become their values.</strong> <code>Money::CURRENCY</code> is compiled as <code>'£'</code>.</li>
         <li><strong>Private methods and constants</strong> work inside their own class, with <code>self::</code>.</li>
         <li><strong>Static methods only.</strong> You can't create instances (<code>new Money(...)</code>) or use static properties in the browser.</li>
@@ -40,7 +40,7 @@
     <h2 id="use">Using a class in a view</h2>
     <p>
         A view has no <code>use</code> statements, so import the classes it needs with Blade's <code>@@use</code>
-        directive. Fusion reads <code>@@use</code> exactly as Blade does:
+        directive. Nitro reads <code>@@use</code> exactly as Blade does:
     </p>
 
     <x-docs.code src="browser-use.blade.php" lang="blade" />
@@ -73,18 +73,18 @@
     <x-docs.code src="browser-enum-view.blade.php" lang="blade" />
 
     <ul>
-        <li><strong><code>fusion:model</code> works as usual.</strong> A <code>&lt;select&gt;</code> sets the property from the selected option's value, and your code reads it as a case.</li>
+        <li><strong><code>nitro:model</code> works as usual.</strong> A <code>&lt;select&gt;</code> sets the property from the selected option's value, and your code reads it as a case.</li>
         <li><strong>The server receives a case.</strong> The property travels as its value, and the server turns it back into the case before your methods run.</li>
         <li><strong>The browser can only send real cases.</strong> A value that isn't one of the enum's cases, or isn't of its backing type, is refused with a 403.</li>
         <li><strong>The enum must be backed and marked <code>#[Browser]</code>.</strong> If it isn't, the build tells you.</li>
     </ul>
 
     <x-docs.callout type="note" title="Methods on a value">
-        <p>When you call a method on a value, such as <code>$case-&gt;label()</code>, Fusion compiles that method for the <code>#[Browser]</code> enums your code uses. In the browser, only an enum case has methods. Data from the server arrives as arrays, so calling a method on it fails the build.</p>
+        <p>When you call a method on a value, such as <code>$case-&gt;label()</code>, Nitro compiles that method for the <code>#[Browser]</code> enums your code uses. In the browser, only an enum case has methods. Data from the server arrives as arrays, so calling a method on it fails the build.</p>
     </x-docs.callout>
 
     <h2 id="the-component">The component</h2>
-    <x-docs.pair class="app/Fusion/Components/OrderTracker.php" view="resources/views/fusion/components/order-tracker.blade.php" component="order-tracker" />
+    <x-docs.pair class="app/Nitro/Components/OrderTracker.php" view="resources/views/nitro/components/order-tracker.blade.php" component="order-tracker" />
 
     <x-docs.callout type="note" title="Saved in the session, for this demo">
         <p>So the example works for every visitor without an account or a database, <code>save()</code> keeps the status in your session. Your app would save it to the database in the same way.</p>
