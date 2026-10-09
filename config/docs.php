@@ -54,6 +54,7 @@ return [
             'transitions' => 'Transitions',
             'islands' => 'Islands',
             'browser-apis' => 'Browser APIs',
+            'caching' => 'Caching',
         ],
         'Going further' => [
             'rendering' => 'Rendering',

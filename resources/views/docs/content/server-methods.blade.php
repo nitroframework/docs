@@ -72,6 +72,14 @@
         <a nitro:navigate href="/docs/forms">Forms and validation</a> for more.
     </p>
 
+    <h2 id="caching">Keeping a slow result</h2>
+    <p>
+        A <code>#[Server]</code> method that only loads data, such as a lookup or a search, can keep its result
+        with <code>#[Cached]</code>: the next call with the same arguments and state gets it without running the
+        method, until <code>Nitro::expire()</code> forgets it. See
+        <a nitro:navigate href="/docs/caching">Caching</a>.
+    </p>
+
     <h2 id="redirects">Redirecting</h2>
     <p>To send the browser to another page once the call is done, call <code>$this-&gt;redirect($url)</code>:</p>
 

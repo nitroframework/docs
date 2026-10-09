@@ -29,6 +29,7 @@
             ['`state.lifetime`', '`null`', 'How long a snapshot stays valid, in seconds. With `null`, as long as its session'],
             ['`uploads`', '', '`directory`, `rules`, `max_files` and `throttle`'],
             ['`public_config`', '`[\'app.name\']`', 'The config keys `config()` may read in the browser. Their values are public'],
+            ['`cache.store`', '`null`', 'The cache store `#[Cached]` keeps results in (`NITRO_CACHE_STORE`). With `null`, the application\'s default'],
             ['`compiled`', '`storage/framework/nitro`', 'Where compiled files are written'],
             ['`static`', '`nitro`', 'The directory in `public/` the build is published to'],
             ['`build.obfuscate`', '`true`', 'Whether builds are obfuscated (`NITRO_OBFUSCATE`)'],
