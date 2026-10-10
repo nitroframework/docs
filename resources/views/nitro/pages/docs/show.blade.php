@@ -57,7 +57,7 @@
         @endif
     </nav>
     <div class="mt-8 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
-        <a href="https://github.com/ZeeshanX4/nitro-fusion" class="inline-flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white">
+        <a href="https://github.com/nitroframework/docs/edit/main/resources/views/docs/content/{{ $slug }}.blade.php" class="inline-flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white">
             <svg class="size-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 2.5 13.5 5.5 6 13H3v-3l7.5-7.5Z" stroke-linejoin="round"/></svg>
             Edit this page on GitHub
         </a>
