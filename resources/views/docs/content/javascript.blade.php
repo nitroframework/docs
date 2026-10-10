@@ -117,6 +117,7 @@
         $handle = [
             ['`get(path)`', 'A property\'s value, a key under it (`"form.email"`), or a `#[Computed]` value'],
             ['`set(path, value)`', 'Writes a property, or a key under it, as `nitro:model` does'],
+            ['`watch(path, fn)`', 'Calls `fn(value)` whenever the value changes from anywhere but this handle\'s own `set()`; returns a function that stops watching'],
             ['`call(method, ...args)`', 'Runs a method. A browser method returns its value; a `#[Server]` one, a promise of it'],
             ['`errors()`', 'The validation messages, by field'],
             ['`unsaved()`', 'The properties changed here that the server hasn\'t seen yet'],

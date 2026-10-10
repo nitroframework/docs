@@ -37,6 +37,7 @@
             ['Slots', '`nitro:slot`, printed as `$slot` and `$slots[\'name\']`'],
             ['Teleport', '`@teleport(\'modals\')` ... `@endteleport`, rendered at `@portal(\'modals\')` in the layout'],
             ['Deferred', '`@deferred(\'stats\')` ... `@placeholder` ... `@enddeferred` in a page (see Page data)'],
+            ['Script', '`@nitroScript` ... `@endNitroScript`: JavaScript run once for each instance as it goes live, never on the server (see Third-party libraries)'],
             ['Laravel helpers', '`route()`, `url()`, `asset()`, `__()` / `trans()`, and `config()` for the keys in `nitro.public_config`'],
             ['PHP', 'Operators, casts and PHP\'s functions: strings, mbstring, arrays, math, ctype, URLs, HTML entities, `preg_*`, `sprintf`, `json_encode` and more, tested against PHP'],
             ['`Str::`', '54 of Laravel\'s string helpers (`slug`, `limit`, `title`, `headline`, `camel`, `snake`, `mask`, `squish`, ...), tested against Laravel'],

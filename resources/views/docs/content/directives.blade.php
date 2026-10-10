@@ -123,7 +123,7 @@
             ['`nitro:navigate`', 'A link to another page, rendered without a reload (see Navigation). `.keypress`, `.preserve-scroll`, `.transition`'],
             ['`nitro:prefetch`', 'Beside `nitro:navigate`: asks for the page before the click, on hover (`.150ms`: after that wait) or `.visible` when on screen; `.keep.60s` keeps it that long'],
             ['`nitro:current="active"`', 'A class while the link points at the current page; `.exact` for the same path only'],
-            ['`nitro:ignore`', 'Leaves the element as it is when the component renders again'],
+            ['`nitro:ignore`', 'The element and what is in it start once (their handlers, your own attributes), and no render changes them after: for markup a library owns (see Third-party libraries)'],
             ['`nitro:confirm="Delete it?"`', 'Asks before the element\'s handlers run'],
             ['`nitro:poll.30s="refresh"`', 'Calls a method every interval (2.5s by default)'],
             ['`nitro:init="load"`', 'Calls a method once, when the element appears'],

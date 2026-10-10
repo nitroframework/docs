@@ -45,8 +45,11 @@
 
     <h3 id="talking-to-components">Talking to the component</h3>
     <p>
-        A directive also receives <code>component</code>. Call <code>component.dispatch()</code> to send an event, just
-        as <code>$this-&gt;dispatch()</code> does, and any <code>#[On]</code> method can listen for it:
+        A directive also receives <code>component</code>, by your property and method names:
+        <code>get()</code> and <code>set()</code> a property, <code>watch()</code> it, <code>call()</code> a method,
+        or <code>dispatch()</code> an event, as <code>$this-&gt;dispatch()</code> does, for any <code>#[On]</code> method to
+        hear. <a nitro:navigate href="/docs/libraries">Third-party libraries</a> binds a library's value with them;
+        here, an event:
     </p>
 
     <x-docs.code src="extending-dispatch.js" lang="js" />
