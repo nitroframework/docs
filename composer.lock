@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4192dc1b23892b416953904be6e86391",
+    "content-hash": "5184c9edfd3d17f7790f03505e214a8e",
     "packages": [
         {
             "name": "brick/math",
@@ -2468,7 +2468,7 @@
             "dist": {
                 "type": "path",
                 "url": "../nitro-fusion",
-                "reference": "72ec0bde3e097879a474a8351ab6deae3b915a08"
+                "reference": "e15d3dec1c1b50dc5c5a2e7180da30efd0b07043"
             },
             "require": {
                 "laravel/framework": "^13.0",
@@ -6040,12 +6040,12 @@
             "version": "v5.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
+                "url": "https://github.com/phpdotenv/phpdotenv.git",
                 "reference": "301c07936b16d88628b126b01d082ba153cf4c40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/301c07936b16d88628b126b01d082ba153cf4c40",
+                "url": "https://api.github.com/repos/phpdotenv/phpdotenv/zipball/301c07936b16d88628b126b01d082ba153cf4c40",
                 "reference": "301c07936b16d88628b126b01d082ba153cf4c40",
                 "shasum": ""
             },
