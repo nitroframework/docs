@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5184c9edfd3d17f7790f03505e214a8e",
+    "content-hash": "2becf77c6233756237336a912171f1b5",
     "packages": [
         {
             "name": "brick/math",
@@ -2464,11 +2464,17 @@
         },
         {
             "name": "nitro/nitro",
-            "version": "dev-main",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nitroframework/nitro.git",
+                "reference": "cf6f14587de8d71251c1fc3128643a6d3b42cc97"
+            },
             "dist": {
-                "type": "path",
-                "url": "../nitro-fusion",
-                "reference": "e15d3dec1c1b50dc5c5a2e7180da30efd0b07043"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/cf6f14587de8d71251c1fc3128643a6d3b42cc97",
+                "reference": "cf6f14587de8d71251c1fc3128643a6d3b42cc97",
+                "shasum": ""
             },
             "require": {
                 "laravel/framework": "^13.0",
@@ -2483,12 +2489,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Nitro\\NitroServiceProvider"
-                    ],
                     "aliases": {
                         "Nitro": "Nitro\\Facades\\Nitro"
-                    }
+                    },
+                    "providers": [
+                        "Nitro\\NitroServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -2496,25 +2502,7 @@
                     "Nitro\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nitro\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "@php vendor/phpunit/phpunit/phpunit --colors=always"
-                ],
-                "analyse": [
-                    "@php vendor/bin/phpstan analyse --memory-limit=1G"
-                ],
-                "fuzz": [
-                    "@php tests/Fuzz/fuzz.php"
-                ],
-                "fuzz:all": [
-                    "@php tests/Fuzz/all.php"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2525,19 +2513,23 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Nitro: Livewire-style components (a PHP class and a Blade view) compiled to JavaScript that runs in the browser. Works on Laravel.",
+            "description": "A full-stack framework for Laravel. Write components in PHP and Blade; Nitro compiles them to JavaScript that runs in the browser, and calls the server only when you ask it to.",
+            "homepage": "https://github.com/nitroframework/nitro",
             "keywords": [
+                "blade",
+                "compiler",
                 "components",
+                "framework",
+                "full-stack",
                 "laravel",
                 "nitro",
-                "nitro",
-                "reactive",
-                "transpiler"
+                "reactive"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nitroframework/nitro/issues",
+                "source": "https://github.com/nitroframework/nitro"
+            },
+            "time": "2026-10-10T20:44:37+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -8375,9 +8367,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "nitro/nitro": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

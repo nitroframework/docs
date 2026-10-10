@@ -9,7 +9,7 @@
         "php": "^8.3",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
-        "nitro/nitro": "@dev",
+        "nitro/nitro": "^2.0",
         "phiki/phiki": "^2.2"
     },
     "require-dev": {
@@ -83,13 +83,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [{
-        "name": "nitro",
-        "type": "path",
-        "url": "../nitro-fusion",
-        "options": {
-            "symlink": true
-        }
-    }]
+    "prefer-stable": true
 }
