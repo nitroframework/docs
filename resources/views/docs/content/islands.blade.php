@@ -8,6 +8,11 @@
         <code>nitro:hydrate</code>. Until an island starts, it is just the server's HTML, and it costs the
         browser nothing.
     </p>
+    <p>
+        The plain page needs Nitro in its layout as a Nitro page does: <code>@@nitroScripts</code> before
+        <code>&lt;/body&gt;</code> (and <code>@@nitroHead</code> in the <code>&lt;head&gt;</code> if you want its tags).
+        Without it, the islands show but never start.
+    </p>
 
     <x-docs.cards>
         <x-docs.card href="/demo/islands" title="Open the islands demo" icon="bolt">A plain Blade page with four islands. Each starts in its own way, and its label shows whether it is waiting or live.</x-docs.card>

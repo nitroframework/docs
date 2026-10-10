@@ -27,7 +27,7 @@
 
     <ul>
         <li><strong>Every listener</strong> on the page hears an event by default. Use <code>-&gt;to(Toaster::class)</code> to reach only the components of that class, or <code>-&gt;self()</code> to reach only the component that dispatches it.</li>
-        <li><strong>Parameters</strong> are passed to the listener in order, as arguments.</li>
+        <li><strong>Parameters</strong> are passed to the listener in order, as arguments. You can name them for readability, <code>dispatch('post-saved', id: $post-&gt;id)</code>, but the names don't match them to the listener's parameters: the order does.</li>
         <li><strong>A listener</strong> runs in the browser, or on the server if it is a <code>#[Server]</code> method.</li>
         <li><strong>Events dispatched on the server</strong> by a <code>#[Server]</code> method arrive with its answer, and are dispatched in the browser at that point.</li>
     </ul>

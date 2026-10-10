@@ -53,6 +53,12 @@
     <x-docs.code src="route-todos.php" file="routes/web.php" />
 
     <p>
+        <code>&lt;x-layouts.app&gt;</code> is the layout you made in
+        <a nitro:navigate href="/docs/installation#install">Installation</a>, with <code>@@nitroScripts</code> in it.
+        If clicking does nothing, that line is the first thing to check.
+    </p>
+
+    <p>
         Now open <code>/todos</code>. The server renders the list with Blade, so the page arrives complete. The
         browser then takes over. Type a todo, press enter, and tick it off. Nothing is sent to the server until
         you press <strong>Save</strong>. If you reload after saving, the list is still there, because
