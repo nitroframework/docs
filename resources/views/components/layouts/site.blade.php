@@ -1,4 +1,4 @@
-@props(['title' => 'Nitro: write PHP, run it in the browser'])
+@props(['title' => 'Nitro: PHP components for Laravel that run in the browser'])
 
 <!DOCTYPE html>
 <html lang="en" class="h-full">

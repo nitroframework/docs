@@ -3,14 +3,14 @@
 return [
 
     /*
-    | What @nitroHead prints for a docs page: its title in this format, and the description of a
-    | page that does not set its own.
+    | What @nitroHead prints for a docs page: its title in this format, the description of a page
+    | that does not set its own, and the image link previews show (public/social.png).
     */
 
     'head' => [
         'title' => '%s · Nitro',
-        'description' => 'Nitro compiles Laravel components, PHP classes and Blade views, to JavaScript: methods run in the browser, #[Server] methods on the server.',
-        'image' => null,
+        'description' => 'PHP components for Laravel that run in the browser. Write the logic in PHP and the view in Blade, Vue, React, Solid or Svelte; Nitro compiles the PHP to JavaScript, and calls the server only when you ask it to.',
+        'image' => rtrim((string) env('APP_URL'), '/').'/social.png',
     ],
 
     /*

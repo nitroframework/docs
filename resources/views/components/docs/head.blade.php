@@ -6,12 +6,19 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 @if ($title === null)
-    {{-- A Nitro page: its title, description and canonical link (config/nitro.php's head). --}}
+    {{-- A Nitro page: its title, description, canonical link and link preview (config/nitro.php's head). --}}
     @nitroHead
 @else
     <title>{{ $title }}</title>
     <meta name="description" content="{{ config('nitro.head.description') }}">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ config('nitro.head.description') }}">
+    <meta property="og:image" content="{{ config('nitro.head.image') }}">
+    <meta name="twitter:card" content="summary_large_image">
 @endif
+<meta property="og:site_name" content="Nitro">
+<meta property="og:type" content="website">
 {{-- The theme before the first paint: no flash of the wrong one. --}}
 <script>
     (() => {
