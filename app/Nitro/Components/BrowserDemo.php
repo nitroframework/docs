@@ -39,7 +39,7 @@ class BrowserDemo extends Component
 
     public function draw(): void
     {
-        $canvas = Nitro::browser()->canvas('chart')->size(260, 110)->clear()->fillStyle('#8b5cf6');
+        $canvas = Nitro::browser()->canvas('chart')->size(260, 110)->clear()->fillStyle('#3b82f6');
 
         foreach ($this->values as $i => $value) {
             $canvas->fillRect(12 + $i * 62, 108 - $value * 10, 46, $value * 10);

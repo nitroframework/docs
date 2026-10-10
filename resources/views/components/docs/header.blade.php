@@ -1,6 +1,6 @@
 @props(['drawer' => false, 'active' => null])
 
-<header class="sticky top-0 z-40 border-b border-slate-900/[0.06] bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/70 dark:border-white/[0.06] dark:bg-slate-950/75">
+<header class="sticky top-0 z-40 border-b border-slate-900/[0.06] bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/70 dark:border-white/[0.06] dark:bg-ink/75">
     <div class="mx-auto flex h-16 max-w-[90rem] items-center gap-4 px-4 sm:px-6 lg:px-8">
         @if ($drawer)
             <button type="button" data-drawer-open class="-ml-1 rounded-md p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900 lg:hidden dark:hover:bg-white/5 dark:hover:text-white" aria-label="Open navigation">
