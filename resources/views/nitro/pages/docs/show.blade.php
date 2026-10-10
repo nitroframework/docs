@@ -44,13 +44,13 @@
     {{-- Previous / next --}}
     <nav class="mt-16 grid gap-4 border-t border-slate-200 pt-8 sm:grid-cols-2 dark:border-white/10">
         @if ($prev)
-            <a nitro:navigate href="/docs/{{ $prev['slug'] }}" rel="prev" class="group rounded-xl p-4 ring-1 ring-slate-200 transition hover:ring-slate-300 dark:ring-white/10 dark:hover:ring-white/20">
+            <a nitro:navigate nitro:prefetch href="/docs/{{ $prev['slug'] }}" rel="prev" class="group rounded-xl p-4 ring-1 ring-slate-200 transition hover:ring-slate-300 dark:ring-white/10 dark:hover:ring-white/20">
                 <span class="text-xs text-slate-500">← Previous</span>
                 <span class="mt-1 block font-semibold text-slate-900 group-hover:text-browser-600 dark:text-white dark:group-hover:text-browser-400">{{ $prev['title'] }}</span>
             </a>
         @endif
         @if ($next)
-            <a nitro:navigate href="/docs/{{ $next['slug'] }}" rel="next" class="group rounded-xl p-4 text-right ring-1 ring-slate-200 transition hover:ring-slate-300 sm:col-start-2 dark:ring-white/10 dark:hover:ring-white/20">
+            <a nitro:navigate nitro:prefetch href="/docs/{{ $next['slug'] }}" rel="next" class="group rounded-xl p-4 text-right ring-1 ring-slate-200 transition hover:ring-slate-300 sm:col-start-2 dark:ring-white/10 dark:hover:ring-white/20">
                 <span class="text-xs text-slate-500">Next →</span>
                 <span class="mt-1 block font-semibold text-slate-900 group-hover:text-browser-600 dark:text-white dark:group-hover:text-browser-400">{{ $next['title'] }}</span>
             </a>

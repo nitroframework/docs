@@ -10,7 +10,7 @@
     ];
 @endphp
 
-<a nitro:navigate href="{{ $href }}" {{ $attributes->class('group relative flex gap-4 rounded-xl p-4 ring-1 ring-slate-200 transition hover:bg-slate-50 hover:ring-slate-300 dark:ring-white/10 dark:hover:bg-white/[0.03] dark:hover:ring-white/20') }}>
+<a nitro:navigate nitro:prefetch href="{{ $href }}" {{ $attributes->class('group relative flex gap-4 rounded-xl p-4 ring-1 ring-slate-200 transition hover:bg-slate-50 hover:ring-slate-300 dark:ring-white/10 dark:hover:bg-white/[0.03] dark:hover:ring-white/20') }}>
     <span class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200 transition group-hover:ring-browser-300 dark:bg-white/5 dark:ring-white/10 dark:group-hover:ring-browser-400/40">
         <svg class="size-5 text-slate-600 transition group-hover:text-browser-600 dark:text-slate-300 dark:group-hover:text-browser-400" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">{!! $icons[$icon] ?? $icons['arrow'] !!}</svg>
     </span>
