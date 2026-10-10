@@ -2642,16 +2642,16 @@
         },
         {
             "name": "nitro/nitro",
-            "version": "v2.0.0",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nitroframework/nitro.git",
-                "reference": "cf6f14587de8d71251c1fc3128643a6d3b42cc97"
+                "reference": "324d6c3fcd828b3c9a2f9e516f3883f51234b467"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/cf6f14587de8d71251c1fc3128643a6d3b42cc97",
-                "reference": "cf6f14587de8d71251c1fc3128643a6d3b42cc97",
+                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/324d6c3fcd828b3c9a2f9e516f3883f51234b467",
+                "reference": "324d6c3fcd828b3c9a2f9e516f3883f51234b467",
                 "shasum": ""
             },
             "require": {
@@ -2692,7 +2692,7 @@
                 }
             ],
             "description": "A full-stack framework for Laravel. Write components in PHP and Blade; Nitro compiles them to JavaScript that runs in the browser, and calls the server only when you ask it to.",
-            "homepage": "https://github.com/nitroframework/nitro",
+            "homepage": "https://www.nitrophp.com",
             "keywords": [
                 "blade",
                 "compiler",
@@ -2704,10 +2704,11 @@
                 "reactive"
             ],
             "support": {
+                "docs": "https://www.nitrophp.com/docs",
                 "issues": "https://github.com/nitroframework/nitro/issues",
                 "source": "https://github.com/nitroframework/nitro"
             },
-            "time": "2026-10-10T20:44:37+00:00"
+            "time": "2026-10-10T23:20:27+00:00"
         },
         {
             "name": "nunomaduro/termwind",
