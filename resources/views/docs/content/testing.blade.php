@@ -45,6 +45,8 @@
             ['`where($key, $expected)`', 'The value is the one given, or passes the given closure'],
             ['`deferred(...$properties)`', 'The page leaves these properties for later'],
             ['`notDeferred()`', 'The page leaves nothing for later'],
+            ['`hasErrors(...$keys)`', 'There are validation messages for these properties (`form.email`), or any, when none are given'],
+            ['`hasNoErrors()`', 'There are no validation messages'],
             ['`state($key)`', 'Returns the state, or one value of it'],
             ['`name()`', 'Returns the page\'s name'],
         ];
@@ -61,6 +63,21 @@
         browser does, and <code>assertNitro()</code> reads either answer:
     </p>
     <x-docs.code src="testing-visit.php" />
+
+    <h2 id="calls">Calling a #[Server] method as the browser does</h2>
+    <p>
+        Calling a method on the class tests what it does. To test the call itself, with the signed state, the
+        <code>#[Validate]</code> rules and the page's middleware, send it the way the browser does. Add
+        <code>InteractsWithNitro</code> to your test, fetch the page, and call:
+    </p>
+    <x-docs.code src="testing-call.php" />
+
+    <ul>
+        <li><strong><code>callNitro($page, $method, $params, $updates)</code></strong> takes the page's signed state from the response, sets the properties in <code>$updates</code> as the browser would, and calls the method with <code>$params</code>. It goes through your test's own client, so <code>actingAs()</code> and the session hold.</li>
+        <li><strong>A component on the page</strong> rather than the page itself: name it, <code>callNitro($page, 'save', component: 'posts.comment-form')</code>.</li>
+        <li><strong>The answer</strong> reads with <code>assertNitro()</code>, as a page does: the new state, and <code>hasErrors()</code> when a rule refused it. A refused call still answers 200, with its messages.</li>
+        <li><strong>A production build on your machine</strong> (after <code>nitro:build</code>) names methods and properties by aliases. <code>callNitro()</code> and <code>assertNitro()</code> translate them, so your tests keep your names.</li>
+    </ul>
 
     <h2 id="build">Catching what can't run in the browser</h2>
     <p>
