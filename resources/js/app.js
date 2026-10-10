@@ -183,7 +183,7 @@ async function showResults(value) {
 
 function searchNote(text) {
     const note = document.createElement('p');
-    note.className = 'px-3 py-6 text-center text-sm text-zinc-500';
+    note.className = 'px-3 py-6 text-center text-sm text-slate-500';
     note.textContent = text;
     return note;
 }
@@ -347,6 +347,8 @@ function init() {
             panel.hidden = !panel.hidden;
             toggle.setAttribute('aria-expanded', String(!panel.hidden));
         });
+            }
+        });
     }
 
     for (const button of $$('[data-copy]')) {
@@ -379,6 +381,18 @@ function init() {
         $('[data-drawer-close]')?.addEventListener('click', () => setDrawer(false));
         backdrop?.addEventListener('click', () => setDrawer(false));
     }
+
+    startVeins();
+}
+
+// ------------------------------------------------------------------ the homepage's veins
+
+/** The lines behind the hero run while they are in view (app.css, .veins). */
+function startVeins() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => entry.target.classList.toggle('is-live', entry.isIntersecting));
+    }, { threshold: 0.2 });
+    $$('.veins').forEach((veins) => observer.observe(veins));
 }
 
 init();
