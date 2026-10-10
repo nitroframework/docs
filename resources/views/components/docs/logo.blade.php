@@ -10,5 +10,5 @@
         <circle cx="20" cy="16" r="8.5" fill="#8b5cf6" fill-opacity=".9"/>
         <path d="M16 8.6a8.5 8.5 0 0 1 0 14.8 8.5 8.5 0 0 1 0-14.8Z" fill="url(#nitro-mark)"/>
     </svg>
-    <span class="text-[17px] font-semibold tracking-tight text-zinc-900 dark:text-white">Nitro</span>
+    <span class="text-[17px] font-semibold tracking-tight text-slate-900 dark:text-white">Nitro</span>
 </span>

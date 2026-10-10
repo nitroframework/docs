@@ -5,13 +5,13 @@
 
     <label class="block space-y-1">
         <span class="font-medium">Name</span>
-        <input nitro:model.trim="name" @class(['w-full rounded-lg bg-white px-3 py-2 ring-1 outline-none focus:ring-2 focus:ring-violet-500 dark:bg-zinc-900', 'ring-red-400' => $errors->has('name'), 'ring-zinc-300 dark:ring-white/15' => ! $errors->has('name')])>
+        <input nitro:model.trim="name" @class(['w-full rounded-lg bg-white px-3 py-2 ring-1 outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900', 'ring-red-400' => $errors->has('name'), 'ring-slate-300 dark:ring-white/15' => ! $errors->has('name')])>
         @error('name') <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span> @enderror
     </label>
 
     <label class="block space-y-1">
         <span class="font-medium">Email</span>
-        <input type="email" nitro:model.blur="email" @class(['w-full rounded-lg bg-white px-3 py-2 ring-1 outline-none focus:ring-2 focus:ring-violet-500 dark:bg-zinc-900', 'ring-red-400' => $errors->has('email'), 'ring-zinc-300 dark:ring-white/15' => ! $errors->has('email')])>
+        <input type="email" nitro:model.blur="email" @class(['w-full rounded-lg bg-white px-3 py-2 ring-1 outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900', 'ring-red-400' => $errors->has('email'), 'ring-slate-300 dark:ring-white/15' => ! $errors->has('email')])>
         @if (! $this->emailLooksRight)
             <span class="text-xs text-amber-600 dark:text-amber-400">That does not look like an email address yet.</span>
         @endif
@@ -31,7 +31,7 @@
     </label>
     @error('terms') <span class="block text-xs text-red-600 dark:text-red-400">{{ $message }}</span> @enderror
 
-    <button class="rounded-lg bg-zinc-900 px-3 py-2 font-semibold text-white disabled:opacity-50 dark:bg-white dark:text-zinc-900" nitro:loading.attr="disabled">
+    <button class="rounded-lg bg-slate-900 px-3 py-2 font-semibold text-white disabled:opacity-50 dark:bg-white dark:text-slate-900" nitro:loading.attr="disabled">
         <span nitro:loading.remove>Sign up</span>
         <span nitro:loading>Signing up…</span>
     </button>
