@@ -218,6 +218,14 @@
 
     <p>The bar's markup is <code>#nprogress .bar</code>, so existing NProgress styles apply to it.</p>
 
+    <h3 id="your-own-bar">Using your own bar</h3>
+    <p>
+        To use another bar, such as NProgress itself, set <code>show</code> to <code>false</code> and drive it from
+        the events Nitro sends: <code>nitro:navigating</code> when a visit starts and <code>nitro:navigated</code>
+        when the new page shows.
+    </p>
+    <x-docs.code src="navigate-nprogress.js" lang="js" />
+
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
         <x-docs.card href="/docs/head" title="The page's head" icon="book">Set titles, descriptions and link previews on every visit.</x-docs.card>
