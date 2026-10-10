@@ -1,6 +1,6 @@
 # Nitro documentation
 
-**Read the docs: [nitro-docs.laravel.cloud](https://nitro-docs.laravel.cloud/)**
+**Read the docs: [nitrophp.com](https://www.nitrophp.com)**
 
 The documentation site for [Nitro](https://github.com/nitroframework/nitro): PHP components for
 Laravel that run in the browser. Write a component's logic in PHP and its view in Blade, Vue,
