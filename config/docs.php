@@ -2,9 +2,9 @@
 
 return [
 
-    'version' => '0.x',
+    'version' => '2.x',
 
-    'github' => 'https://github.com/ZeeshanX4/nitro-fusion',
+    'github' => 'https://github.com/nitroframework/nitro',
 
     /**
      * Search (⌘K). When a result on another page is opened, the dialog closes 'before' the visit
