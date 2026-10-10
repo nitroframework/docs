@@ -108,8 +108,8 @@
     @apply absolute top-1/2 right-3 -translate-y-1/2 rounded bg-server-500/15 px-1.5 font-sans text-[10px] leading-4 font-semibold tracking-wide text-server-700 uppercase dark:text-server-300;
 }
 
-.dark .code-frame pre.phiki,
-.dark .code-frame pre.phiki span {
+/* The block's own colour in the dark theme; its tokens have theirs as classes (App\Docs\Code::css()). */
+.dark .code-frame pre.phiki {
     color: var(--phiki-dark-color) !important;
 }
 

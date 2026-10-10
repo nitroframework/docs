@@ -1,7 +1,8 @@
 @props(['class', 'view', 'component' => null])
 
 @php
-    $compiled = $component ? \App\Docs\Code::compiled($component) : null;
+    /** $component is Blade's own (the component) when the prop is not given: only a name counts. */
+    $compiled = is_string($component) ? $component : null;
     $classFile = basename($class);
     $viewFile = basename($view);
 @endphp
@@ -27,8 +28,9 @@
                 <span class="text-slate-400 dark:text-slate-500">what the browser runs, from Nitro's compiler</span>
                 <x-docs.badge runs="browser" class="ml-auto" />
             </button>
-            <div data-compiled hidden class="max-h-96 overflow-auto border-t border-dashed border-slate-200 bg-white/60 dark:border-white/10 dark:bg-black/20">
-                <x-docs.code :code="$compiled" lang="js" bare />
+            {{-- Filled from /docs/compiled/{component} the first time it opens (resources/js/app.js). --}}
+            <div data-compiled="{{ $compiled }}" hidden class="max-h-96 overflow-auto border-t border-dashed border-slate-200 bg-white/60 dark:border-white/10 dark:bg-black/20">
+                <p class="px-5 py-4 text-xs text-slate-500">Compiling…</p>
             </div>
         </div>
     @endif

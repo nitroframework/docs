@@ -346,7 +346,15 @@ function init() {
             const panel = toggle.nextElementSibling;
             panel.hidden = !panel.hidden;
             toggle.setAttribute('aria-expanded', String(!panel.hidden));
-        });
+            if (!panel.hidden && !panel.dataset.loaded) {
+                panel.dataset.loaded = 'true';
+                fetch(`/docs/compiled/${panel.dataset.compiled}`)
+                    .then((response) => (response.ok ? response.text() : Promise.reject(response)))
+                    .then((html) => { panel.innerHTML = html; })
+                    .catch(() => {
+                        delete panel.dataset.loaded;
+                        panel.querySelector('p').textContent = 'Could not load the compiled code.';
+                    });
             }
         });
     }

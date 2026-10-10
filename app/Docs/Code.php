@@ -32,7 +32,7 @@ final class Code
     public static function html(string $code, string $language, array $highlight = [], array $added = [], array $removed = []): string
     {
         /** Highlighting is slow (a grammar per token): kept by the code and its marks, worked out once. */
-        $key = 'docs:code:'.hash('xxh128', serialize([$code, $language, $highlight, $added, $removed, self::THEMES]));
+        $key = 'docs:code:'.hash('xxh128', serialize([$code, $language, $highlight, $added, $removed, self::THEMES, 'compact-2']));
 
         return Cache::store('file')->rememberForever($key, fn () => self::highlight($code, $language, $highlight, $added, $removed));
     }
@@ -56,6 +56,7 @@ final class Code
         }
 
         $n = 0;
+        $html = self::compact($html);
 
         return (string) preg_replace_callback('/<span class="line">/', function () use (&$n, $highlight, $added, $removed, $server) {
             $n++;
@@ -70,22 +71,83 @@ final class Code
         }, $html);
     }
 
-    /** What the browser runs for a component: its definition, from Nitro's own compiler. */
-    public static function compiled(string $component): string
+    /**
+     * Phiki's tokens with short classes in place of their inline styles: l-<hex> for the light
+     * theme's colour, d-<hex> for the dark one's, t-b and t-i for bold and italic (css() has the
+     * rules). A token in the block's own colours is plain text, and neighbours alike are one span.
+     */
+    private static function compact(string $html): string
     {
-        /** Compiling every component is slow: kept per build (the version changes with any component's files). */
-        $bundle = app(Bundle::class);
+        preg_match('/<pre[^>]* style="[^"]*?(?:^|;|")color: #([0-9a-fA-F]+)/', $html, $lightDefault);
+        preg_match('/--phiki-dark-color: #([0-9a-fA-F]+)/', $html, $darkDefault);
+        $lightDefault = strtolower($lightDefault[1] ?? '');
+        $darkDefault = strtolower($darkDefault[1] ?? '');
 
-        return Cache::store('file')->rememberForever('docs:compiled:'.$bundle->version().':'.$component, fn () => self::definition($bundle, $component));
+        $html = (string) preg_replace_callback('/<span class="token"(?: style="([^"]*)")?>([^<]*)<\/span>/', function (array $token) use ($lightDefault, $darkDefault) {
+            $style = $token[1];
+            $light = preg_match('/(?:^|;)color: #([0-9a-fA-F]+)/', $style, $l) === 1 ? strtolower($l[1]) : null;
+            $dark = preg_match('/--phiki-dark-color: #([0-9a-fA-F]+)/', $style, $d) === 1 ? strtolower($d[1]) : null;
+
+            /** The block's own colours, in both themes: nothing to say. */
+            if ($light === $lightDefault && ($dark ?? $darkDefault) === $darkDefault) {
+                $light = $dark = null;
+            }
+
+            $classes = array_filter([
+                $light !== null ? 'l-'.$light : null,
+                $light !== null || ($dark !== null && $dark !== $darkDefault) ? 'd-'.($dark ?? $darkDefault) : null,
+                str_contains($style, 'font-weight: bold') ? 't-b' : null,
+                str_contains($style, 'font-style: italic') ? 't-i' : null,
+            ]);
+
+            return $classes === [] || trim(html_entity_decode($token[2])) === '' ? $token[2] : '<span class="'.implode(' ', $classes).'">'.$token[2].'</span>';
+        }, $html);
+
+        do {
+            $html = (string) preg_replace('/(<span class="([^"]+)">[^<]*)<\/span><span class="\2">/', '$1', $html, -1, $merged);
+        } while ($merged > 0);
+
+        return $html;
     }
 
-    private static function definition(Bundle $bundle, string $component): string
+    /** The rules for compact()'s classes: every colour of both themes, worked out once. */
+    public static function css(): string
+    {
+        return Cache::store('file')->rememberForever('docs:code-css:'.implode(',', self::THEMES), function () {
+            $colours = fn (string $theme) => array_unique(array_map('strtolower', preg_match_all('/#([0-9a-fA-F]{6,8})\b/', (string) file_get_contents(base_path("vendor/phiki/phiki/resources/themes/{$theme}.json")), $m) ? $m[1] : []));
+
+            return implode('', [
+                ...array_map(fn ($hex) => ".code-frame .l-{$hex}{color:#{$hex}}", $colours(self::THEMES['light'])),
+                ...array_map(fn ($hex) => ".dark .code-frame .d-{$hex}{color:#{$hex}}", $colours(self::THEMES['dark'])),
+                '.code-frame .t-b{font-weight:700}.code-frame .t-i{font-style:italic}',
+            ]);
+        });
+    }
+
+    /**
+     * What the browser runs for a component: its definition, from Nitro's own compiler, or null
+     * for a name the bundle doesn't have. Fetched when its "Compiled" panel first opens.
+     */
+    public static function compiled(string $component): ?string
+    {
+        /** Compiling every component takes a moment: kept per build (the version changes with any component's files). */
+        $bundle = app(Bundle::class);
+        $key = 'docs:compiled:'.$bundle->version().':'.$component;
+
+        if (($definition = Cache::store('file')->get($key)) === null && ($definition = self::definition($bundle, $component)) !== null) {
+            Cache::store('file')->forever($key, $definition);
+        }
+
+        return $definition;
+    }
+
+    private static function definition(Bundle $bundle, string $component): ?string
     {
         $bundle = $bundle->compileAll()[''];
         $start = strpos($bundle, 'Nitro.define('.json_encode($component));
 
         if ($start === false) {
-            return '// '.$component.' is not compiled';
+            return null;
         }
 
         $end = strpos($bundle, "\n});", $start);

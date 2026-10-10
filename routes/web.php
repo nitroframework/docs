@@ -1,6 +1,7 @@
 <?php
 
 use App\Nitro\Pages\Docs\Show;
+use App\Http\Controllers\CompiledController;
 use App\Http\Controllers\SearchIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,9 @@ Route::view('/', 'home');
 
 /** Islands only exist in a plain Blade view: the Islands page's demo. */
 Route::view('/demo/islands', 'demo.islands');
+
+/** A component's compiled JavaScript, for a "Compiled" panel as it opens (App\Docs\Code::compiled()). */
+Route::get('/docs/compiled/{component}', CompiledController::class)->where('component', '[a-z0-9:.-]+');
 
 /** What ⌘K searches (App\Docs\SearchIndex). */
 Route::get('/docs/search.json', SearchIndexController::class);

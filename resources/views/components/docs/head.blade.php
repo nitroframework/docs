@@ -19,4 +19,6 @@
         document.documentElement.dataset.theme = theme;
     })();
 </script>
+{{-- The code blocks' token colours (App\Docs\Code::css()). --}}
+<style>{!! \App\Docs\Code::css() !!}</style>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
