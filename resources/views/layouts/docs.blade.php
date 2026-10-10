@@ -23,7 +23,7 @@
                         <ul class="space-y-0.5 border-l border-slate-200 dark:border-white/[0.07]">
                             @foreach ($pages as $pageSlug => $label)
                                 <li>
-                                    <a nitro:navigate nitro:prefetch nitro:current.exact="sidebar-current" href="{{ \App\Docs\Nav::url($pageSlug) }}" @class([
+                                    <a nitro:navigate nitro:current.exact="sidebar-current" href="{{ \App\Docs\Nav::url($pageSlug) }}" @class([
                                         'sidebar-link relative block py-1.5 pl-4 text-slate-600 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white',
                                         'sidebar-current' => request()->is(ltrim(\App\Docs\Nav::url($pageSlug), '/')),
                                     ])>{{ $label }}</a>
