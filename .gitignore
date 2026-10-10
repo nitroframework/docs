@@ -25,3 +25,7 @@ Thumbs.db
 /public/nitro
 /storage/framework/nitro
 /storage/framework/docs-search.json
+
+/frankenphp
+/frankenphp-worker.php
+/caddy
