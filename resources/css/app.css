@@ -216,8 +216,87 @@ html #nprogress .bar { background: linear-gradient(90deg, var(--color-cyan-400),
 .card-edge::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: inherit; filter: blur(18px); opacity: .22; }
 @keyframes edge-turn { to { --edge-angle: 360deg; } }
 
+/* The homepage's hero (components/home/mechanics): one 12s loop. Clicks on + at 22%, 32% and 42% count up in
+   the browser with no request; Save at 56% sends one request to the server and back. */
+.mech { --mech: 12s; }
+.mech-line { position: relative; display: inline-block; width: calc(100% + 2rem); margin-inline: -1rem; padding-inline: 1rem; border-radius: .375rem; }
+.mech-line--browser { animation: mech-line-browser var(--mech) infinite; }
+.mech-line--server { animation: mech-line-server var(--mech) infinite; }
+.mech-tag { display: none; position: absolute; right: .75rem; top: 50%; translate: 0 -50%; border-radius: 9999px; padding: 0 .45rem; font-family: var(--font-sans); font-size: 10px; font-weight: 600; line-height: 1.25rem; opacity: 0; }
+.mech-tag--browser { color: var(--color-browser-700); background: color-mix(in oklab, var(--color-browser-400) 22%, transparent); animation: mech-tag-browser var(--mech) infinite; }
+.mech-tag--server { color: var(--color-amber-700); background: color-mix(in oklab, var(--color-amber-400) 26%, transparent); animation: mech-tag-server var(--mech) infinite; }
+.dark .mech-tag--browser { color: var(--color-browser-300); }
+.dark .mech-tag--server { color: var(--color-amber-300); }
+@media (min-width: 40rem) { .mech-tag { display: inline-block; } }
+@keyframes mech-line-browser { 0%, 19% { background: transparent; } 21%, 49% { background: color-mix(in oklab, var(--color-browser-400) 14%, transparent); } 52%, 100% { background: transparent; } }
+@keyframes mech-line-server { 0%, 53% { background: transparent; } 55%, 84% { background: color-mix(in oklab, var(--color-amber-400) 16%, transparent); } 87%, 100% { background: transparent; } }
+@keyframes mech-tag-browser { 0%, 19% { opacity: 0; } 21%, 49% { opacity: 1; } 52%, 100% { opacity: 0; } }
+@keyframes mech-tag-server { 0%, 53% { opacity: 0; } 55%, 84% { opacity: 1; } 87%, 100% { opacity: 0; } }
+
+/* Compiled once: dots falling from the PHP into the browser. */
+.mech-flow span { position: absolute; left: 50%; top: 0; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 9999px; background: var(--color-browser-500); box-shadow: 0 0 8px var(--color-browser-400); animation: mech-fall 1.8s linear infinite; }
+.mech-flow span:nth-child(2) { animation-delay: .6s; }
+.mech-flow span:nth-child(3) { animation-delay: 1.2s; }
+@keyframes mech-fall { from { top: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { top: 100%; opacity: 0; } }
+
+/* The count: a column of digits, moved up one on each click. */
+.mech-count { display: inline-block; height: 1em; line-height: 1; overflow: hidden; }
+.mech-count > span { display: block; animation: mech-count var(--mech) infinite; }
+.mech-count > span > span { display: block; height: 1em; }
+@keyframes mech-count {
+    0%, 22% { transform: translateY(0); }
+    23%, 32% { transform: translateY(-1em); }
+    33%, 42% { transform: translateY(-2em); }
+    43%, 90% { transform: translateY(-3em); }
+    92%, 100% { transform: translateY(-4em); }
+}
+
+/* The buttons, pressed. */
+.mech-btn { display: inline-block; }
+.mech-btn--plus { animation: mech-press-plus var(--mech) infinite; }
+.mech-btn--save { animation: mech-press-save var(--mech) infinite; }
+@keyframes mech-press-plus {
+    0%, 20.5%, 23.5%, 30.5%, 33.5%, 40.5%, 43.5%, 100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; }
+    22%, 32%, 42% { transform: scale(.9); box-shadow: 0 0 0 5px color-mix(in oklab, var(--color-browser-400) 35%, transparent); }
+}
+@keyframes mech-press-save {
+    0%, 54.5%, 57.5%, 100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; }
+    56% { transform: scale(.9); box-shadow: 0 0 0 5px color-mix(in oklab, var(--color-amber-400) 40%, transparent); }
+}
+
+/* The requests line under the browser. */
+.mech-requests { position: relative; height: 2.1rem; }
+.mech-requests > span { position: absolute; inset-inline: 1rem; top: 50%; translate: 0 -50%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mech-requests--none { animation: mech-requests-none var(--mech) infinite; }
+.mech-requests--one { animation: mech-requests-one var(--mech) infinite; }
+@keyframes mech-requests-none { 0%, 62% { opacity: 1; } 64%, 90% { opacity: 0; } 92%, 100% { opacity: 1; } }
+@keyframes mech-requests-one { 0%, 62% { opacity: 0; } 64%, 90% { opacity: 1; } 92%, 100% { opacity: 0; } }
+
+/* save(): a packet to the server and back. */
+.mech-wire > span { position: absolute; top: 50%; left: 0; width: 8px; height: 8px; margin-top: -4px; border-radius: 9999px; background: var(--color-amber-400); box-shadow: 0 0 10px var(--color-amber-400); opacity: 0; animation: mech-packet var(--mech) infinite; }
+@keyframes mech-packet {
+    0%, 56% { left: 0; opacity: 0; }
+    57% { left: 0; opacity: 1; }
+    64% { left: calc(100% - 8px); opacity: 1; }
+    65%, 70% { left: calc(100% - 8px); opacity: 0; }
+    71% { left: calc(100% - 8px); opacity: 1; }
+    78% { left: 0; opacity: 1; }
+    79%, 100% { left: 0; opacity: 0; }
+}
+.mech-server { animation: mech-server var(--mech) infinite; }
+@keyframes mech-server {
+    0%, 63% { box-shadow: 0 0 0 0 transparent; }
+    65%, 71% { box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-amber-400) 45%, transparent), 0 0 24px color-mix(in oklab, var(--color-amber-400) 30%, transparent); }
+    74%, 100% { box-shadow: 0 0 0 0 transparent; }
+}
+.mech-saved { opacity: 0; animation: mech-saved var(--mech) infinite; }
+@keyframes mech-saved { 0%, 69% { opacity: 0; } 71%, 90% { opacity: 1; } 92%, 100% { opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
     .vein { animation: none; opacity: .35; stroke-dasharray: none; }
     .vein-scroll { animation: none; }
     .card-edge { animation: none; }
+    .mech *, .mech *::before { animation: none !important; }
+    .mech-tag, .mech-saved { opacity: 1; }
+    .mech-requests--one { opacity: 0; }
 }

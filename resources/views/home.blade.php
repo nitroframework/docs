@@ -56,24 +56,8 @@
                 <x-home.view-logos class="mt-10" />
             </div>
 
-            {{-- The code card: a component, and the component running --}}
-            <div class="min-w-0">
-                <div class="relative">
-                    <div class="card-edge" aria-hidden="true"></div>
-                    <div class="relative overflow-hidden rounded-[1.3rem] bg-white shadow-xl shadow-slate-900/5 dark:bg-slate-900 dark:shadow-black/20">
-                        {{-- Every panel the same height, so switching tabs never moves the page; long code lines scroll. --}}
-                        <x-docs.tabs class="!my-0 !rounded-none !ring-0 !bg-transparent [&_[data-tab]]:h-[24rem] [&_[data-tab]]:overflow-auto [&_[data-tab]]:[scrollbar-width:thin]">
-                            <x-docs.tab label="Preview"><nitro:post-search /></x-docs.tab>
-                            <x-docs.tab label="PostSearch.php"><x-docs.code src="home-search.php" highlight="3,13,14,15,16,17" bare /></x-docs.tab>
-                            <x-docs.tab label="post-search.blade.php"><x-docs.code src="home-search.blade.php" lang="blade" highlight="2" bare /></x-docs.tab>
-                        </x-docs.tabs>
-                    </div>
-                </div>
-                <p class="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-500">
-                    <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-browser-500"></span>Filtered in the browser, with no request</span>
-                    <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-amber-400"></span>Kept in the URL by <code class="font-mono">#[Url(as: 'q')]</code></span>
-                </p>
-            </div>
+            {{-- How Nitro works, moving: the PHP you write, compiled, running in the browser and calling the server --}}
+            <x-home.mechanics />
         </div>
     </section>
 
@@ -105,7 +89,19 @@
         </div>
 
         <div class="mt-20 space-y-24 lg:space-y-32">
-            <x-home.feature eyebrow="Forms" title="Laravel's validation, as you know it" runs="both">
+            <x-home.feature eyebrow="Search" title="Filtered as you type, kept in the URL" runs="browser">
+                Typing filters the list in the browser, with no request. <code>#[Url(as: 'q')]</code> keeps the
+                search in the address, so a refresh or a shared link shows the same results. Try a word like "forms".
+                <x-slot:code>
+                    <x-docs.tabs class="!my-0 !rounded-none !ring-0 !bg-transparent">
+                        <x-docs.tab label="PostSearch.php"><x-docs.code src="home-search.php" highlight="3,13,14,15,16,17" bare /></x-docs.tab>
+                        <x-docs.tab label="post-search.blade.php"><x-docs.code src="home-search.blade.php" lang="blade" highlight="2" bare /></x-docs.tab>
+                    </x-docs.tabs>
+                </x-slot:code>
+                <x-slot:demo><nitro:post-search /></x-slot:demo>
+            </x-home.feature>
+
+            <x-home.feature eyebrow="Forms" title="Laravel's validation, as you know it" runs="both" flip>
                 The rules sit on the property. The server checks them before your method runs, and the message
                 lands in <code>@@error</code>. <code>nitro:loading</code> covers the wait. Try a wrong address, then a right one.
                 <x-slot:code>
@@ -117,7 +113,7 @@
                 <x-slot:demo><nitro:subscribe /></x-slot:demo>
             </x-home.feature>
 
-            <x-home.feature eyebrow="Uploads" title="Files, previewed at once" runs="both" flip>
+            <x-home.feature eyebrow="Uploads" title="Files, previewed at once" runs="both">
                 Bind a file input like any other. The browser shows the preview before anything is saved; the
                 upload, the rules and the storage stay on the server.
                 <x-slot:code>
@@ -129,7 +125,7 @@
                 <x-slot:demo><nitro:photo-check /></x-slot:demo>
             </x-home.feature>
 
-            <x-home.feature eyebrow="Navigation" title="Pages without a reload" runs="browser">
+            <x-home.feature eyebrow="Navigation" title="Pages without a reload" runs="browser" flip>
                 <code>nitro:navigate</code> swaps the page in place and keeps back and forward working.
                 <code>nitro:prefetch</code> loads it when the pointer comes near, so the click is instant.
                 <x-slot:code>
