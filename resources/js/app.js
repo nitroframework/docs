@@ -21,17 +21,28 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => appl
 
 let headings = [];
 
-/** The section being read: the last heading above a line a third down the screen. */
+/**
+ * The section being read: the last heading above a line a third down the screen. At the bottom
+ * of the page, where a short last section never reaches that line: the section the address names
+ * (a link to it was followed) if it is on screen, else the last one on screen.
+ */
 function trackSection() {
     const line = innerHeight / 3;
     let current = headings[0]?.id;
     for (const heading of headings) {
         if (heading.getBoundingClientRect().top <= line) current = heading.id;
     }
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) {
+        const onScreen = headings.filter((heading) => heading.getBoundingClientRect().top < innerHeight);
+        const named = onScreen.find((heading) => `#${heading.id}` === decodeURIComponent(location.hash));
+        current = (named ?? onScreen.at(-1))?.id ?? current;
+    }
     for (const link of $$('[data-toc-link]')) link.classList.toggle('is-active', link.dataset.tocLink === current);
 }
 
 addEventListener('scroll', trackSection, { passive: true });
+/** A link to a section followed: the address names it once the browser has scrolled. */
+addEventListener('hashchange', trackSection);
 
 function buildToc() {
     const content = $('[data-content]');
