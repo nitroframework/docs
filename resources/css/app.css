@@ -203,7 +203,21 @@ html #nprogress .bar { background: linear-gradient(90deg, var(--color-cyan-400),
 .vein-scroll { transform-origin: top; animation: vein-fill linear both; animation-timeline: view(); animation-range: entry 10% exit 40%; }
 @keyframes vein-fill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 
+/* The homepage's code card: a thin light that travels round its edge, amber (the server) and blue
+   (the browser), with a faint glow. The card sits on top and leaves only the 1px edge showing. */
+@property --edge-angle { syntax: '<angle>'; initial-value: 0deg; inherits: true; }
+.card-edge {
+    position: absolute; inset: -1px; border-radius: 1.35rem;
+    background: conic-gradient(from var(--edge-angle),
+        transparent 0deg, var(--color-amber-400) 45deg, transparent 120deg,
+        transparent 180deg, var(--color-blue-500) 225deg, transparent 300deg);
+    animation: edge-turn 9s linear infinite;
+}
+.card-edge::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: inherit; filter: blur(18px); opacity: .22; }
+@keyframes edge-turn { to { --edge-angle: 360deg; } }
+
 @media (prefers-reduced-motion: reduce) {
     .vein { animation: none; opacity: .35; stroke-dasharray: none; }
     .vein-scroll { animation: none; }
+    .card-edge { animation: none; }
 }

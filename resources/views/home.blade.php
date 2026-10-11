@@ -28,7 +28,7 @@
             <div class="absolute inset-0 bg-[linear-gradient(to_right,var(--color-slate-200)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-slate-200)_1px,transparent_1px)] bg-[size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)] dark:bg-[linear-gradient(to_right,var(--color-slate-800)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-slate-800)_1px,transparent_1px)]"></div>
         </div>
 
-        <div class="mx-auto grid max-w-7xl items-center gap-14 px-6 pt-20 pb-24 lg:grid-cols-[1.05fr_1fr] lg:px-8 lg:pt-28">
+        <div class="mx-auto grid max-w-7xl items-center gap-14 px-6 pt-20 pb-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:px-8 lg:pt-28">
             <div>
                 <a nitro:navigate href="/docs" class="inline-flex items-center gap-2 rounded-full bg-white/70 py-1 pr-3 pl-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200 backdrop-blur hover:ring-slate-300 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10">
                     <span class="rounded-full px-2 py-0.5 text-[11px] font-semibold text-white nitro-gradient">New</span>
@@ -53,17 +53,21 @@
                         </button>
                     </div>
                 </div>
+                <x-home.view-logos class="mt-10" />
             </div>
 
             {{-- The code card: a component, and the component running --}}
-            <div class="relative">
-                <div class="absolute -inset-px rounded-[1.35rem] opacity-60 blur-sm nitro-gradient"></div>
-                <div class="relative overflow-hidden rounded-[1.3rem] bg-white shadow-2xl ring-1 ring-slate-900/5 dark:bg-slate-900 dark:ring-white/10">
-                    <x-docs.tabs class="!my-0 !rounded-none !ring-0 !bg-transparent">
-                        <x-docs.tab label="Preview"><nitro:post-search /></x-docs.tab>
-                        <x-docs.tab label="PostSearch.php"><x-docs.code src="home-search.php" highlight="3,13,14,15,16,17" bare /></x-docs.tab>
-                        <x-docs.tab label="post-search.blade.php"><x-docs.code src="home-search.blade.php" lang="blade" highlight="2" bare /></x-docs.tab>
-                    </x-docs.tabs>
+            <div class="min-w-0">
+                <div class="relative">
+                    <div class="card-edge" aria-hidden="true"></div>
+                    <div class="relative overflow-hidden rounded-[1.3rem] bg-white shadow-xl shadow-slate-900/5 dark:bg-slate-900 dark:shadow-black/20">
+                        {{-- Every panel the same height, so switching tabs never moves the page; long code lines scroll. --}}
+                        <x-docs.tabs class="!my-0 !rounded-none !ring-0 !bg-transparent [&_[data-tab]]:h-[24rem] [&_[data-tab]]:overflow-auto [&_[data-tab]]:[scrollbar-width:thin]">
+                            <x-docs.tab label="Preview"><nitro:post-search /></x-docs.tab>
+                            <x-docs.tab label="PostSearch.php"><x-docs.code src="home-search.php" highlight="3,13,14,15,16,17" bare /></x-docs.tab>
+                            <x-docs.tab label="post-search.blade.php"><x-docs.code src="home-search.blade.php" lang="blade" highlight="2" bare /></x-docs.tab>
+                        </x-docs.tabs>
+                    </div>
                 </div>
                 <p class="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-500">
                     <span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-browser-500"></span>Filtered in the browser, with no request</span>
