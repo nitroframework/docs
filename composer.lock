@@ -2642,16 +2642,16 @@
         },
         {
             "name": "nitro/nitro",
-            "version": "v2.0.2",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nitroframework/nitro.git",
-                "reference": "324d6c3fcd828b3c9a2f9e516f3883f51234b467"
+                "reference": "f0b3176eb2a3d14a0a1894cc614b3de9e6ee6781"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/324d6c3fcd828b3c9a2f9e516f3883f51234b467",
-                "reference": "324d6c3fcd828b3c9a2f9e516f3883f51234b467",
+                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/f0b3176eb2a3d14a0a1894cc614b3de9e6ee6781",
+                "reference": "f0b3176eb2a3d14a0a1894cc614b3de9e6ee6781",
                 "shasum": ""
             },
             "require": {
@@ -2708,7 +2708,13 @@
                 "issues": "https://github.com/nitroframework/nitro/issues",
                 "source": "https://github.com/nitroframework/nitro"
             },
-            "time": "2026-10-10T23:20:27+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/nitroframework",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-11T20:18:12+00:00"
         },
         {
             "name": "nunomaduro/termwind",
