@@ -36,6 +36,7 @@ return [
             'directives' => 'Directives',
             'sharing-state' => 'Sharing state',
             'browser-classes' => 'Browser classes and enums',
+            'attributes' => 'Attributes',
         ],
         'JavaScript views' => [
             'javascript-views' => 'Overview',
