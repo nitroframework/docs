@@ -21,6 +21,7 @@
             ['`components`', '`App\Nitro\Components`', 'The namespace, path and view path of components'],
             ['`pages`', '`App\Nitro\Pages`', 'The namespace, path and view path of pages'],
             ['`stores`', '`App\Nitro\Stores`', 'The namespace and path of stores'],
+            ['`namespaces`', '`[]`', 'A module\'s or a package\'s components, pages and stores, in folders of their own. See Modules and packages'],
             ['`layout`', '`components.layouts.app`', 'The layout of pages without `#[Layout]`'],
             ['`head`', '`\'%s\'`', 'The defaults of `@nitroHead`: the title format, the description and the link-preview image'],
             ['`persistent_middleware`', 'auth, can, verified, ...', 'The page middleware checked again on each `#[Server]` call'],

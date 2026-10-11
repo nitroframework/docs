@@ -66,6 +66,7 @@ return [
             'production' => 'Building for production',
             'configuration' => 'Configuration',
             'extending' => 'Extending Nitro',
+            'namespaces' => 'Modules and packages',
             'javascript' => 'JavaScript API',
             'testing' => 'Testing',
             'debugging' => 'Debugging',
