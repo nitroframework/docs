@@ -6,6 +6,8 @@ return [
 
     'github' => 'https://github.com/nitroframework/nitro',
 
+    'sponsor' => 'https://github.com/sponsors/nitroframework',
+
     /**
      * Search (⌘K). When a result on another page is opened, the dialog closes 'before' the visit
      * starts, or 'after' the new page is shown, marking the result as loading meanwhile.

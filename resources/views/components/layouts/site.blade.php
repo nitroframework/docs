@@ -24,6 +24,7 @@
             <nav class="flex gap-6">
                 <a nitro:navigate href="/docs" class="hover:text-slate-900 dark:hover:text-white">Docs</a>
                 <a href="{{ config('docs.github') }}" class="hover:text-slate-900 dark:hover:text-white">GitHub</a>
+                <a href="{{ config('docs.sponsor') }}" class="hover:text-slate-900 dark:hover:text-white">Sponsor</a>
             </nav>
         </div>
     </footer>
