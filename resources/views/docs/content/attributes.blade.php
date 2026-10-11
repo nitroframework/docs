@@ -1,13 +1,32 @@
 <x-docs.page
-    lead="Nitro's attributes, in one place: what each does, where it goes, and the page that explains it. A component works without any of them; each one changes a single thing."
+    lead="Attributes are how you tell Nitro what a part of your component is for. Mark a method #[Server] and it runs on your server instead of in the browser; mark a property #[Locked] and the browser can read it but never change it. This page brings every attribute together, so you can see at a glance what each one does and where to read more."
 >
+    <h2 id="why">What attributes do</h2>
     <p>
-        Attributes are PHP's own <code>#[...]</code> annotations. Nitro reads them when it builds your components,
-        so a mistake, such as one on the wrong kind of method, stops the build with the file and line rather than
-        failing in a visitor's browser. Each is in the <code>Nitro\Attributes</code> namespace.
+        A Nitro component works without any attributes at all, because Nitro has a sensible default for
+        everything. Its public properties are its state: the browser holds them, can change them, and sends them back
+        to the server with each call. Its methods run in the browser, compiled from your PHP, so clicks and typing
+        feel instant. Its view is the Blade view named after the class. For many components, that is all you need.
+    </p>
+    <p>
+        An attribute changes one of those defaults, for the one thing it is written on. A method that must touch the
+        database gets <code>#[Server]</code>. A property the browser should never change, such as an order's id, gets
+        <code>#[Locked]</code>. A page that should load its code only when someone visits it gets
+        <code>#[LazyLoad]</code>. Because each attribute sits right next to the code it affects, you can read a
+        component from top to bottom and see exactly how it behaves.
+    </p>
+    <p>
+        Attributes are PHP's own <code>#[...]</code> annotations, and Nitro's live in the <code>Nitro\Attributes</code>
+        namespace. Nitro reads them when it builds your components, not while your page runs. So a mistake, such as
+        <code>#[Server]</code> on a method that cannot be called from the browser, stops the build and names the file
+        and line, rather than failing later in a visitor's browser.
     </p>
 
     <h2 id="all">Every attribute</h2>
+    <p>
+        Here is every attribute, with where it goes and what it changes. The sections after the table show each group
+        in a real component, and link to the page that explains it in full.
+    </p>
 
     @php
         $all = [
