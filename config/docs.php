@@ -32,6 +32,7 @@ return [
             'server-methods' => 'Server methods',
             'lifecycle' => 'Lifecycle',
             'views' => 'Views',
+            'html' => 'Server-made HTML',
             'directives' => 'Directives',
             'sharing-state' => 'Sharing state',
             'browser-classes' => 'Browser classes and enums',

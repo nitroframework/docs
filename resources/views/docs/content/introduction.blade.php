@@ -41,6 +41,7 @@
         $places = [
             ['mount(), boot(), hydrate(), dehydrate()', 'On the server, when the component is created or called.', 'server'],
             ['#[Server] methods', 'On the server, when the browser calls them with the signed state.', 'server'],
+            ['#[Html] methods', 'On the server, whenever it sends the state: HTML for the view to place.', 'server'],
             ['All other methods, #[Computed], updated*()', 'In the browser, compiled to JavaScript.', 'browser'],
             ['The view', 'On the server for the first render, then in the browser.', 'both'],
         ];

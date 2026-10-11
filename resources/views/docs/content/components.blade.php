@@ -247,6 +247,7 @@
         $where = [
             ['`mount()`, `boot()`, `hydrate()`, `dehydrate()`, `exception()`', 'On the server'],
             ['`#[Server]` methods, and hooks marked `#[Server]`', 'On the server, when the browser calls them'],
+            ['`#[Html]` methods', 'On the server, whenever it sends the state (see Server-made HTML)'],
             ['Other methods, `#[Computed]` methods, `updating*()` and `updated*()` hooks, `mounted()`, `rendered()`, `destroyed()`', 'In the browser'],
             ['The view', 'On the server for the first render, then in the browser'],
         ];
