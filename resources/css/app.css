@@ -35,13 +35,18 @@
     --color-browser-700: var(--color-blue-700);
     --color-browser-900: var(--color-blue-900);
 
-    /* The dark theme's ground: a deep navy, under slate's greys. */
-    --color-ink: #0b1220;
+    /* The dark theme's ground: a soft navy, under slate's greys. */
+    --color-ink: #131a2a;
+}
+
+/* In the dark theme, white is a soft off-white: bright text on dark navy glares. */
+.dark {
+    --color-white: #e8edf5;
 }
 
 @layer base {
     html {
-        @apply scroll-pt-24 bg-white text-slate-700 antialiased dark:bg-ink dark:text-slate-300;
+        @apply scroll-pt-24 bg-white text-slate-700 antialiased dark:bg-ink dark:text-[#c4cbd9];
         font-feature-settings: 'cv11', 'ss01';
     }
 
