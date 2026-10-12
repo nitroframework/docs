@@ -12,7 +12,19 @@ use Phiki\Phiki;
  */
 final class Code
 {
-    private const THEMES = ['light' => 'github-light', 'dark' => 'github-dark-default'];
+    /** The light and dark themes (docs.code_themes): Phiki's, or the site's own in resources/docs/themes. */
+    private static function themes(): array
+    {
+        return config('docs.code_themes') ?? ['light' => 'github-light', 'dark' => 'github-dark-default'];
+    }
+
+    /** A theme's file: the site's own, else Phiki's. */
+    private static function themeFile(string $theme): string
+    {
+        $own = resource_path("docs/themes/{$theme}.json");
+
+        return is_file($own) ? $own : base_path("vendor/phiki/phiki/resources/themes/{$theme}.json");
+    }
 
     /** A file of the app (app/Nitro/..., resources/views/...), or a snippet from resources/docs/snippets. */
     public static function snippet(string $path): string
@@ -32,7 +44,7 @@ final class Code
     public static function html(string $code, string $language, array $highlight = [], array $added = [], array $removed = []): string
     {
         /** Highlighting is slow (a grammar per token): kept by the code and its marks, worked out once. */
-        $key = 'docs:code:'.hash('xxh128', serialize([$code, $language, $highlight, $added, $removed, self::THEMES, 'compact-2']));
+        $key = 'docs:code:'.hash('xxh128', serialize([$code, $language, $highlight, $added, $removed, self::themes(), 'compact-2']));
 
         return Cache::store('file')->rememberForever($key, fn () => self::highlight($code, $language, $highlight, $added, $removed));
     }
@@ -44,7 +56,15 @@ final class Code
      */
     private static function highlight(string $code, string $language, array $highlight, array $added, array $removed): string
     {
-        $html = (new Phiki)->codeToHtml($code, self::grammar($language), self::THEMES)->toString();
+        $phiki = new Phiki;
+
+        foreach (self::themes() as $theme) {
+            if (is_file(resource_path("docs/themes/{$theme}.json"))) {
+                $phiki->theme($theme, self::themeFile($theme));
+            }
+        }
+
+        $html = $phiki->codeToHtml($code, self::grammar($language), self::themes())->toString();
         $lines = explode("\n", $code);
         $server = [];
 
@@ -113,12 +133,14 @@ final class Code
     /** The rules for compact()'s classes: every colour of both themes, worked out once. */
     public static function css(): string
     {
-        return Cache::store('file')->rememberForever('docs:code-css:'.implode(',', self::THEMES), function () {
-            $colours = fn (string $theme) => array_unique(array_map('strtolower', preg_match_all('/#([0-9a-fA-F]{6,8})\b/', (string) file_get_contents(base_path("vendor/phiki/phiki/resources/themes/{$theme}.json")), $m) ? $m[1] : []));
+        $themes = self::themes();
+
+        return Cache::store('file')->rememberForever('docs:code-css:'.implode(',', $themes), function () use ($themes) {
+            $colours = fn (string $theme) => array_unique(array_map('strtolower', preg_match_all('/#([0-9a-fA-F]{6,8})\b/', (string) file_get_contents(self::themeFile($theme)), $m) ? $m[1] : []));
 
             return implode('', [
-                ...array_map(fn ($hex) => ".code-frame .l-{$hex}{color:#{$hex}}", $colours(self::THEMES['light'])),
-                ...array_map(fn ($hex) => ".dark .code-frame .d-{$hex}{color:#{$hex}}", $colours(self::THEMES['dark'])),
+                ...array_map(fn ($hex) => ".code-frame .l-{$hex}{color:#{$hex}}", $colours($themes['light'])),
+                ...array_map(fn ($hex) => ".dark .code-frame .d-{$hex}{color:#{$hex}}", $colours($themes['dark'])),
                 '.code-frame .t-b{font-weight:700}.code-frame .t-i{font-style:italic}',
             ]);
         });

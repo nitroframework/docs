@@ -8,6 +8,9 @@ return [
 
     'sponsor' => 'https://github.com/sponsors/nitroframework',
 
+    /** The code blocks' colours, light and dark (App\Docs\Code): Nitro's own, in resources/docs/themes. */
+    'code_themes' => ['light' => 'nitro-light', 'dark' => 'nitro-dark'],
+
     /**
      * Search (⌘K). When a result on another page is opened, the dialog closes 'before' the visit
      * starts, or 'after' the new page is shown, marking the result as loading meanwhile.
