@@ -1,4 +1,4 @@
-@props(['title' => 'Nitro: PHP components for Laravel that run in the browser'])
+@props(['title' => 'Nitro: PHP components for Laravel that run in the browser', 'fullFooter' => false])
 
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -15,7 +15,7 @@
 
     {{ $slot }}
 
-    <x-docs.footer />
+    <x-docs.footer :full="$fullFooter" />
 
     <x-docs.search />
 
