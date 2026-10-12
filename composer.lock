@@ -2642,16 +2642,16 @@
         },
         {
             "name": "nitro/nitro",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nitroframework/nitro.git",
-                "reference": "f5832a49279ee4d74c0749b55ebe994ed7531065"
+                "reference": "f5c2f20725773588ba65b99f3f5ad1f4d738339a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/f5832a49279ee4d74c0749b55ebe994ed7531065",
-                "reference": "f5832a49279ee4d74c0749b55ebe994ed7531065",
+                "url": "https://api.github.com/repos/nitroframework/nitro/zipball/f5c2f20725773588ba65b99f3f5ad1f4d738339a",
+                "reference": "f5c2f20725773588ba65b99f3f5ad1f4d738339a",
                 "shasum": ""
             },
             "require": {
@@ -2714,7 +2714,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-12T07:12:30+00:00"
+            "time": "2026-10-12T07:52:22+00:00"
         },
         {
             "name": "nunomaduro/termwind",
