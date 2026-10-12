@@ -1,4 +1,3 @@
-window.addEventListener('nitro:error', (event) => {
-    const { component, message, status } = event.detail;
+Nitro.hook('error', ({ component, message, status }) => {
     Sentry.captureMessage(message, { extra: { component: component?.name, status } });
 });

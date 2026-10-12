@@ -16,7 +16,7 @@
             ['Requests', 'Each `#[Server]` call, reload and upload: the component, the method, the status, the total time, the time on the server and in the database, and the size of the answer. The latest hundred are kept'],
             ['Page', 'The URL, the layout, and the size of the page\'s data: each component\'s state and the globals, so you can see what makes a page heavy'],
             ['Stores', 'Each store made in this tab, and its values as they change'],
-            ['Errors', 'What failed in the browser: a call, a render, a handler, with its message (the `nitro:error` event). The badge counts them'],
+            ['Errors', 'What failed in the browser: a call, a render, a handler, with its message (the `error` hook). The badge counts them'],
         ];
     @endphp
     <x-docs.table :columns="['Tab', 'Shows']" :rows="$tabs" />
@@ -77,6 +77,6 @@
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
         <x-docs.card href="/docs/testing" title="Testing" icon="code">Test methods as plain PHP, and what a page sends the browser.</x-docs.card>
-        <x-docs.card href="/docs/javascript" title="JavaScript API" icon="code">nitro:error, nitro:request and the runtime's other events.</x-docs.card>
+        <x-docs.card href="/docs/hooks" title="Hooks" icon="code">error, beforeRequest and the runtime's other moments.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

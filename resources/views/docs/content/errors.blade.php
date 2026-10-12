@@ -80,8 +80,9 @@
     <h2 id="reporting">Reporting</h2>
     <p>
         Every failure that becomes a fallback goes to Laravel's exception handler, so your logs, Sentry, Flare or
-        Nightwatch see it as they see any other error, with its stack trace. In the browser, Nitro dispatches
-        <code>nitro:error</code> on the window for each failure there, with the component and the message:
+        Nightwatch see it as they see any other error, with its stack trace. In the browser, each failure there
+        comes through the <code>error</code> <a nitro:navigate href="/docs/hooks">hook</a>, with the component and the
+        message:
     </p>
 
     <x-docs.code src="fallback-error-event.js" lang="js" />
@@ -89,6 +90,6 @@
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
         <x-docs.card href="/docs/lifecycle" title="Lifecycle" icon="cycle" runs="both">Every hook, exception() included, and where each runs.</x-docs.card>
-        <x-docs.card href="/docs/javascript" title="JavaScript API" icon="code">nitro:error and the runtime's other events.</x-docs.card>
+        <x-docs.card href="/docs/hooks" title="Hooks" icon="code">The error hook and the runtime's other moments.</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

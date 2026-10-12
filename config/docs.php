@@ -70,6 +70,7 @@ return [
             'extending' => 'Extending Nitro',
             'namespaces' => 'Modules and packages',
             'javascript' => 'JavaScript API',
+            'hooks' => 'Hooks',
             'testing' => 'Testing',
             'debugging' => 'Debugging',
             'security' => 'Security',

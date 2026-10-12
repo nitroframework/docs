@@ -2,9 +2,9 @@
  * nitro:autosize: a textarea that grows with its text. Its value is the most lines it grows to,
  * nitro:autosize="8"; past that, it scrolls.
  *
- * This file loads before Nitro does, so it registers the directive when Nitro is starting.
+ * This file loads before Nitro does, so it registers the directive at nitro:init, before any component starts.
  */
-document.addEventListener('nitro:starting', ({ detail: { Nitro } }) => {
+document.addEventListener('nitro:init', ({ detail: { Nitro } }) => {
     Nitro.directive('autosize', ({ el, value }) => {
         const style = getComputedStyle(el);
         const line = parseFloat(style.lineHeight) || 20;

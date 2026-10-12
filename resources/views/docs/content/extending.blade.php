@@ -38,7 +38,7 @@
     <p>
         A script that runs after <code>@@nitroScripts</code> can call <code>Nitro.directive()</code> directly. A
         script that runs before it, such as a Vite module in the page's <code>&lt;head&gt;</code>, should register in
-        a <code>nitro:starting</code> listener, as the example above does. Nitro fires that event on
+        a <code>nitro:init</code> listener, as the example above does. Nitro fires that event on
         <code>document</code> just before any component starts. A directive you register later still runs on the
         elements already on the page.
     </p>
@@ -57,30 +57,26 @@
 
     <h2 id="plugins">Writing plugins</h2>
     <p>
-        A plugin listens to Nitro's runtime in the browser: its events, by name, with <code>on()</code>. Pass a function to <code>Nitro.use()</code>, and Nitro
-        calls it once with the plugin API:
+        A plugin packages what you add to the runtime in the browser: listeners and your own attributes, used as
+        one. Pass a function to <code>Nitro.use()</code>, and Nitro calls it once with the plugin API:
+        <code>on()</code>, which is <code>Nitro.hook()</code>, and <code>directive()</code>, which is
+        <code>Nitro.directive()</code>.
     </p>
 
     <x-docs.code src="extending-plugin.js" lang="js" />
 
-    @php
-        $events = [
-            ['`component`', 'A component started in the page: `{ name, el, dispatch(event, ...params) }`'],
-            ['`render`', 'The same component, after each render'],
-            ['`store`', 'A store was made in this tab: `{ name, persist, sync, get(property), set(property, value), onChange(listener) }`'],
-            ['`request`', 'Before a component\'s request: a `#[Server]` call (`method` is its name), a partial reload (`$reload`) or an upload (`$upload`): `{ component, method, headers }`'],
-            ['`response`', 'When the answer arrives: `{ component, method, status }`, with `0` when none arrived'],
-        ];
-    @endphp
-    <x-docs.table :columns="['Event', 'Called with']" :rows="$events" />
+    <p>
+        A plugin listens to the same moments as any code on the page: <a nitro:navigate href="/docs/hooks">Hooks</a>
+        lists them, with what each gives you.
+    </p>
 
     <ul>
         <li><strong>Removing a listener.</strong> <code>on()</code> returns a function that removes the listener.</li>
-        <li><strong>Late plugins catch up.</strong> A <code>component</code> or <code>store</code> listener also hears the components and stores already on the page.</li>
-        <li><strong>Headers.</strong> A <code>request</code> listener can add headers, but it can't change Nitro's own, such as the CSRF token.</li>
-        <li><strong>Store values</strong> are JSON-safe, in the form the server sends them. <code>set()</code> counts as the browser's own change, so the server checks it on the next call.</li>
-        <li><strong>Errors are contained.</strong> A listener that throws is reported with <code>nitro:error</code>, and the other listeners still run.</li>
-        <li><strong>Names are the browser's.</strong> In an obfuscated build, methods and properties go by their aliases.</li>
+        <li><strong>Late plugins catch up.</strong> A <code>component.initialized</code> or <code>store.initialized</code> listener also hears the components and stores already on the page.</li>
+        <li><strong>Headers.</strong> A <code>beforeRequest</code> listener can add headers, but it can't change Nitro's own, such as the CSRF token.</li>
+        <li><strong>Errors are contained.</strong> A listener that throws is reported through the <code>error</code> hook, and the other listeners still run.</li>
+        <li><strong>Once.</strong> A plugin used twice runs once.</li>
+        <li><strong>Earlier names.</strong> The names plugins used before hooks, <code>component</code>, <code>render</code>, <code>store</code>, <code>request</code> and <code>response</code>, still work.</li>
     </ul>
 
     <x-docs.callout type="tip" title="Nitro uses this API too">

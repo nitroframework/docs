@@ -60,7 +60,8 @@
 
     <p>
         When a call is refused with a 419, the page reloads with fresh state. To do something else instead, listen
-        for the <code>nitro:expired</code> event and call <code>preventDefault()</code>:
+        with the <code>expired</code> <a nitro:navigate href="/docs/hooks#messages">hook</a> and call
+        <code>preventDefault()</code>:
     </p>
     <x-docs.code src="security-expired.js" lang="js" />
 

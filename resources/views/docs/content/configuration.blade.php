@@ -70,8 +70,9 @@
         live only in this file.
     </p>
     <p>
-        To use a different progress bar, set <code>show</code> to <code>false</code>. Then start your own bar on the
-        <code>nitro:navigating</code> event and finish it on <code>nitro:navigated</code>.
+        To use a different progress bar, set <code>show</code> to <code>false</code>. Then start your own bar in a
+        <code>beforeNavigate</code> hook and finish it in <code>afterNavigate</code> (see
+        <a nitro:navigate href="/docs/navigation#your-own-bar">Using your own bar</a>).
     </p>
 
     <x-docs.callout type="tip" title="After changing configuration">

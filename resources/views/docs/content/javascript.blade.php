@@ -2,15 +2,15 @@
     lead="Your components need no JavaScript of your own. When the rest of your page does, such as analytics, an error tracker or a widget, the Nitro object and the runtime's browser events let it work with your components."
 >
     <p>
-        The runtime puts one object on the page, <code>window.Nitro</code>, and dispatches browser events as things
-        happen. This page lists both. To add your own <code>nitro:</code> attributes or listen to every component,
-        see <a href="/docs/extending">Extending Nitro</a>.
+        The runtime puts one object on the page, <code>window.Nitro</code>, and announces what it does as
+        <a nitro:navigate href="/docs/hooks">hooks</a>. This page covers the object. To add your own
+        <code>nitro:</code> attributes or plugins, see <a href="/docs/extending">Extending Nitro</a>.
     </p>
 
     <h2 id="starting">Running code before components start</h2>
     <p>
         A script loaded before <code>@@nitroScripts</code> can't use <code>Nitro</code> yet. Listen for
-        <code>nitro:starting</code> on the document instead. It fires once, after every script has loaded and before
+        <code>nitro:init</code> on the document instead. It fires once, after every script has loaded and before
         any component starts:
     </p>
 
@@ -25,6 +25,7 @@
             ['`Nitro.components()`', 'The components on the page'],
             ['`Nitro.find(id)`', 'One component, by its `nitro:id`, or `null`'],
             ['`Nitro.directive(name, fn)`', 'Registers your own `nitro:` attribute'],
+            ['`Nitro.hook(name, listener)`', 'Listens to one of the runtime\'s moments (see Hooks); returns a function that removes the listener'],
             ['`Nitro.use(plugin)`', 'Adds a plugin that runs around every component'],
             ['`Nitro.engine(name, { load, mount })`', 'Adds a view engine: components whose view is written for it. Vue, React, Solid and Svelte have theirs; see "A view engine of your own" below'],
         ];
@@ -52,22 +53,17 @@
     @endphp
     <x-docs.table :columns="['Member', 'What it is']" :rows="$component" />
 
-    <h2 id="events">Listening for events</h2>
-    <p>The runtime dispatches these events on the window. Each one carries its details in <code>event.detail</code>:</p>
-
-    @php
-        $events = [
-            ['`nitro:request`', '`component`, `method`', 'A `#[Server]` call starts'],
-            ['`nitro:response`', '`component`, `method`, `status`', 'Its answer arrives'],
-            ['`nitro:error`', '`component`, `message`, and `status` and `body` for a failed request', 'Something failed: a call, a render, a handler'],
-            ['`nitro:expired`', '`component`, `status`', 'The session or CSRF token expired (419). Nitro reloads the page, unless you call `preventDefault()`'],
-            ['`nitro:navigating`', '`url`', 'A visit starts'],
-            ['`nitro:navigated`', '`url`', 'A visit has shown the new page'],
-            ['`nitro:flash`', '`flash`', 'Flash data arrived, as `Nitro::flash()` sent it'],
-            ['Your own events', '`params`, `component`', 'A component called `$this->dispatch()` without `->to()` or `->self()`'],
-        ];
-    @endphp
-    <x-docs.table :columns="['Event', 'Detail', 'When']" :rows="$events" />
+    <h2 id="events">Hooks and events</h2>
+    <p>
+        What the runtime does, such as sending a request, finishing a visit or failing, comes as a hook:
+        listen with <code>Nitro.hook()</code>. Most hooks also dispatch a window event. <a nitro:navigate href="/docs/hooks">Hooks</a>
+        lists them all, with what each gives you and how to stop a request or a visit.
+    </p>
+    <p>
+        Your own events go to the window too: a component's <code>$this-&gt;dispatch()</code> without
+        <code>-&gt;to()</code> or <code>-&gt;self()</code> dispatches an event of that name, with <code>params</code>
+        and <code>component</code> in <code>event.detail</code>.
+    </p>
 
     <x-docs.code src="js-events.js" lang="js" />
 
@@ -75,8 +71,8 @@
     <p>
         A file input with <code>nitro:model</code> dispatches its own events, which bubble up from the input:
         <code>nitro-upload-start</code>, <code>nitro-upload-progress</code> (with <code>progress</code>, from 0 to
-        100), <code>nitro-upload-finish</code> and <code>nitro-upload-error</code> (with <code>status</code> and
-        <code>message</code>).
+        100), <code>nitro-upload-finish</code>, <code>nitro-upload-error</code> (with <code>status</code> and
+        <code>message</code>) and <code>nitro-upload-cancel</code> (a <code>beforeRequest</code> hook stopped it).
     </p>
 
     <x-docs.code src="js-upload-events.js" lang="js" />
@@ -135,7 +131,7 @@
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
+        <x-docs.card href="/docs/hooks" title="Hooks" icon="code">Every moment of the runtime, and stopping a request or a visit.</x-docs.card>
         <x-docs.card href="/docs/extending" title="Extending Nitro" icon="bolt">Add your own nitro: attributes, plugins and server features.</x-docs.card>
-        <x-docs.card href="/docs/events" title="Events" icon="book">Send events between components with $this->dispatch() and #[On].</x-docs.card>
     </x-docs.cards>
 </x-docs.page>

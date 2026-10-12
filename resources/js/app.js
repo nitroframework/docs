@@ -232,7 +232,7 @@ function openResult(link, event) {
     if (!visit || search.dataset.searchCloseOn !== 'after') return closeSearch();
 
     link.setAttribute('aria-busy', 'true');
-    addEventListener('nitro:navigated', () => {
+    addEventListener('nitro:after-navigate', () => {
         link.removeAttribute('aria-busy');
         closeSearch();
     }, { once: true });
@@ -415,4 +415,5 @@ function startVeins() {
 }
 
 init();
-addEventListener('nitro:navigated', init);
+/** The new page set up once it is shown (not for a visit stopped or replaced before it came). */
+addEventListener('nitro:after-navigate', (event) => event.detail.cancelled || init());

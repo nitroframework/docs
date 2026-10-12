@@ -221,8 +221,9 @@
     <h3 id="your-own-bar">Using your own bar</h3>
     <p>
         To use another bar, such as NProgress itself, set <code>show</code> to <code>false</code> and drive it from
-        the events Nitro sends: <code>nitro:navigating</code> when a visit starts and <code>nitro:navigated</code>
-        when the new page shows.
+        the <a nitro:navigate href="/docs/hooks#navigation">hooks</a>: <code>beforeNavigate</code> when a visit starts
+        and <code>afterNavigate</code> when it is over. Nitro's own bar shows nothing on back and forward, which come
+        back to a page already seen; <code>history</code> tells you which visits those are.
     </p>
     <x-docs.code src="navigate-nprogress.js" lang="js" />
 

@@ -97,8 +97,9 @@
 
     <p>
         Flash data goes with this request's page, visit or <code>#[Server]</code> answer. After a redirect, it goes
-        with the page the redirect leads to. After that it is gone, and the back button doesn't bring it back. The
-        browser also emits a <code>nitro:flash</code> event with the data in <code>event.detail.flash</code>.
+        with the page the redirect leads to. After that it is gone, and the back button doesn't bring it back. In
+        the browser, the <code>flash</code> <a nitro:navigate href="/docs/hooks">hook</a> hears it, with the data in
+        <code>flash</code> (and the <code>nitro:flash</code> event, in <code>event.detail.flash</code>).
         Flash data needs the session, so the request must run through the <code>web</code> middleware.
     </p>
 

@@ -24,4 +24,4 @@ const bindings = (Nitro) => {
 
 // Loaded before Nitro (a page's first load): when it starts. Loaded by a visit, after it: now.
 if (window.Nitro) bindings(window.Nitro);
-else document.addEventListener('nitro:starting', ({ detail: { Nitro } }) => bindings(Nitro));
+else document.addEventListener('nitro:init', ({ detail: { Nitro } }) => bindings(Nitro));

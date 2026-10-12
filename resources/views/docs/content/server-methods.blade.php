@@ -125,9 +125,9 @@
     </ul>
 
     <p>
-        The runtime also dispatches the <code>nitro:request</code> and <code>nitro:response</code> events around
-        each call. You can show the progress bar during calls by setting <code>server_calls</code> in
-        <code>config/nprogress.php</code>.
+        Each call also comes through the <code>beforeRequest</code> and <code>afterRequest</code>
+        <a nitro:navigate href="/docs/hooks#requests">hooks</a>, where your code can add a header or stop it. You can
+        show the progress bar during calls by setting <code>server_calls</code> in <code>config/nprogress.php</code>.
     </p>
 
     <h2 id="what-to-trust">What you can trust</h2>
