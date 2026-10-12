@@ -13,7 +13,7 @@
             <p>Each <code>#[Server]</code> call rebuilds it from its signed state: <code>boot()</code>, <code>hydrate()</code>, the browser's changes checked and applied, the method, <code>dehydrate()</code>. The new state goes back, and the browser carries on.</p>
         </x-docs.step>
         <x-docs.step title="Gone">
-            <p>When it leaves the page (an <code>@@if</code>, a removed item, a visit), <code>destroyed()</code> runs in the browser.</p>
+            <p>When it leaves the page (an <code>@@if</code>, a removed item, a visit), <code>destroyed()</code> runs in the browser. So it does when another script takes its element out, as a dialog library closing a dialog: its listeners, polls and broadcasts stop with it. An element moved elsewhere has not left. To hide a component and keep it, hide it with CSS rather than remove it.</p>
         </x-docs.step>
     </x-docs.steps>
 

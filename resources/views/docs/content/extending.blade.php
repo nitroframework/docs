@@ -107,7 +107,9 @@
             ['`hydrate($component)`', 'On a `#[Server]` call, once the state is restored'],
             ['`updated($component, $changed)`', 'On a `#[Server]` call, once the browser\'s changes are set. Return `false` to stop the method from running'],
             ['`calling($component, $method, $arguments)`', 'Before a `#[Server]` method runs'],
-            ['`called($component, $method, $result)`', 'After a `#[Server]` method returns'],
+            ['`call($component, $method, $arguments, $run)`', 'Around a `#[Server]` method: `$run()` runs it. Return what it gave, something else, or answer without calling `$run()`'],
+            ['`called($component, $method, $result)`', 'After a `#[Server]` method returns, with the answer'],
+            ['`exception($component, $method, $exception)`', 'A `#[Server]` method threw and the component\'s own `exception()` didn\'t handle it. Return `true` when you handled it'],
             ['`dehydrate($component)`', 'Before the state is sent to the browser, once per request'],
         ];
     @endphp
@@ -119,6 +121,32 @@
         <li><strong>Stores</strong> run features too, since a store is a component.</li>
         <li><strong>Stopping a method.</strong> Every feature's <code>updated()</code> runs, even after one returns <code>false</code>. An error a feature adds to <code>$component-&gt;nitro()-&gt;errors</code> reaches the browser like a validation message.</li>
     </ul>
+
+    <h3 id="around-a-method">Around a method</h3>
+
+    <p>
+        <code>call()</code> wraps every <code>#[Server]</code> method, the way middleware wraps a request. Calling
+        <code>$run()</code> runs the method and gives you what it returned, so you can put a transaction, a lock or a
+        timer around it. Returning a value without calling <code>$run()</code> answers in the method's place, which
+        suits a cache or a feature switch.
+    </p>
+
+    <x-docs.code src="extending-feature-call.php" />
+
+    <ul>
+        <li><strong>Nesting.</strong> The first feature listed in <code>config/nitro.php</code> is the outermost. The method itself, and <code>#[Cached]</code>, which may answer for it, are innermost.</li>
+        <li><strong>The answer.</strong> Whatever <code>call()</code> returns is what the browser gets, and what <code>called()</code> hears.</li>
+    </ul>
+
+    <h3 id="when-a-method-throws">When a method throws</h3>
+
+    <p>
+        A component can handle its own errors with an <code>exception()</code> method. A feature's
+        <code>exception()</code> handles the rest across the app: it runs when the component has none, or when the
+        component's own throws again. Report the error, set a message, and return <code>true</code> to say it's
+        handled; the call then answers with the state as it is. The first feature to return <code>true</code> ends it.
+        When none does, the error goes on as it would without features: an error page, or the component's fallback.
+    </p>
 
     <h2 id="attribute-classes">Writing attributes that work as features</h2>
     <p>
