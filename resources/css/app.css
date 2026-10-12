@@ -5,6 +5,7 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source '../views/{vue,react,solid,svelte}/**/*.{vue,jsx,svelte}';
 @source '../../app/Docs/*.php';
 
 /* Dark mode follows the .dark class on <html> (the theme switcher sets it). */
@@ -80,17 +81,18 @@
     @apply max-w-none text-[15.5px] leading-7;
 
     & > :first-child { @apply mt-0; }
-    & h2 { @apply mt-14 mb-4 scroll-mt-24 text-2xl font-semibold tracking-tight text-slate-800 dark:text-slate-200; }
-    & h3 { @apply mt-10 mb-3 scroll-mt-24 text-lg font-semibold tracking-tight text-slate-800 dark:text-slate-200; }
-    & p { @apply my-5; }
+    /* An example that styles its own text (.own-styles, the blog examples): the rules below skip it. */
+    & h2:not(.own-styles *) { @apply mt-14 mb-4 scroll-mt-24 text-2xl font-semibold tracking-tight text-slate-800 dark:text-slate-200; }
+    & h3:not(.own-styles *) { @apply mt-10 mb-3 scroll-mt-24 text-lg font-semibold tracking-tight text-slate-800 dark:text-slate-200; }
+    & p:not(.own-styles *) { @apply my-5; }
     & a:not(.not-prose, .not-prose a) { @apply font-medium text-slate-800 underline decoration-browser-400/60 decoration-2 underline-offset-[3px] transition hover:decoration-browser-500 dark:text-slate-200 dark:decoration-browser-400/50; }
-    & strong { @apply font-semibold text-slate-800 dark:text-slate-300; }
+    & strong:not(.own-styles *) { @apply font-semibold text-slate-800 dark:text-slate-300; }
     & ul:not(.not-prose, .not-prose ul) { @apply my-5 list-disc space-y-2 pl-5 marker:text-slate-300 dark:marker:text-slate-600; }
     & ol:not(.not-prose, .not-prose ol) { @apply my-5 list-decimal space-y-2 pl-5 marker:text-slate-400; }
     /* Prose inside a component (a step's text): its lists again. */
     & .prose-docs ul { @apply my-3 list-disc space-y-1.5 pl-5 marker:text-slate-300 dark:marker:text-slate-600; }
     & .prose-docs ol { @apply my-3 list-decimal space-y-1.5 pl-5 marker:text-slate-400; }
-    & :not(pre) > code { @apply whitespace-nowrap rounded-md bg-slate-100 px-1.5 py-0.5 font-mono text-[0.84em] font-medium text-slate-800 ring-1 ring-slate-200/70 ring-inset dark:bg-white/[0.06] dark:text-slate-200 dark:ring-white/10; }
+    & :not(pre) > code:not(.own-styles *) { @apply whitespace-nowrap rounded-md bg-slate-100 px-1.5 py-0.5 font-mono text-[0.84em] font-medium text-slate-800 ring-1 ring-slate-200/70 ring-inset dark:bg-white/[0.06] dark:text-slate-200 dark:ring-white/10; }
     & h2 .anchor, & h3 .anchor { @apply ml-2 text-slate-300 opacity-0 transition hover:text-browser-500 dark:text-slate-600; }
     & h2:hover .anchor, & h3:hover .anchor { @apply opacity-100; }
 }

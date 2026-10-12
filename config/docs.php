@@ -79,6 +79,15 @@ return [
             'security' => 'Security',
             'limitations' => 'Limitations',
         ],
+        'Examples' => [
+            'examples' => 'A blog, five ways',
+            'examples-blade' => 'Blog in Blade',
+            'examples-vue' => 'Blog in Vue',
+            'examples-react' => 'Blog in React',
+            'examples-solid' => 'Blog in Solid',
+            'examples-svelte' => 'Blog in Svelte',
+            'examples-together' => 'All together',
+        ],
     ],
 
 ];
