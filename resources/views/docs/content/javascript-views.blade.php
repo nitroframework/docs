@@ -87,6 +87,27 @@
         block to Nitro. Only the frameworks you register are bundled.
     </p>
 
+    <h2 id="lazy">Loading a framework where it's used</h2>
+    <p>
+        <code>nitroVue()</code> and the others put the framework in your app's main script, so every page loads
+        it. That's right when most pages have a view of that framework. When only a few do (a React chart on the
+        reports page, a Vue editor in the admin), register it with <code>lazy()</code> instead: the framework then
+        loads with the first view that needs it, and pages without one never download it.
+    </p>
+
+    <x-docs.code src="js-views-lazy.js" lang="js" />
+
+    <p>
+        Nothing else changes: the components and their views are the same, and a page that places one renders it as
+        before. The framework loads once and is kept for the next page. On a visit, Nitro loads it with the page's
+        views before it shows the page, so nothing fills in late. If loading fails (a network blip), the next view
+        tries again.
+    </p>
+    <x-docs.callout>
+        These docs register all four frameworks with <code>lazy()</code>: only the <a nitro:navigate href="/docs/examples">examples</a>
+        load them, and every other page stays light.
+    </x-docs.callout>
+
     <h2 id="side-by-side">Side by side on a page</h2>
     <p>
         Components are placed from Blade, whatever their view. A page can hold a Vue desk, a React card and a Blade
@@ -155,7 +176,8 @@
     <p>
         When <code>nitro:navigate</code> visits a page, the browser loads the code of the JavaScript views the page
         places before it shows the page, alongside its data. The page appears with its views already rendered, not
-        filling in one by one after it. A view's code loads once, and is kept for the next page that shows it.
+        filling in one by one after it. A view's code loads once, and is kept for the next page that shows it. A
+        framework registered with <a href="#lazy">lazy()</a> loads with its first view the same way.
     </p>
 
     <h2 id="server-rendering">Server rendering</h2>

@@ -35,6 +35,13 @@
         SvelteKit: Laravel does the routing, and Nitro the pages.
     </p>
 
+    <p>
+        Only a few pages have Svelte views? Register it with
+        <code>lazy('svelte', () => import('nitro/svelte'), ...)</code> instead of <code>nitroSvelte()</code>:
+        Svelte then loads with the first page that shows one of its views. See
+        <a nitro:navigate href="/docs/javascript-views#lazy">Loading a framework where it's used</a>.
+    </p>
+
     <h2 id="first-view">A component with a Svelte view</h2>
     <p>
         The class is an ordinary Nitro component. <code>#[View(svelte: 'post-editor')]</code> says its view is

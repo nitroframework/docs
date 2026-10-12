@@ -41,6 +41,13 @@
         <x-docs.code src="solid-both.js" lang="js" bare />
     </x-docs.callout>
 
+    <p>
+        Only a few pages have Solid views? Register it with
+        <code>lazy('solid', () => import('nitro/solid'), ...)</code> instead of <code>nitroSolid()</code>:
+        Solid then loads with the first page that shows one of its views. See
+        <a nitro:navigate href="/docs/javascript-views#lazy">Loading a framework where it's used</a>.
+    </p>
+
     <h2 id="first-view">A component with a Solid view</h2>
     <p>
         The class is an ordinary Nitro component. <code>#[View(solid: 'post-editor')]</code> says its view is

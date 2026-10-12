@@ -35,6 +35,13 @@
         <code>blog/editor.vue</code>.
     </p>
 
+    <p>
+        Only a few pages have Vue views? Register it with
+        <code>lazy('vue', () => import('nitro/vue'), ...)</code> instead of <code>nitroVue()</code>:
+        Vue then loads with the first page that shows one of its views. See
+        <a nitro:navigate href="/docs/javascript-views#lazy">Loading a framework where it's used</a>.
+    </p>
+
     <h2 id="first-view">A component with a Vue view</h2>
     <p>
         The class is an ordinary Nitro component. <code>#[View(vue: 'post-editor')]</code> says its view is

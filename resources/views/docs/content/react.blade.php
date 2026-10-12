@@ -36,6 +36,13 @@
         is <code>blog/editor.jsx</code>.
     </p>
 
+    <p>
+        Only a few pages have React views? Register it with
+        <code>lazy('react', () => import('nitro/react'), ...)</code> instead of <code>nitroReact()</code>:
+        React then loads with the first page that shows one of its views. See
+        <a nitro:navigate href="/docs/javascript-views#lazy">Loading a framework where it's used</a>.
+    </p>
+
     <h2 id="first-view">A component with a React view</h2>
     <p>
         The class is an ordinary Nitro component. <code>#[View(react: 'post-editor')]</code> says its view is
