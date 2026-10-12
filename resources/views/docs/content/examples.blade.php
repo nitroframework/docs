@@ -14,7 +14,7 @@
             ['examples-react', 'Blog in React', 'The component as props, set() for inputs.'],
             ['examples-solid', 'Blog in Solid', 'Fine-grained props: only what changed updates.'],
             ['examples-svelte', 'Blog in Svelte', 'The component from $props(), bind:value for inputs.'],
-            ['examples-together', 'All together', 'All five on one page, talking through events, and live with Reverb.'],
+            ['examples-together', 'All together', 'All five on one page, talking through events.'],
         ];
     @endphp
 

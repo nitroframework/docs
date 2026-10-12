@@ -2,7 +2,6 @@
 // Pages change with nitro:navigate (the docs keep their layout, other pages swap the body; this script stays): init() sets up each
 // page, on load and after every visit; the window's listeners are added once.
 import './autosize.js';
-import './echo.js';
 import { lazy } from 'nitro/lazy';
 
 /** The examples' JavaScript views: each framework loads with the first page that shows one of its views. */

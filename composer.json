@@ -9,7 +9,6 @@
         "php": "^8.3",
         "laravel/framework": "^13.0",
         "laravel/octane": "^2.21",
-        "laravel/reverb": "^1.12",
         "laravel/tinker": "^3.0",
         "nitro/nitro": "^2.0",
         "phiki/phiki": "^2.2"

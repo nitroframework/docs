@@ -2,7 +2,6 @@
 
 namespace App\Blog;
 
-use App\Events\PostPublished;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -31,8 +30,7 @@ final class Posts
     }
 
     /**
-     * Writes a new post (no id) or one of the reader's own (its id), and tells the reader's other
-     * tabs through Reverb.
+     * Writes a new post (no id) or one of the reader's own (its id).
      *
      * @return array{id: string, title: string, body: string, date: string}
      */
@@ -64,27 +62,12 @@ final class Posts
 
         session(['blog.posts' => $posts]);
 
-        /** A broadcast that can't be sent (Reverb not running) doesn't stop the post being saved. */
-        rescue(function () use ($post, $id) {
-            event(new PostPublished(self::channel(), $post, created: $id === null));
-        }, report: false);
-
         return $post;
     }
 
     public static function delete(string $id): void
     {
         session(['blog.posts' => array_values(array_filter(self::all(), fn (array $post) => $post['id'] !== $id))]);
-    }
-
-    /** The reader's broadcast channel: a name only their session knows, so no one else hears their posts. */
-    public static function channel(): string
-    {
-        if (! session()->has('blog.channel')) {
-            session(['blog.channel' => Str::random(40)]);
-        }
-
-        return session('blog.channel');
     }
 
     /** @return list<array{id: string, title: string, body: string, date: string}> */

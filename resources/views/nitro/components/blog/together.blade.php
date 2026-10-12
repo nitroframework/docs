@@ -12,12 +12,8 @@
             <nitro:blog.react.activity />
         </x-blog.card>
 
-        <x-blog.card title="Live, in every tab" framework="Blade" note="Reverb">
-            @if ($live)
-                <nitro:blog.blade.live />
-            @else
-                <p class="py-6 text-center text-sm text-slate-500">Reverb isn't running here.</p>
-            @endif
+        <x-blog.card title="Latest post" framework="Blade" note="hears post-saved, post-deleted">
+            <nitro:blog.blade.latest />
         </x-blog.card>
     </div>
 

@@ -81,6 +81,6 @@
 <p>
     The PHP is the same on every page of this section; only the views change:
     {!! collect($frameworks)->except($framework)->map(fn (array $other, string $key) => '<a nitro:navigate href="/docs/examples-'.$key.'">'.e($other['name']).'</a>')->implode(', ') !!}.
-    To see components in all five working together, with Reverb, see
+    To see components in all five working together, see
     <a nitro:navigate href="/docs/examples-together">All together</a>.
 </p>
