@@ -40,4 +40,32 @@ final class Nav
     {
         return '/docs/'.$slug;
     }
+
+    /**
+     * The page a mistyped or moved slug most likely meant (by its slug or title), or null when
+     * none is close: what a 404 under /docs offers.
+     *
+     * @return array{slug: string, title: string}|null
+     */
+    public static function closest(string $slug): ?array
+    {
+        $slug = strtolower(trim($slug, '/'));
+        $best = null;
+        $distance = PHP_INT_MAX;
+
+        foreach (self::pages() as $candidate => $page) {
+            $title = strtolower(str_replace([' ', "'"], ['-', ''], $page['title']));
+            $here = min(levenshtein($slug, $candidate), levenshtein($slug, $title));
+
+            if ($slug !== '' && (str_contains($candidate, $slug) || str_contains($slug, $candidate))) {
+                $here = min($here, 1);
+            }
+
+            if ($here < $distance) {
+                [$best, $distance] = [['slug' => $candidate, 'title' => $page['title']], $here];
+            }
+        }
+
+        return $best !== null && $distance <= max(2, intdiv(strlen($slug), 3)) ? $best : null;
+    }
 }
