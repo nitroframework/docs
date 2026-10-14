@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="Nitro runs your methods in the browser, and that has a few consequences. Server work stays on the server, numbers and regular expressions follow the browser's rules, and a few PHP functions aren't available. None of these ever gives a different result silently."
+    lead="Nitro runs your methods and views in the browser, and that has a few consequences. Server work stays on the server, numbers and regular expressions follow the browser's rules, a few PHP functions aren't available, and a few things Blade allows can't be used in a component's view. None of these ever gives a different result silently."
 >
     <h2 id="server-work">Keeping server work in #[Server] methods</h2>
     <p>
@@ -34,6 +34,39 @@
         <li><code>htmlentities()</code> and <code>html_entity_decode()</code> with <code>ENT_HTML5</code>, <code>ENT_XHTML</code> or <code>ENT_XML1</code></li>
     </ul>
     <p>Using one of these fails the build or fails with a message. They never give a different result from PHP. Call them from a <code>#[Server]</code> method instead.</p>
+
+    <h2 id="blade">Blade in a component's view</h2>
+    <p>
+        A component's view is compiled once and rendered by the server and the browser by the same rules, and
+        both are tested against Laravel's Blade. Your layouts, mail and other plain Blade views are untouched:
+        Laravel renders them as always. In a component's view, these fail the build with the file, the line and
+        what to write instead:
+    </p>
+    @php
+        $refused = [
+            ['`@php`, custom directives, `@aware`', 'Work out values in the component (a property, a `#[Computed]` method)'],
+            ['Class-based Blade components (`app/View/Components`)', 'Use an anonymous component (`resources/views/components`)'],
+            ['`<x-dynamic-component>`, `<x-slot :name>` with a computed name', 'Use `<nitro:dynamic-component :is>`; name slots with a string'],
+            ['A loop\'s variable read after the `@if` (or outer loop) the loop is in has ended', 'Read it inside that block. Right after the loop itself it works, as in PHP'],
+            ['An element opened in `@if` or `@foreach` and closed outside it', 'Open and close the element inside the block'],
+            ['A block element inside a `<p>` (`<p><div>`), also through a component', 'Close the `<p>` first, or use a `<div>`'],
+            ['A row inside an open row, a cell inside an open cell', 'Close the row or cell first'],
+            ['Rows a loop renders directly in a `<table>`', 'Wrap them in `<tbody>`. Rows written directly in the table are fine: the `<tbody>` is added for you, as browsers add it'],
+            ['Markup inside an `<option>` (`<option><b>x</b></option>`)', 'Put only text in it: browsers disagree about markup there'],
+            ['A Blade component reading data the views share (`View::share()`) without being given it', 'Pass it as an attribute'],
+        ];
+    @endphp
+    <x-docs.table :columns="['Fails the build', 'Write instead']" :rows="$refused" />
+    <p>And a few things render, but not quite as Laravel would:</p>
+    <ul>
+        <li><strong>Data shared during a request</strong>, by a view composer or a middleware, doesn't reach an
+            <code>@@include</code>d view or a Blade component inside a component's view. Pass it as data or as an
+            attribute.</li>
+        <li><strong><code>@@includeFirst</code></strong> picks its view when the view is compiled, not on every render.</li>
+        <li><strong>The server's HTML</strong> is written from the compiled view. The page the browser builds from it is
+            exactly the one Blade's HTML gives, but the bytes can differ (attributes in double quotes, for example). In
+            tests, check what a component shows (<code>assertSee</code>), not Blade's exact HTML.</li>
+    </ul>
 
     <h2 id="portals">Teleporting to portals</h2>
     <p>

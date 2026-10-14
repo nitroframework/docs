@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="A component's view is a Blade view. The server renders it with Blade for the first page, and the browser renders it again from its compiled form whenever the state changes, updating only what changed."
+    lead="A component's view is a Blade view. Nitro compiles it once, and the server and the browser render that one compiled view: the server for the first page, the browser whenever the state changes, updating only what changed."
 >
     <p>
         You write a component's view like any other Blade view, with echoes, <code>@@if</code>,
@@ -46,10 +46,43 @@
     <x-docs.table :columns="['', 'In a view']" :rows="$features" />
 
     <p>
-        Nitro inlines <code>@@include</code> and anonymous Blade components (<code>&lt;x-panel&gt;</code>) when
-        it compiles the view. Anything else, such as <code>@@php</code>, class-based Blade components or custom
-        directives, can't run in the browser, and the build fails with the file and line.
+        Nitro inlines <code>@@include</code> when it compiles the view, and compiles each anonymous Blade
+        component (<code>&lt;x-panel&gt;</code>) once for the attributes and slots its tags give. Anything else,
+        such as <code>@@php</code>, class-based Blade components or custom directives, can't run in the browser,
+        and the build fails with the file and line.
     </p>
+
+    <h2 id="differences">Where it differs from Laravel's Blade</h2>
+    <p>
+        Both of Nitro's renders are tested against Laravel's Blade, feature by feature, in every place a view
+        can hold it. Where Nitro can't render something as Blade would, the build fails with the file, the line
+        and what to write instead:
+    </p>
+    <ul>
+        <li><code>@@php</code>, custom directives, class-based Blade components, <code>@@aware</code>,
+            <code>&lt;x-dynamic-component&gt;</code> (use <code>nitro:dynamic-component</code>), and a slot whose name
+            is worked out as the page runs.</li>
+        <li>A loop's variable read after an <code>@@if</code> (or another loop) that the loop is in has ended,
+            because the block may not have run. Right after the loop, it has its last value, as in PHP.</li>
+        <li>An element opened in <code>@@if</code> or <code>@@foreach</code> and closed outside it, and markup the
+            browser would rebuild, such as a <code>&lt;div&gt;</code> inside a <code>&lt;p&gt;</code>, a row inside a
+            row, or markup inside an <code>&lt;option&gt;</code>, also when a Blade component puts it there. Table
+            tags HTML lets you leave out (<code>&lt;tbody&gt;</code>, <code>&lt;tr&gt;</code>,
+            <code>&lt;colgroup&gt;</code>) are added as the browser adds them, except around rows that a loop renders
+            directly in a <code>&lt;table&gt;</code>: write the <code>&lt;tbody&gt;</code> there.</li>
+        <li>A Blade component that reads data the views share (<code>View::share()</code>) without being given it.
+            Pass it as an attribute.</li>
+    </ul>
+    <p>A few things render, but not quite as Laravel would:</p>
+    <ul>
+        <li>Data shared while a request runs, by a view composer or a middleware, doesn't reach an
+            <code>@@include</code>d view or a Blade component, because they're compiled into the view. Pass what
+            they need as data or attributes.</li>
+        <li><code>@@includeFirst</code> picks its view when the view is compiled.</li>
+        <li>The server writes its HTML from the compiled view. The page the browser builds from it is the same as
+            from Blade's HTML, but the bytes can differ, for example attributes in double quotes. In tests, check what
+            a component shows (<code>assertSee</code>), not Blade's exact HTML.</li>
+    </ul>
 
     <h2 id="echoes">Displaying data</h2>
     <p>
