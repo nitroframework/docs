@@ -20,5 +20,6 @@
     <x-docs.search />
 
     @nitroScripts
+    <x-docs.analytics />
 </body>
 </html>

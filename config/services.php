@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    /*
+     * Cloudflare Web Analytics: the site's token, set in production's environment only, so a
+     * local copy or a fork of this repository reports nothing to nitrophp.com's analytics.
+     */
+    'cloudflare_analytics' => [
+        'token' => env('CLOUDFLARE_ANALYTICS_TOKEN'),
+    ],
+
 ];
