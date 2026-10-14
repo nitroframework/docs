@@ -38,6 +38,14 @@
         current code until the next build. A tab still running the old bundle reloads once to pick up the new one.
     </p>
     <x-docs.code src="production-deploy.sh" lang="sh" highlight="3" />
+
+    <p>
+        Laravel's route and config caches keep what they cached: a page you route or a config value you change
+        after <code>php artisan optimize</code> is missing until you run it again. Nitro checks for that on every
+        request. During development (<code>APP_DEBUG=true</code>) you get an error page naming the file that
+        changed and the command to run. In production your app keeps working as cached, and the log gets one
+        warning telling you to run <code>php artisan optimize</code>.
+    </p>
     <p>To remove the compiled files, run <code>php artisan nitro:clear</code>.</p>
 
     <h2 id="names">Writing names out in full</h2>
