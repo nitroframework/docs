@@ -44,8 +44,9 @@
 
     <h2 id="the-first-render">The first render</h2>
     <p>
-        The server runs the PHP class and renders the page with Blade, just as Laravel renders any view. The HTML
-        arrives complete, so it appears quickly and search engines and link previews can read it. Along with it
+        The server runs the PHP class and renders the page. The layout is Blade, as Laravel renders any view; a
+        component's Blade view is the one Nitro compiled, rendered with its expressions as PHP, so the server and
+        the browser render it by the same rules. The HTML arrives complete, so it appears quickly and search engines and link previews can read it. Along with it
         comes each component's <strong>state</strong>, signed by the server: for the counter,
         <code>count: 0</code>.
     </p>

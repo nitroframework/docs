@@ -2,7 +2,8 @@
     lead="Most state is arrays or Eloquent models. You read an array with square brackets and a model with an arrow, exactly as in PHP, and both work the same in the browser and on the server."
 >
     <p>
-        A view runs twice: as Blade on the server, and compiled in the browser. So the rules are PHP's rules. An array
+        A view runs twice: on the server with its expressions as PHP, and in the browser compiled to JavaScript. So
+        the rules are PHP's rules. An array
         is read with <code>$task['title']</code>. A model, or any other object, is read with
         <code>$post-&gt;title</code>. Nitro keeps track of which values are models, so the browser reads them just
         as Laravel does.
