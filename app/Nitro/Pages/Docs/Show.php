@@ -6,17 +6,13 @@ use App\Docs\Content;
 use App\Docs\Nav;
 use Nitro\Attributes\Layout;
 use Nitro\Attributes\Locked;
-use Nitro\Attributes\Navigate;
 use Nitro\Component;
 
 /**
  * A docs page. The server renders its content with App\Docs\Content. The page also knows its
  * place in the sidebar, and sets the head that search engines and link previews read.
- *
- * Markup first: a visit shows the page's placeholder at once, and its content when it arrives.
  */
 #[Layout('layouts.docs')]
-#[Navigate('markup')]
 class Show extends Component
 {
     #[Locked]

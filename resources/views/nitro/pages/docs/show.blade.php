@@ -1,5 +1,4 @@
 <article class="mx-auto max-w-[46rem]">
-    @deferred('title')
     <p class="mb-3 text-sm font-medium"><span class="nitro-text">{{ $section }}</span></p>
     <h1 class="text-[2rem] leading-tight font-semibold tracking-tight text-slate-800 sm:text-4xl dark:text-slate-200">{{ $title }}</h1>
     @if ($lead !== '')
@@ -63,23 +62,4 @@
             Edit this page on GitHub
         </a>
     </div>
-    @placeholder
-    {{-- A markup-first visit, until the page's content arrives: its shape, pulsing. --}}
-    <div class="animate-pulse motion-reduce:animate-none" aria-busy="true" aria-label="Loading the page">
-        <div class="mb-4 h-4 w-28 rounded bg-slate-200 dark:bg-white/10"></div>
-        <div class="h-9 w-2/3 rounded-lg bg-slate-200 dark:bg-white/10"></div>
-        <div class="mt-5 space-y-3">
-            <div class="h-4 w-full rounded bg-slate-200/80 dark:bg-white/[0.07]"></div>
-            <div class="h-4 w-5/6 rounded bg-slate-200/80 dark:bg-white/[0.07]"></div>
-        </div>
-        <div class="mt-12 space-y-3">
-            <div class="h-3.5 w-full rounded bg-slate-100 dark:bg-white/[0.05]"></div>
-            <div class="h-3.5 w-11/12 rounded bg-slate-100 dark:bg-white/[0.05]"></div>
-            <div class="h-3.5 w-4/5 rounded bg-slate-100 dark:bg-white/[0.05]"></div>
-            <div class="h-3.5 w-full rounded bg-slate-100 dark:bg-white/[0.05]"></div>
-            <div class="h-3.5 w-3/4 rounded bg-slate-100 dark:bg-white/[0.05]"></div>
-        </div>
-        <div class="mt-8 h-40 rounded-xl bg-slate-100 dark:bg-white/[0.05]"></div>
-    </div>
-    @enddeferred
 </article>
