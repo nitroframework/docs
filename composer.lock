@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72b71621ac9b67dfdf9e91272e6e9c66",
+    "content-hash": "c2db3f85fd9e1d9534e42ed4eac1f3d8",
     "packages": [
         {
             "name": "brick/math",
@@ -1654,6 +1654,67 @@
                 "source": "https://github.com/laravel/tinker/tree/v3.0.2"
             },
             "time": "2026-03-17T14:54:13+00:00"
+        },
+        {
+            "name": "laravelopenpackages/laravel-optimized",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravelopenpackages/laravel-optimized.git",
+                "reference": "71f9ada5f292ebca3b3362c66b28cac04ead2ae4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravelopenpackages/laravel-optimized/zipball/71f9ada5f292ebca3b3362c66b28cac04ead2ae4",
+                "reference": "71f9ada5f292ebca3b3362c66b28cac04ead2ae4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^13.33",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.23",
+                "phpstan/phpstan": "^2.2",
+                "phpunit/phpunit": "^12.0",
+                "symfony/cache": "^7.4|^8.0"
+            },
+            "suggest": {
+                "fakerphp/faker": "Required for model factories and the fake() helper (as in Laravel).",
+                "symfony/cache": "Required for the PSR-6 cache adapter, cache.psr6 (as in Laravel)."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaravelOptimized\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zeeshan Ali",
+                    "homepage": "https://github.com/ZeeshanX4",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel, optimized: a compiled request path for Laravel applications, with Laravel's own code as the fallback.",
+            "homepage": "https://github.com/laravelopenpackages/laravel-optimized",
+            "keywords": [
+                "compiled",
+                "eloquent",
+                "laravel",
+                "optimize",
+                "performance",
+                "routing"
+            ],
+            "support": {
+                "issues": "https://github.com/laravelopenpackages/laravel-optimized/issues",
+                "source": "https://github.com/laravelopenpackages/laravel-optimized"
+            },
+            "time": "2026-10-15T14:27:58+00:00"
         },
         {
             "name": "league/commonmark",
