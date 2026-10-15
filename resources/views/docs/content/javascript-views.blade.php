@@ -35,6 +35,14 @@
 
     <x-docs.code src="js-views-component.php" file="app/Nitro/Components/PostEditor.php" runs="both" />
 
+    <p>
+        The view is named by its file under the framework's folder, with dots or slashes for its folders, as a Blade view's
+        name: <code>vue: 'posts.editor'</code> and <code>vue: 'posts/editor'</code> are both
+        <code>resources/views/vue/posts/editor.vue</code>. A file with dots in its own name, such as
+        <code>editor.client.vue</code>, is found by its name as written first. If a name matches two files, the build says
+        so, naming both.
+    </p>
+
     <p>Whichever view it has, the component behaves the same:</p>
     <ul>
         <li><strong><code>addTag()</code> runs in the browser</strong>, compiled from the PHP. No request.</li>
@@ -65,6 +73,7 @@
             ['`uploads`', '`uploads.cover?.progress`', 'Each upload while it runs: `uploading`, `progress`, `error`'],
             ['`set(path, value)`', '`set(\'form.email\', value)`', 'Writes a property, or a key under one'],
             ['`upload(path, files)`', '`upload(\'cover\', files)`', 'Files into an `Upload` or `#[Uploads]` property'],
+            ['`validate(path)`', '`validate(\'email\')`', 'Checks a property against its `#[Validate]` rules on the server, for your own blur: `errors` follows, nothing else changes'],
             ['`dispatch(event, ...)`', '`dispatch(\'saved\', id)`', 'As `$dispatch` in Blade'],
             ['`link(href, ...modifiers)`', '`link(\'/posts\', \'prefetch\')`', 'A `nitro:navigate` link\'s attributes, to spread on an `<a>`'],
             ['`visit(url)`', '`visit(\'/posts\')`', 'A visit without a reload, as `$visit` in Blade'],
