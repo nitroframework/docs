@@ -67,6 +67,33 @@
 
     <x-docs.code src="form-validate-only.php" runs="server" />
 
+    <h3 id="validate-on-blur">Checking a field as it is left</h3>
+    <p>
+        Add <code>onBlur: true</code> to a property's <code>#[Validate]</code>, and the server checks its rules when the
+        visitor leaves a field bound to it. Every Laravel rule works, <code>unique</code> too, and rules that read
+        another field, such as <code>confirmed</code>, see what that field holds now:
+    </p>
+
+    <x-docs.code src="form-validate-blur.php" runs="server" highlight="1,4" />
+
+    <p>The view shows the message as it would after a submit:</p>
+
+    <x-docs.code src="form-validate-blur.blade.php" lang="blade" />
+
+    <ul>
+        <li><strong>Only that field's message changes.</strong> The other fields' messages stay, and a field still being typed is not checked until it is left.</li>
+        <li><strong>Nothing else happens.</strong> No hook or method runs, the form keeps what the visitor typed, and the change still counts as unsaved for <code>nitro:dirty</code>.</li>
+        <li><strong>Only when it changed.</strong> Leaving a field without changing it, or with the value it was last checked with, asks nothing.</li>
+        <li><strong>The rules run again on submit.</strong> A check helps the visitor; <code>$this-&gt;validate()</code> in the method is what protects what it saves.</li>
+        <li><strong>Lists.</strong> A field of a row, such as <code>lines.0.qty</code>, is checked with its list's rules (<code>lines.*.qty</code>).</li>
+    </ul>
+
+    <p>
+        A check shows no progress bar and no <code>nitro:loading</code> without a target. With
+        <code>nitro:target="email"</code>, as above, an element shows while the email is checked. In a Vue, React, Solid or
+        Svelte view, call <code>validate('email')</code> on the field's own blur: it returns a promise of the field's messages.
+    </p>
+
     <x-docs.callout type="warning" title="Hints in the browser, rules on the server">
         <p>Anything the browser checks is only a convenience, because anyone can send a request without your page. The rules that protect what a method saves belong on the server, on the property or in the method.</p>
     </x-docs.callout>
