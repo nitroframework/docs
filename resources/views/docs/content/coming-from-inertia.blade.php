@@ -23,7 +23,7 @@
     <p>In Nitro, one route and one class, with its view:</p>
 
     <x-docs.code src="inertia-nitro-route.php" file="routes/web.php" />
-    <x-docs.code src="inertia-nitro-page.php" file="app/Nitro/Pages/Posts/Show.php" runs="both" highlight="14,20,23,27" />
+    <x-docs.code src="inertia-nitro-page.php" file="app/Nitro/Pages/Posts/Show.php" runs="both" highlight="14,20,23,28" />
     <x-docs.code src="inertia-nitro-page.vue" lang="vue" file="resources/views/vue/posts/show.vue" />
 
     <ul>

@@ -44,7 +44,7 @@ final class Code
     public static function html(string $code, string $language, array $highlight = [], array $added = [], array $removed = []): string
     {
         /** Highlighting is slow (a grammar per token): kept by the code and its marks, worked out once. */
-        $key = 'docs:code:'.hash('xxh128', serialize([$code, $language, $highlight, $added, $removed, self::themes(), 'compact-2']));
+        $key = 'docs:code:'.hash('xxh128', serialize([$code, $language, $highlight, $added, $removed, self::themes(), 'compact-3']));
 
         return Cache::store('file')->rememberForever($key, fn () => self::highlight($code, $language, $highlight, $added, $removed));
     }
@@ -94,7 +94,7 @@ final class Code
     /**
      * Phiki's tokens with short classes in place of their inline styles: l-<hex> for the light
      * theme's colour, d-<hex> for the dark one's, t-b and t-i for bold and italic (css() has the
-     * rules). A token in the block's own colours is plain text, and neighbours alike are one span.
+     * rules). A token in the block's own colours is plain text, and neighbouring tokens alike are one span.
      */
     private static function compact(string $html): string
     {
@@ -123,8 +123,9 @@ final class Code
             return $classes === [] || trim(html_entity_decode($token[2])) === '' ? $token[2] : '<span class="'.implode(' ', $classes).'">'.$token[2].'</span>';
         }, $html);
 
+        /** Tokens only: each line keeps its own span, blank ones too, for html()'s line marks. */
         do {
-            $html = (string) preg_replace('/(<span class="([^"]+)">[^<]*)<\/span><span class="\2">/', '$1', $html, -1, $merged);
+            $html = (string) preg_replace('/(<span class="((?!line")[^"]+)">[^<]*)<\/span><span class="\2">/', '$1', $html, -1, $merged);
         } while ($merged > 0);
 
         return $html;
