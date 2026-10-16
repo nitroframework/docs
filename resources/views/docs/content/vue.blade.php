@@ -85,7 +85,8 @@
     <x-docs.code code="Route::nitro('/demo/vue', VuePage::class);" file="routes/web.php" />
 
     <ul>
-        <li><strong>A page like any other.</strong> Its route, <code>#[Title]</code>, <code>#[Layout]</code> and <code>mount()</code> work as on <a nitro:navigate href="/docs/pages">Pages</a>.</li>
+        <li><strong>A page like any other.</strong> Its route, <code>#[Title]</code>, <code>#[Layout]</code> and <code>mount()</code> work as on <a nitro:navigate href="/docs/pages">Pages</a>, and <code>$this-&gt;head()</code> as on <a nitro:navigate href="/docs/head">The page's head</a>.</li>
+        <li><strong>Deferred properties.</strong> <code>$this-&gt;defer()</code> works as on <a nitro:navigate href="/docs/page-data#deferred">Page data</a>. The view has the property's default (<code>null</code>) until it arrives, so show something meanwhile: <code>@{{ stats ?? 'Loading…' }}</code>.</li>
         <li><strong>Visits in and out.</strong> A link from a Blade page, or from a page with a React, Solid or Svelte view, visits it without a reload, and back returns.</li>
     </ul>
 
