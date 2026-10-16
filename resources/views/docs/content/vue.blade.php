@@ -72,6 +72,27 @@
         (<a href="#script-setup">see below</a>).
     </x-docs.callout>
 
+    <h2 id="pages">A page with a Vue view</h2>
+    <p>
+        A <a nitro:navigate href="/docs/pages">page</a> can have a Vue view too. Then the whole page is one
+        <code>.vue</code> file, as an Inertia page is, and its class is its controller: it is routed, it loads its
+        data in <code>mount()</code>, and its <code>#[Server]</code> methods do the server's work. The layout stays
+        Blade, with the page's view where <code>$slot</code> is.
+    </p>
+
+    <x-docs.code src="app/Nitro/Pages/Demo/VuePage.php" file="app/Nitro/Pages/Demo/VuePage.php" runs="both" highlight="16,17,18" />
+    <x-docs.code src="resources/views/vue/demo/page.vue" lang="vue" file="resources/views/vue/demo/page.vue" />
+    <x-docs.code code="Route::nitro('/demo/vue', VuePage::class);" file="routes/web.php" />
+
+    <ul>
+        <li><strong>A page like any other.</strong> Its route, <code>#[Title]</code>, <code>#[Layout]</code> and <code>mount()</code> work as on <a nitro:navigate href="/docs/pages">Pages</a>.</li>
+        <li><strong>Visits in and out.</strong> A link from a Blade page, or from a page with a React, Solid or Svelte view, visits it without a reload, and back returns.</li>
+    </ul>
+
+    <x-docs.callout type="tip" title="See it running">
+        <p><a href="/demo/vue">/demo/vue</a> is this page. Search, write a post, then follow its links to the same page with a React, Solid or Svelte view: each one is a visit, not a reload.</p>
+    </x-docs.callout>
+
     <h2 id="names">What the view can use</h2>
 
     @php

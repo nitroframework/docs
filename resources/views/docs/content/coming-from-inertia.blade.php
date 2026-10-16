@@ -40,6 +40,10 @@
         <a nitro:navigate href="/docs/javascript-views">JavaScript views</a>).
     </p>
 
+    <x-docs.callout type="tip" title="See it running">
+        <p>The same kind of page, a blog searched in the browser and written on the server, built four times: with a <a href="/demo/vue">Vue</a>, <a href="/demo/react">React</a>, <a href="/demo/solid">Solid</a> and <a href="/demo/svelte">Svelte</a> view. Their links visit each other without a reload.</p>
+    </x-docs.callout>
+
     <h2 id="mapping">Inertia's features in Nitro</h2>
     <p>The server side:</p>
 

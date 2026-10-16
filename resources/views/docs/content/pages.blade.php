@@ -41,6 +41,14 @@
         <li>Everything else on the page runs in the browser, such as typing the comment or showing and hiding parts of the page.</li>
     </ul>
 
+    <p>
+        A page's view can also be Vue, React, Solid or Svelte: <code>#[View(vue: 'posts/show')]</code> makes the whole
+        page one <code>.vue</code> file, inside its Blade layout. See
+        <a nitro:navigate href="/docs/vue#pages">Vue</a>, <a nitro:navigate href="/docs/react#pages">React</a>,
+        <a nitro:navigate href="/docs/solid#pages">Solid</a> and <a nitro:navigate href="/docs/svelte#pages">Svelte</a>,
+        and the same page built with each, starting at <a href="/demo/vue">/demo/vue</a>.
+    </p>
+
     <h2 id="layouts">Choosing a layout</h2>
     <p>
         A page renders inside its layout as <code>$slot</code>, and its title is available as
