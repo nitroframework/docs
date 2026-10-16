@@ -1,11 +1,14 @@
 <?php
 
+use App\Nitro\Pages\Articles\Index as BlogIndex;
+use App\Nitro\Pages\Articles\Show as BlogPost;
 use App\Nitro\Pages\Demo\ReactPage;
 use App\Nitro\Pages\Demo\SolidPage;
 use App\Nitro\Pages\Demo\SveltePage;
 use App\Nitro\Pages\Demo\VuePage;
 use App\Nitro\Pages\Docs\Show;
 use App\Http\Controllers\CompiledController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchIndexController;
 use App\Http\Controllers\SitemapController;
@@ -31,6 +34,11 @@ Route::get('/docs/compiled/{component}', CompiledController::class)->where('comp
 
 /** What ⌘K searches (App\Docs\SearchIndex). */
 Route::get('/docs/search.json', SearchIndexController::class);
+
+/** The blog: one Nitro page per post (resources/articles, App\Articles\Articles), and its RSS feed. */
+Route::nitro('/blog', BlogIndex::class);
+Route::get('/blog/feed.xml', FeedController::class);
+Route::nitro('/blog/{slug}', BlogPost::class)->where('slug', '[a-z0-9-]+');
 
 /** The docs: one Nitro page per sidebar entry (config/docs.php); the ones not written yet show a placeholder. */
 Route::redirect('/docs', '/docs/introduction');

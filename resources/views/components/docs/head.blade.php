@@ -18,7 +18,10 @@
     <meta name="twitter:card" content="summary_large_image">
 @endif
 <meta property="og:site_name" content="Nitro">
-<meta property="og:type" content="website">
+{{-- A blog post is an article to link previews; every other page, the website. --}}
+<meta property="og:type" content="{{ request()->is('blog/*') ? 'article' : 'website' }}">
+{{-- The blog's RSS feed, for readers that find it from any page. --}}
+<link rel="alternate" type="application/rss+xml" title="Nitro blog" href="{{ url('/blog/feed.xml') }}">
 {{-- The theme before the first paint: no flash of the wrong one. --}}
 <script>
     (() => {

@@ -21,6 +21,7 @@
 
         <nav class="flex items-center gap-1">
             <a nitro:navigate nitro:prefetch href="/docs" @class(['hidden rounded-md px-2.5 py-1.5 text-sm font-medium md:block', 'text-slate-900 dark:text-white' => $active === 'docs', 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white' => $active !== 'docs'])>Docs</a>
+            <a nitro:navigate nitro:prefetch href="/blog" @class(['hidden rounded-md px-2.5 py-1.5 text-sm font-medium md:block', 'text-slate-900 dark:text-white' => $active === 'blog', 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white' => $active !== 'blog'])>Blog</a>
             <a href="{{ config('docs.sponsor') }}" class="group hidden items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 sm:flex dark:text-slate-400 dark:hover:text-white">
                 <svg class="size-4 text-slate-400 transition group-hover:text-amber-500" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 16.5s-6.25-3.6-6.25-8.1A3.4 3.4 0 0 1 10 6.1a3.4 3.4 0 0 1 6.25 2.3c0 4.5-6.25 8.1-6.25 8.1Z" stroke-linejoin="round"/></svg>
                 Sponsor

@@ -29,6 +29,7 @@
             <div>
                 <p class="text-sm font-semibold text-slate-900 dark:text-white">Project</p>
                 <ul class="mt-4 space-y-2.5 text-sm">
+                    <li><a nitro:navigate href="/blog" class="text-slate-500 hover:text-slate-900 dark:hover:text-white">Blog</a></li>
                     <li><a href="{{ config('docs.github') }}" class="text-slate-500 hover:text-slate-900 dark:hover:text-white">GitHub</a></li>
                     <li><a href="{{ config('docs.github') }}/releases" class="text-slate-500 hover:text-slate-900 dark:hover:text-white">Releases</a></li>
                     <li><a href="{{ config('docs.github') }}/issues" class="text-slate-500 hover:text-slate-900 dark:hover:text-white">Issues</a></li>
@@ -52,6 +53,7 @@
             </div>
             <nav class="flex gap-6">
                 <a nitro:navigate href="/docs" class="hover:text-slate-900 dark:hover:text-white">Docs</a>
+                <a nitro:navigate href="/blog" class="hover:text-slate-900 dark:hover:text-white">Blog</a>
                 <a href="{{ config('docs.github') }}" class="hover:text-slate-900 dark:hover:text-white">GitHub</a>
                 <a href="{{ config('docs.sponsor') }}" class="hover:text-slate-900 dark:hover:text-white">Sponsor</a>
             </nav>

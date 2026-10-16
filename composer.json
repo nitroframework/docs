@@ -12,7 +12,8 @@
         "laravel/tinker": "^3.0",
         "laravelopenpackages/laravel-optimized": "^1.0",
         "nitro/nitro": "^2.0",
-        "phiki/phiki": "^2.2"
+        "phiki/phiki": "^2.2",
+        "symfony/yaml": "^8.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
