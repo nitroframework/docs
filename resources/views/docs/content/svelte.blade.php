@@ -72,25 +72,11 @@
 
     <h2 id="pages">A page with a Svelte view</h2>
     <p>
-        A <a nitro:navigate href="/docs/pages">page</a> can have a Svelte view too. Then the whole page is one
-        <code>.svelte</code> file, as an Inertia page is, and its class is its controller: it is routed, it loads its
-        data in <code>mount()</code>, and its <code>#[Server]</code> methods do the server's work. The layout stays
-        Blade, with the page's view where <code>$slot</code> is.
+        A page's view can be Svelte too: <code>#[View(svelte: 'demo/page')]</code> on a page class makes the whole page
+        one <code>.svelte</code> file, inside its Blade layout. Everything on this page applies to it. What a page adds
+        (its route, layout, head, deferred properties and visits) is on <a nitro:navigate href="/docs/javascript-pages">Pages
+        with JavaScript views</a>, and <a href="/demo/svelte">/demo/svelte</a> is one running.
     </p>
-
-    <x-docs.code src="app/Nitro/Pages/Demo/SveltePage.php" file="app/Nitro/Pages/Demo/SveltePage.php" runs="both" highlight="16,17,18" />
-    <x-docs.code src="resources/views/svelte/demo/page.svelte" lang="svelte" file="resources/views/svelte/demo/page.svelte" />
-    <x-docs.code code="Route::nitro('/demo/svelte', SveltePage::class);" file="routes/web.php" />
-
-    <ul>
-        <li><strong>A page like any other.</strong> Its route, <code>#[Title]</code>, <code>#[Layout]</code> and <code>mount()</code> work as on <a nitro:navigate href="/docs/pages">Pages</a>, and <code>$this-&gt;head()</code> as on <a nitro:navigate href="/docs/head">The page's head</a>.</li>
-        <li><strong>Deferred properties.</strong> <code>$this-&gt;defer()</code> works as on <a nitro:navigate href="/docs/page-data#deferred">Page data</a>. The view has the property's default (<code>null</code>) until it arrives, so show something meanwhile: <code>{stats ?? 'Loading…'}</code>.</li>
-        <li><strong>Visits in and out.</strong> A link from a Blade page, or from a page with a Vue, React or Solid view, visits it without a reload, and back returns.</li>
-    </ul>
-
-    <x-docs.callout type="tip" title="See it running">
-        <p><a href="/demo/svelte">/demo/svelte</a> is this page. Search, write a post, then follow its links to the same page with a Vue, React or Solid view: each one is a visit, not a reload.</p>
-    </x-docs.callout>
 
     <h2 id="props">The props</h2>
 

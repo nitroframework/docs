@@ -44,6 +44,7 @@ return [
         ],
         'JavaScript views' => [
             'javascript-views' => 'Overview',
+            'javascript-pages' => 'Pages',
             'vue' => 'Vue',
             'react' => 'React',
             'solid' => 'Solid',

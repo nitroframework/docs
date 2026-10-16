@@ -12,7 +12,7 @@
                 <a v-bind="link('/demo/react', 'prefetch')" class="demo-switch">React page</a>
                 <a v-bind="link('/demo/solid', 'prefetch')" class="demo-switch">Solid page</a>
                 <a v-bind="link('/demo/svelte', 'prefetch')" class="demo-switch">Svelte page</a>
-                <a v-bind="link('/docs/vue#pages')" class="demo-switch">Back to the docs</a>
+                <a v-bind="link('/docs/javascript-pages')" class="demo-switch">Back to the docs</a>
             </nav>
         </header>
 

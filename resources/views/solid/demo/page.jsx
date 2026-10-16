@@ -15,7 +15,7 @@ export default function Page(props) {
                     <a {...props.link('/demo/vue', 'prefetch')} class="demo-switch">Vue page</a>
                     <a {...props.link('/demo/react', 'prefetch')} class="demo-switch">React page</a>
                     <a {...props.link('/demo/svelte', 'prefetch')} class="demo-switch">Svelte page</a>
-                    <a {...props.link('/docs/solid#pages')} class="demo-switch">Back to the docs</a>
+                    <a {...props.link('/docs/javascript-pages')} class="demo-switch">Back to the docs</a>
                 </nav>
             </header>
 

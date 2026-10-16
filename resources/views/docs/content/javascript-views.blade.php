@@ -1,5 +1,5 @@
 <x-docs.page
-    lead="A component's view can be a Vue, React, Solid or Svelte component instead of Blade. The PHP class doesn't change: its properties, its methods compiled to run in the browser, its #[Server] methods and their rules. Only the view does, and it works with the component by the same names, in the framework's own way."
+    lead="A component's or a page's view can be a Vue, React, Solid or Svelte component instead of Blade. The PHP class doesn't change: its properties, its methods compiled to run in the browser, its #[Server] methods and their rules. Only the view does, and it works with the component by the same names, in the framework's own way."
 >
     <p>
         Blade is Nitro's own view engine: Nitro compiles it, and renders it on the server and in the browser. A
@@ -7,6 +7,27 @@
         gives it the component (its state, its methods, its server calls, its validation messages) and keeps them in
         step. You write the view the way that framework is written, and the PHP the way Nitro is.
     </p>
+
+    <p>Every view works everywhere a view can be:</p>
+
+    @php
+        $views = [
+            ['Blade', '✓', '✓', '✓', '✓', '✓'],
+            ['Vue', '✓', '✓', '✓', '✓', '✓'],
+            ['React', '✓', '✓', '✓', '✓', '✓'],
+            ['Solid', '✓', '✓', '✓', '✓', '✓'],
+            ['Svelte', '✓', '✓', '✓', '✓', '✓'],
+        ];
+    @endphp
+    <x-docs.table :columns="['View', 'A component', 'A whole page', 'Visits to and from any other', 'Events with any other', 'Server rendering']" :rows="$views" />
+
+    <ul>
+        <li><strong>A component</strong> is placed from Blade, beside components with any other view (<a href="#side-by-side">Side by side on a page</a>).</li>
+        <li><strong>A whole page</strong> is routed, with its view inside a Blade layout (<a nitro:navigate href="/docs/javascript-pages">Pages</a>).</li>
+        <li><strong>Visits</strong> go from a page with one view to a page with another without a reload (<a nitro:navigate href="/docs/javascript-pages#visits">Visits between frameworks</a>).</li>
+        <li><strong>Events</strong> sent by one component reach <code>#[On]</code> methods whatever their views are (<a href="#talking">Talking to each other</a>).</li>
+        <li><strong>Server rendering</strong> puts JavaScript views in the page's first HTML, as Blade's are (<a nitro:navigate href="/docs/server-rendering">Server rendering</a>).</li>
+    </ul>
 
     <x-docs.cards>
         <x-docs.card href="/docs/vue" title="Vue" icon="browser">Templates and <code>v-model</code> on the component's properties; <code>useNitro()</code> refs in <code>&lt;script setup&gt;</code>.</x-docs.card>
@@ -216,6 +237,7 @@
 
     <h2 id="next-steps">Next steps</h2>
     <x-docs.cards>
+        <x-docs.card href="/docs/javascript-pages" title="Pages" icon="book">A whole page in Vue, React, Solid or Svelte.</x-docs.card>
         <x-docs.card href="/docs/vue" title="Vue" icon="browser">Everything a Vue view can do.</x-docs.card>
         <x-docs.card href="/docs/server-rendering" title="Server rendering" icon="server">JavaScript views in the page's first HTML.</x-docs.card>
     </x-docs.cards>

@@ -15,7 +15,7 @@
             <a {...link('/demo/vue', 'prefetch')} class="demo-switch">Vue page</a>
             <a {...link('/demo/react', 'prefetch')} class="demo-switch">React page</a>
             <a {...link('/demo/solid', 'prefetch')} class="demo-switch">Solid page</a>
-            <a {...link('/docs/svelte#pages')} class="demo-switch">Back to the docs</a>
+            <a {...link('/docs/javascript-pages')} class="demo-switch">Back to the docs</a>
         </nav>
     </header>
 

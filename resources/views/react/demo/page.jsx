@@ -13,7 +13,7 @@ export default function Page({ results, search, title, body, errors, set, publis
                     <a {...link('/demo/vue', 'prefetch')} className="demo-switch">Vue page</a>
                     <a {...link('/demo/solid', 'prefetch')} className="demo-switch">Solid page</a>
                     <a {...link('/demo/svelte', 'prefetch')} className="demo-switch">Svelte page</a>
-                    <a {...link('/docs/react#pages')} className="demo-switch">Back to the docs</a>
+                    <a {...link('/docs/javascript-pages')} className="demo-switch">Back to the docs</a>
                 </nav>
             </header>
 
