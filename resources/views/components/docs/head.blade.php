@@ -31,6 +31,16 @@
 </script>
 {{-- The code blocks' token colours (App\Docs\Code::css()). --}}
 <style>{!! \App\Docs\Code::css() !!}</style>
+{{-- What shows while a visit becomes a full page load (resources/js/app.js, showReloading). --}}
+<template data-reloading>
+    <div class="reloading" role="status">
+        <div class="reloading-card">
+            <x-docs.logo />
+            <div class="reloading-bar"></div>
+            <p class="reloading-text">Loading the page…</p>
+        </div>
+    </div>
+</template>
 {{-- React's refresh, for npm run dev (the examples' React views); nothing in a build. --}}
 @viteReactRefresh
 @vite(['resources/css/app.css', 'resources/js/app.js'])

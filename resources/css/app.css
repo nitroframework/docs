@@ -199,6 +199,27 @@ html #nprogress .bar { background: linear-gradient(90deg, var(--color-cyan-400),
 .search-result[aria-busy="true"] .search-result-text { padding-right: 1.75rem; }
 @keyframes search-spin { to { transform: rotate(360deg); } }
 
+/* A visit that becomes a full page load (resources/js/app.js, showReloading): the page blurs behind
+   Nitro's mark, its two halves meeting, until the new page shows. A quick load is over before it fades in. */
+.reloading { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: rgb(255 255 255 / .55); backdrop-filter: blur(10px) saturate(1.2); opacity: 0; animation: reloading-in .3s ease-out .25s forwards; }
+.dark .reloading { background: color-mix(in oklab, var(--color-ink) 65%, transparent); }
+.reloading-card { display: flex; flex-direction: column; align-items: center; gap: 1rem; border-radius: 1.25rem; padding: 1.75rem 2.25rem 1.5rem; background: rgb(255 255 255 / .8); box-shadow: 0 0 0 1px var(--color-slate-200), 0 24px 60px -20px rgb(15 23 42 / .35); }
+.dark .reloading-card { background: rgb(255 255 255 / .04); box-shadow: 0 0 0 1px rgb(255 255 255 / .08), 0 24px 60px -20px rgb(0 0 0 / .6); }
+.reloading svg { width: 2.5rem; height: 2.5rem; overflow: visible; }
+.reloading circle, .reloading path { transform-box: fill-box; transform-origin: center; animation: 1.6s cubic-bezier(.45, 0, .25, 1) infinite; }
+.reloading circle:nth-of-type(1) { animation-name: reloading-server; }
+.reloading circle:nth-of-type(2) { animation-name: reloading-browser; }
+.reloading path { animation-name: reloading-meet; }
+.reloading-text { font-size: .8125rem; color: var(--color-slate-500); }
+.reloading-bar { position: relative; width: 9rem; height: 3px; overflow: hidden; border-radius: 9999px; background: var(--color-slate-200); }
+.dark .reloading-bar { background: rgb(255 255 255 / .08); }
+.reloading-bar::after { content: ''; position: absolute; inset-block: 0; width: 40%; border-radius: inherit; background: linear-gradient(90deg, var(--color-amber-400), var(--color-sky-500), var(--color-blue-600)); animation: reloading-slide 1.2s cubic-bezier(.45, 0, .25, 1) infinite; }
+@keyframes reloading-in { to { opacity: 1; } }
+@keyframes reloading-server { 0%, 100% { translate: 0; } 50% { translate: -3px; } }
+@keyframes reloading-browser { 0%, 100% { translate: 0; } 50% { translate: 3px; } }
+@keyframes reloading-meet { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: .35; scale: .8; } }
+@keyframes reloading-slide { from { left: -40%; } to { left: 100%; } }
+
 /* The homepage's veins (resources/js/app.js, startVeins): faint lines, with blue and amber running along them
    while they are in view. Each path has pathLength="1": a dash of .16, a gap longer than the path. */
 .vein { stroke-dasharray: .16 1; stroke-dashoffset: .16; stroke-linecap: round; opacity: 0; animation: vein-run var(--vein-time, 7s) cubic-bezier(.45, 0, .25, 1) var(--vein-delay, 0s) infinite paused; }
@@ -310,4 +331,5 @@ html #nprogress .bar { background: linear-gradient(90deg, var(--color-cyan-400),
     .mech *, .mech *::before { animation: none !important; }
     .mech-tag, .mech-saved { opacity: 1; }
     .mech-requests--one { opacity: 0; }
+    .reloading circle, .reloading path, .reloading-bar::after { animation: none; }
 }

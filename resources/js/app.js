@@ -1,4 +1,4 @@
-// The docs' small behaviours: theme, tabs, copy, "On this page", search, the mobile drawer.
+// The docs' small behaviours: theme, tabs, copy, "On this page", search, the mobile drawer, the full-load overlay.
 // Pages change with nitro:navigate (the docs keep their layout, other pages swap the body; this script stays): init() sets up each
 // page, on load and after every visit; the window's listeners are added once.
 import './autosize.js';
@@ -277,6 +277,22 @@ addEventListener('keydown', (event) => {
         $('[data-search-result][aria-selected="true"]')?.click();
     }
 });
+
+// ------------------------------------------------------------------ a visit that becomes a full page load
+
+/**
+ * A full page load: a reload (F5), or a visit Nitro can't finish in place (another build since the
+ * page loaded, the network not back yet). While the browser leaves this page, the overlay
+ * (x-docs.head's template, app.css's .reloading) shows until the new page paints.
+ */
+function showReloading() {
+    const template = $('template[data-reloading]');
+    if (template && !$('.reloading')) document.body.append(template.content.cloneNode(true));
+}
+
+addEventListener('beforeunload', showReloading);
+/** Back to this page from the browser's cache: as it was, without the overlay. */
+addEventListener('pageshow', (event) => event.persisted && $('.reloading')?.remove());
 
 // ------------------------------------------------------------------ the sidebar keeps its scroll across pages
 
