@@ -111,6 +111,15 @@
     <x-docs.code src="js-views-setup.js" lang="js" />
 
     <p>
+        <code>only('react')</code> is the <code>.js</code>, <code>.jsx</code>, <code>.ts</code> and <code>.tsx</code> files
+        under <code>resources/views/react</code> and <code>resources/js/react</code>, where Nitro looks for React's views;
+        <code>only('solid')</code> the same under <code>solid</code>. Keep each framework's own components (a view's
+        children too) under its folders. If your views are somewhere else, name the folders, from your app's root:
+        <code>only('react', 'resources/frontend/react')</code>. With only one of the two, or with Vue and Svelte, you need
+        none of this: each plugin knows its own files.
+    </p>
+
+    <p>
         Nitro's Vite plugin gives you <code>nitro/vue</code>, <code>/react</code>, <code>/solid</code> and
         <code>/svelte</code> (and their <code>/server</code> parts for server rendering), keeps a single copy of each
         framework in the bundle, and leaves a <code>.vue</code> or <code>.svelte</code> file's <code>&lt;php&gt;</code>

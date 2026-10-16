@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue';
 import react from '@vitejs/plugin-react';
 import solid from 'vite-plugin-solid';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-import nitro from './vendor/nitro/nitro/js/vite.js';
+import nitro, { only } from './vendor/nitro/nitro/js/vite.js';
 
 export default defineConfig({
     plugins: [
@@ -14,8 +14,8 @@ export default defineConfig({
         vue(),
         svelte(),
         // React and Solid both compile .jsx: give each its own folders.
-        react({ include: /resources[\\/](views|js)[\\/]react[\\/].*\.[jt]sx$/ }),
-        solid({ include: /resources[\\/](views|js)[\\/]solid[\\/].*\.[jt]sx$/ }),
+        react({ include: only('react') }),
+        solid({ include: only('solid') }),
     ],
 });
 

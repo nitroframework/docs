@@ -37,8 +37,9 @@
     </p>
 
     <x-docs.callout type="tip" title="Solid and React in one app">
-        <p>Both compile <code>.jsx</code>, each its own way, so tell each plugin which files are its own. Keep Solid's components (the view's children too) under a <code>solid</code> folder:</p>
+        <p>Both compile <code>.jsx</code>, each its own way, so tell each plugin which files are its own. <code>only('solid')</code> is the scripts under <code>resources/views/solid</code> and <code>resources/js/solid</code>, so keep Solid's components (the view's children too) there:</p>
         <x-docs.code src="solid-both.js" lang="js" bare />
+        <p>Views somewhere else? Name the folders, from your app's root: <code>only('solid', 'resources/frontend/solid')</code>.</p>
     </x-docs.callout>
 
     <p>
