@@ -26,6 +26,7 @@ return [
             'installation' => 'Installation',
             'quickstart' => 'Quickstart',
             'how-it-works' => 'How Nitro works',
+            'coming-from-inertia' => 'Coming from Inertia',
         ],
         'Essentials' => [
             'components' => 'Components',
