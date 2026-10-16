@@ -31,4 +31,6 @@
 </script>
 {{-- The code blocks' token colours (App\Docs\Code::css()). --}}
 <style>{!! \App\Docs\Code::css() !!}</style>
+{{-- React's refresh, for npm run dev (the examples' React views); nothing in a build. --}}
+@viteReactRefresh
 @vite(['resources/css/app.css', 'resources/js/app.js'])

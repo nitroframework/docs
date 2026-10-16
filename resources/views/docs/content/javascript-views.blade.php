@@ -118,6 +118,10 @@
         <code>only('react', 'resources/frontend/react')</code>. With only one of the two, or with Vue and Svelte, you need
         none of this: each plugin knows its own files.
     </p>
+    <p>
+        With React, the layout also needs Laravel's <code>@@viteReactRefresh</code> before <code>@@vite</code>, for
+        <code>npm run dev</code> (see <a nitro:navigate href="/docs/react#setup">React</a>).
+    </p>
 
     <p>
         Nitro's Vite plugin gives you <code>nitro/vue</code>, <code>/react</code>, <code>/solid</code> and

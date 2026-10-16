@@ -25,8 +25,8 @@
             <x-docs.code src="react-setup.js" lang="js" bare />
         </x-docs.step>
         <x-docs.step title="Load them before Nitro starts">
-            <p>Put <code>@@vite</code> before <code>@@nitroScripts</code> in your layout, so the views are registered when the components start.</p>
-            <x-docs.code src="vue-layout.blade.php" lang="blade" bare />
+            <p>Put <code>@@vite</code> before <code>@@nitroScripts</code> in your layout, so the views are registered when the components start. React's Vite plugin also needs Laravel's <code>@@viteReactRefresh</code> before <code>@@vite</code>: without it, <code>npm run dev</code> stops every React view with "can't detect preamble". A build doesn't need it, and it writes nothing there.</p>
+            <x-docs.code src="react-layout.blade.php" lang="blade" bare />
         </x-docs.step>
     </x-docs.steps>
 
