@@ -1,5 +1,9 @@
 <?php
 
+use App\Nitro\Pages\Demo\ReactPage;
+use App\Nitro\Pages\Demo\SolidPage;
+use App\Nitro\Pages\Demo\SveltePage;
+use App\Nitro\Pages\Demo\VuePage;
 use App\Nitro\Pages\Docs\Show;
 use App\Http\Controllers\CompiledController;
 use App\Http\Controllers\RobotsController;
@@ -15,6 +19,12 @@ Route::get('/robots.txt', RobotsController::class);
 
 /** Islands only exist in a plain Blade view: the Islands page's demo. */
 Route::view('/demo/islands', 'demo.islands');
+
+/** Pages whose whole view is Vue, React, Solid or Svelte: each framework's page links to its own. */
+Route::nitro('/demo/vue', VuePage::class);
+Route::nitro('/demo/react', ReactPage::class);
+Route::nitro('/demo/solid', SolidPage::class);
+Route::nitro('/demo/svelte', SveltePage::class);
 
 /** A component's compiled JavaScript, for a "Compiled" panel as it opens (App\Docs\Code::compiled()). */
 Route::get('/docs/compiled/{component}', CompiledController::class)->where('component', '[a-z0-9:.-]+');
