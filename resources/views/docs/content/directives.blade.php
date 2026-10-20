@@ -19,9 +19,11 @@
 
     <h2 id="events">Handling events</h2>
     <p>
-        You can listen for any DOM event, such as <code>nitro:click</code>, <code>nitro:submit</code>,
-        <code>nitro:input</code> or <code>nitro:keydown</code>. The value is a method name, a method call such
-        as <code>remove($index)</code>, or an action.
+        You can listen for the DOM's events: clicks, forms (<code>nitro:submit</code>, <code>nitro:input</code>,
+        <code>nitro:change</code>), keys, focus, the mouse, the pointer (<code>nitro:pointerdown</code>,
+        <code>nitro:pointermove</code>, <code>nitro:pointerenter</code>, <code>nitro:pointercancel</code>, ...),
+        touch, scrolling, dragging and the clipboard. The value is a method name, a method call such as
+        <code>remove($index)</code>, or an action.
     </p>
 
     <x-docs.code src="directive-events.blade.php" lang="blade" />
@@ -30,6 +32,20 @@
         <code>nitro:submit</code> always stops the browser from posting the form and reloading the page, so you
         don't need <code>.prevent</code> on it.
     </p>
+
+    <p>
+        An event reaches the handlers on its target and on the elements around it, as the DOM's bubbling does.
+        <code>nitro:mouseenter</code>, <code>nitro:mouseleave</code>, <code>nitro:pointerenter</code> and
+        <code>nitro:pointerleave</code> run only on the element entered or left: entering a cell is not entering
+        the row around it.
+    </p>
+
+    <h3 id="event">The event: <code>$event</code></h3>
+    <p>
+        In a handler, <code>$event</code> is the DOM event. Read what you need from it and pass it on:
+    </p>
+
+    <x-docs.code src="directive-event-variable.blade.php" lang="blade" />
 
     <p>Modifiers change how an event is handled:</p>
 
